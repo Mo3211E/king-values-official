@@ -25,13 +25,22 @@ echo Pushing to remote...
 git push origin main >nul 2>&1
 if %errorlevel% neq 0 (
     echo Main branch protected. Creating temporary branch...
-    set branch=temp-%RANDOM%
-    git push origin HEAD:%branch% >nul 2>&1
+    setlocal enabledelayedexpansion
+    set /a rand=%random% * 10000 + 1000
+    set "branch=temp-!rand!"
+    echo Creating branch !branch! ...
+    git push origin HEAD:!branch!
+    if %errorlevel% neq 0 (
+        echo ❌ Failed to push to remote. Please check your network or credentials.
+        pause
+        exit /b
+    )
     echo.
-    echo ✅ Pushed to new branch: %branch%
+    echo ✅ Pushed to new branch: !branch!
     echo 🔗 Opening Pull Request link...
-    echo https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...%branch%
-    start https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...%branch%
+    echo https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!
+    start "" "https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!"
+    endlocal
 ) else (
     echo ✅ Push complete to main!
 )
@@ -40,6 +49,6 @@ echo.
 echo GitHub: https://github.com/Vaulted-Values-X/AnimeVanguards-VVX
 echo Vercel: https://vvx-anime-vanguards-vvx.vercel.app
 echo.
-echo Press any key to continue . . .
+echo Press any key to close . . .
 pause >nul
 exit
