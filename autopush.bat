@@ -1,17 +1,54 @@
 @echo off
-cd /d "C:\Users\hamex\OneDrive\Desktop\av-values"
+chcp 65001 >nul
+title Auto Push – AnimeVanguards-VVX
+color 0a
 
-git add .
-git commit -m "Auto Update"
-git push -f https://github.com/Vaulted-Values-X/AnimeVanguards-VVX.git main
-
+echo =====================================
+echo       Auto Push – AnimeVanguards-VVX
+echo =====================================
 echo.
-echo ================================
-echo   Auto Push - AnimeVanguards-VVX
-echo ================================
-echo Push Complete!
+
+REM --- Check for commit message file ---
+set "msgFile=commitmsg.txt"
+if exist "%msgFile%" (
+    set /p msg=<"%msgFile%"
+) else (
+    set msg=Auto commit on %date% %time%
+    echo %msg%>"%msgFile%"
+)
+
+REM --- Stage, commit, and push ---
+git add -A
+git commit -m "%msg%" >nul 2>&1
+
+echo Pushing to remote...
+git push origin main >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Main branch protected. Creating temporary branch...
+    setlocal enabledelayedexpansion
+    set /a rand=%random% * 10000 + 1000
+    set "branch=temp-!rand!"
+    echo Creating branch !branch! ...
+    git push origin HEAD:!branch!
+    if %errorlevel% neq 0 (
+        echo ❌ Failed to push to remote. Please check your network or credentials.
+        pause
+        exit /b
+    )
+    echo.
+    echo ✅ Pushed to new branch: !branch!
+    echo 🔗 Opening Pull Request link...
+    echo https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!
+    start "" "https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!"
+    endlocal
+) else (
+    echo ✅ Push complete to main!
+)
+
 echo.
 echo GitHub: https://github.com/Vaulted-Values-X/AnimeVanguards-VVX
-echo Vercel: https://vvx-anime-vanguards.anime-vanguards-vvx.vercel.app
+echo Vercel: https://vvx-anime-vanguards-vvx.vercel.app
 echo.
-pause
+echo Press any key to close . . .
+pause >nul
+exit

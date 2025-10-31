@@ -91,7 +91,7 @@ export default function Home() {
             textShadow: "0 0 20px rgba(211, 207, 255, 0.5)",
           }}
         >
-          Some Word I Didn't Decide Yet
+          #1 Community Led
         </p>
 
         {/* Title */}
@@ -125,7 +125,7 @@ export default function Home() {
               "0 0 25px rgba(199,182,255,0.4), 0 0 50px rgba(226,215,255,0.2)",
           }}
         >
-          King Values is Made and Agreed Upon by a Collective Group of AV
+          This Value List is Made and Agreed Upon by a Collective Group of AV
           <br className="hidden sm:block" />
           Competitive Players and Traders (Listed Below)
         </div>
@@ -167,16 +167,16 @@ export default function Home() {
               <div className="grid gap-4 w-full">
                 {[
                   {
-                    title: "Search for Units",
-                    desc: "Quickly locate any unit or familiar by name, rarity, or in-game alias.",
+                    title: "Accurate Values",
+                    desc: "Community led values that accurately represent present value, demand, and stability",
                   },
                   {
-                    title: "Filter by Value or Demand",
-                    desc: "Sort to find high-demand or high-value units instantly with precision filters.",
+                    title: "Live Trade Hub",
+                    desc: "Post and/or search for public trades, easily completing wanted trades ",
                   },
                   {
-                    title: "Stable-Only Mode",
-                    desc: "Focus on consistent-value cards and avoid market volatility easily.",
+                    title: "Community Feedback",
+                    desc: "Click on any card and provide feedback, allowing us to accurately represent the playerbase",
                   },
                 ].map((f, i) => (
                   <div
@@ -204,21 +204,21 @@ export default function Home() {
                 FAQ
               </h2>
               <p className="text-[1.5rem] text-white/70 mb-6 italic">
-                Tap a question to reveal the answer.
+                Click a question to reveal the answer.
               </p>
               <div className="grid gap-4 w-full">
                 {[
                   {
-                    q: "How often is the list updated?",
-                    a: "Values are refreshed daily with verified in-game trade data.",
+                    q: "How often are values updated?",
+                    a: "Values are updated daily to accurately represent present changes in demand, value, and community acceptance",
                   },
                   {
                     q: "Who manages the values?",
-                    a: "A collaborative team of veteran traders and developers maintaining balance.",
+                    a: "A trusted team of competitive players and traders who actively watch trades, demands, and community value feedback",
                   },
                   {
                     q: "Are the values official?",
-                    a: "They reflect accurate trade averages and community consensus.",
+                    a: "The values are accepted as official by the community, but not sponsored by Anime Vanguards itself",
                   },
                 ].map((item, i) => (
                   <div
@@ -258,7 +258,7 @@ export default function Home() {
             Simple, Kegs, Exs, Awesometicklenip, Void, Feh, Nathan, Connos, Knull,
             Nat, Manjiro, Mespiritan
             <br />
-            <span className="text-[#f9cb9c]">Partners:</span> VVX (Chemical & LOOP), Peryfc{" "}
+            <span className="text-[#f9cb9c]">Partners:</span> VVX (Chemical & LOOP), Peryfc, Illusion (Discord Server){" "}
           </p>
         </div>
 

@@ -57,7 +57,7 @@ export default function TradeHub() {
         `/api/trades${query ? `?search=${encodeURIComponent(query)}` : ""}`
       );
       const data = await res.json();
-      if (data.success) setAds(data.results);
+      if (data.success) setAds(data.data || []);
     } catch (err) {
       console.error("Failed to load trades:", err);
     } finally {
