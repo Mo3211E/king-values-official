@@ -95,7 +95,7 @@ export default function NavBar() {
       `,
     }}
   >
-    King Values
+    AV Values
   </h1>
 </Link>
 
