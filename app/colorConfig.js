@@ -65,6 +65,7 @@ export const unitColors = {
   "Vanguard Event Skins": "#40e696",
   "Kimono Saber": "#ff0000",
   "Suit Gojo": "#ff0000",
+  "Fern": "#ff0000",
   "Casual Gilgamesh": "#ff0000",
   "Drip Goku": "#ff0000",
   "Casual Ichigo": "#ff0000",

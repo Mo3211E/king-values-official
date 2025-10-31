@@ -436,24 +436,24 @@ export default function UnitsPage() {
               </div>
             )}
           </div>
-           {/* GUIDE button — same size as chips, with true rounded gradient border */}
-          <button
-            onClick={() => setShowGuidePopup(true)}
-            className="ml-2 inline-flex items-center justify-center gap-2 h-[40px] px-4 rounded-full font-bold text-white transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_0_15px_rgba(190,140,255,0.35)]"
-            title="Guide"
-            style={{
-              // Two-layer background = gradient border that respects border-radius
-              backgroundImage:
-                'linear-gradient(#12001f, #0a0015), linear-gradient(45deg,#b57aff,#d4a6ff)',
-              backgroundOrigin: 'padding-box, border-box',
-              backgroundClip: 'padding-box, border-box',
-              border: '2px solid transparent',
-              borderRadius: '9999px',
-            }}
-          >
-            <span className="text-lg font-extrabold leading-none">?</span>
-            <span>Guide</span>
-          </button>
+    {/* Fixed Guide button (top-right, under navbar) */}
+<button
+  onClick={() => setShowGuidePopup(true)}
+  className="fixed top-[85px] right-[25px] z-[900] flex items-center justify-center gap-2 h-[45px] px-5 rounded-full font-bold text-white transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_0_15px_rgba(190,140,255,0.4)]"
+  title="Guide"
+  style={{
+    backgroundImage:
+      'linear-gradient(#12001f, #0a0015), linear-gradient(45deg,#b57aff,#d4a6ff)',
+    backgroundOrigin: 'padding-box, border-box',
+    backgroundClip: 'padding-box, border-box',
+    border: '2px solid transparent',
+    borderRadius: '9999px',
+  }}
+>
+  <span className="text-lg font-extrabold leading-none">?</span>
+  <span>Guide</span>
+</button>
+
         </div>
 
         {/* ---------------- GRID ---------------- */}

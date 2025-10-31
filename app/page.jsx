@@ -257,6 +257,8 @@ export default function Home() {
             <span className="text-[#f9cb9c]">Value Team:</span> Xon, Gohary, Fadi,
             Simple, Kegs, Exs, Awesometicklenip, Void, Feh, Nathan, Connos, Knull,
             Nat, Manjiro, Mespiritan
+            <br />
+            <span className="text-[#f9cb9c]">Partners:</span> VVX (Chemical & LOOP), Peryfc{" "}
           </p>
         </div>
 

@@ -56,15 +56,15 @@ async function ensureIndexes(db) {
 }
 
 /** Hard throttle using per-minute & per-hour “buckets” */
-async function throttle(db, ip, ua) {
+async function throttle(db, id, ua) {
   const rate = db.collection(RATE);
   const now = Date.now();
 
-  const minuteBucket = Math.floor(now / (60 * 1000));       // changes every minute
-  const hourBucket   = Math.floor(now / (60 * 60 * 1000));  // changes every hour
+  const minuteBucket = Math.floor(now / 60000);
+  const hourBucket   = Math.floor(now / 3600000);
 
-  const minuteKey = { ip, ua, bucket: `m:${minuteBucket}` };
-  const hourKey   = { ip, ua, bucket: `h:${hourBucket}`   };
+  const minuteKey = { id, ua, bucket: `m:${minuteBucket}` };
+  const hourKey   = { id, ua, bucket: `h:${hourBucket}` };
 
   const ops = [
     {
@@ -95,6 +95,11 @@ async function throttle(db, ip, ua) {
   if ((hDoc?.count ?? 0) > PER_HOUR_MAX) {
     return { ok: false, code: 429, msg: "Too many requests (hour cap)." };
   }
+  // If same UA sends >15 requests/hour total, block regardless of IP
+const uaCount = await rate.countDocuments({ ua, bucket: { $regex: "^h:" } });
+if (uaCount > 15) {
+  return { ok:false, code:429, msg:"Too many requests from this client signature." };
+}
   return { ok: true };
 }
 
@@ -137,6 +142,7 @@ export async function GET(req) {
       .toArray();
 
     return NextResponse.json({ success: true, results });
+    await new Promise(r => setTimeout(r, 100 + Math.random() * 300));
   } catch (err) {
     console.error("GET /api/trades error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
@@ -159,7 +165,7 @@ export async function POST(req) {
     const fingerprint = ip + "_" + ua; // unified identifier for anti-VPN flood protection
 
     // Hard-rate-limit to stop floods/raids
-    const guard = await throttle(db, ip, ua);
+    const guard = await throttle(db, fingerprint, ua);
     if (!guard.ok) {
       return NextResponse.json({ error: guard.msg }, { status: guard.code });
     }
@@ -177,13 +183,32 @@ export async function POST(req) {
       roblox = "",
     } = body || {};
 
-    // Basic validation (reject empty trades)
-    if (!Array.isArray(player1) || !Array.isArray(player2)) {
-      return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
-    }
-    if (player1.length === 0 && player2.length === 0) {
-      return NextResponse.json({ error: "Add units to your trade." }, { status: 400 });
-    }
+// ---------- Strong validation ----------
+if (!Array.isArray(player1) || !Array.isArray(player2)) {
+  return NextResponse.json({ error: "Invalid payload." }, { status: 400 });
+}
+
+// must have at least one unit in EACH side
+if (player1.length === 0 || player2.length === 0) {
+  return NextResponse.json({ error: "Add units/items to both fields." }, { status: 400 });
+}
+
+// reject trades missing both Discord & Roblox
+if (!discord.trim() && !roblox.trim()) {
+  return NextResponse.json({ error: "Missing Required Fields — enter Discord or Roblox username." }, { status: 400 });
+}
+
+// reject nonsense placeholders / too-short text
+if (title.trim().length < 5 || title === description) {
+  return NextResponse.json({ error: "Invalid or duplicate title." }, { status: 400 });
+}
+
+// reject trades that look like single-character spam
+const joined = [title, description, discord, roblox].join("");
+if (/^[aA\s]*$/.test(joined) || joined.length < 10) {
+  return NextResponse.json({ error: "Trade content too short or spam-like." }, { status: 400 });
+}
+
     if (typeof title !== "string" || title.trim().length < 3) {
       // auto-title is fine; just ensure not empty junk
       return NextResponse.json({ error: "Invalid title." }, { status: 400 });
