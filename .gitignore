@@ -36,3 +36,5 @@ pids/
 # Cache
 .cache/
 coverage/
+
+autopush.bat
