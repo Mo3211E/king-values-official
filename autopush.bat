@@ -1,34 +1,56 @@
 @echo off
-:: === AutoPush with PR Support for Protected Branch ===
-:: Runs inside your project folder
+:: === AutoPush without GitHub CLI ===
+:: Works even if main is protected or CLI isn't installed
 
-:: Step 1: Save all current changes
-echo Adding all files...
-git add .
+setlocal enabledelayedexpansion
+cd /d "%~dp0"
 
-:: Step 2: Create commit
-set datetime=%date:~10,4%-%date:~4,2%-%date:~7,2%_%time:~0,2%-%time:~3,2%
-set datetime=%datetime: =0%
-set branch=update-%datetime%
-
-git commit -m "Auto update at %datetime%"
+echo 🔄 Cleaning up local branches...
+git fetch --prune
+git branch | findstr /v "main" | findstr /v "*" > tmp_branches.txt
+for /f "tokens=*" %%b in (tmp_branches.txt) do (
+    git branch -D %%b >nul 2>&1
+)
+del tmp_branches.txt >nul 2>&1
+echo ✅ Local branches cleaned.
 echo.
 
-:: Step 3: Create and switch to new branch
-echo Creating branch: %branch%
+for /f "tokens=1-3 delims=/ " %%a in ("%date%") do set d=%%c-%%a-%%b
+for /f "tokens=1-3 delims=: " %%a in ("%time%") do set t=%%a%%b
+set "branch=update-%d%-%t%"
+set "branch=%branch: =0%"
+
+echo 🚀 Creating branch: %branch%
+git checkout main
+git pull origin main
 git checkout -b %branch%
-
-:: Step 4: Push new branch to origin
-echo Pushing branch to GitHub...
-git push origin %branch%
 echo.
 
-:: Step 5: Create pull request to main using GitHub CLI
-echo Opening pull request...
-gh pr create --base main --head %branch% --title "Auto Update %datetime%" --body "Automatic update triggered by autopush.bat"
-
-:: Step 6: Done
+echo 💾 Adding all changes...
+git add .
+git commit -m "Auto update %branch%" || echo (No new commits)
 echo.
-echo ✅ Pull request created successfully! 
-echo 🔗 Open GitHub to review and merge changes into main.
+
+echo 📤 Pushing branch to GitHub...
+git push origin %branch% --force
+if errorlevel 1 (
+    echo ❌ Push failed. You might not have permission.
+    pause
+    exit /b
+)
+echo ✅ Pushed successfully.
+echo.
+
+:: Get remote URL
+for /f "tokens=*" %%i in ('git config --get remote.origin.url') do set repoURL=%%i
+
+:: Convert SSH or HTTPS remote URL into browser link
+set repoURL=%repoURL:git@github.com:=% 
+set repoURL=%repoURL:https://github.com/=% 
+set repoURL=https://github.com/%repoURL:.git=%
+
+echo 🌐 Opening Pull Request page...
+start "" "%repoURL%/compare/main...%branch%"
+
+echo ✅ Pull request page opened. Click "Create Pull Request" to finish.
 pause

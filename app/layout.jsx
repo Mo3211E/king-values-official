@@ -10,7 +10,7 @@ export const metadata = {
     title: "King Values | #1 AV Value List & Trading Hub",
     description: "Live & accurate community-led values + trade hub - Anime Vanguards",
     url: "https://animevanguardsvalues.com",
-    siteName: "AV Values",
+    siteName: "King Values",
     images: [
       {
         url: "https://animevanguardsvalues.com/og-banner.png",
