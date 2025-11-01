@@ -254,9 +254,9 @@ export default function Home() {
           <p className="mt-3 font-medium">
             <span className="text-[#f9cb9c]">Co-Owners:</span> Me (King Mo3211), Ekuzotia, Zog, Pop{" "}
             <br />
-            <span className="text-[#f9cb9c]">Value Team:</span> Xon, Gohary, Fadi,
-            Simple, Kegs, Exs, Awesometicklenip, Void, Feh, Nathan, Connos, Knull,
-            Nat, Manjiro, Mespiritan
+            <span className="text-[#f9cb9c]">Value Team:</span> Connos, Mespritian, Xon, Gohary, Void, Fadi,
+            Simple, Kegs, Exs, Awesometicklenip, Void, Feh, Nathan, Knull,
+            Nat, Manjiro
             <br />
             <span className="text-[#f9cb9c]">Partners:</span> VVX (Chemical & LOOP), Peryfc, Illusion (Discord Server){" "}
           </p>

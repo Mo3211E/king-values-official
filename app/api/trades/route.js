@@ -217,11 +217,9 @@ export async function POST(req) {
     if (!body) return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
 
     // gather request meta
-    const ip =
-      (req.headers.get("x-forwarded-for") || "").split(",").shift()?.trim() ||
-      req.ip ||
-      req.headers.get("x-real-ip") ||
-      "0.0.0.0";
+let ip = (req.headers.get("x-forwarded-for") || "").split(",").shift()?.trim();
+if (!ip || ip === "") ip = req.headers.get("x-real-ip");
+if (!ip || ip === "") ip = req.ip || "0.0.0.0";
     const ua = req.headers.get("user-agent") || "";
     const fingerprint = makeFingerprint(ip, ua);
 
@@ -323,10 +321,29 @@ export async function POST(req) {
     if (p1sig && p1sig === p2sig) {
       return NextResponse.json({ error: "Cannot trade the same items for the same items." }, { status: 400 });
     }
+// block mirrored trades (offering/looking swapped)
+const mirrorExists = await db.collection(TRADES).countDocuments({
+  "player1.Name": { $in: player2.map(u => u.Name) },
+  "player2.Name": { $in: player1.map(u => u.Name) },
+  createdAt: { $gte: since },
+});
+if (mirrorExists > 0) {
+  return NextResponse.json({ error: "Mirror/self trade detected (same items swapped)." }, { status: 400 });
+}
+
+// block exact duplicate title by same fingerprint within 24h
+const dupSameTitle = await db.collection(TRADES).countDocuments({
+  fingerprint,
+  title,
+  createdAt: { $gte: since },
+});
+if (dupSameTitle > 0) {
+  return NextResponse.json({ error: "Duplicate trade detected." }, { status: 429 });
+}
 
     // Weekly user limit check (max 14 trades per user/discord/roblox)
 const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-const userFilters = [];
+const userFilters = [{ fingerprint }, { ip }];
 if (hasDiscord) userFilters.push({ discord: discordRaw });
 if (hasRoblox) userFilters.push({ roblox: robloxRaw });
 
@@ -354,6 +371,8 @@ if (userFilters.length > 0) {
       player2,
       p1Total: Number(body.p1Total || 0),
       p2Total: Number(body.p2Total || 0),
+      p1Total: body.p1Total,
+p2Total: body.p2Total,
       verdict: cleanStr(body.verdict || ""),
       discord: hasDiscord ? discordRaw.slice(0, MAX_DISCORD_LEN) : "",
       roblox: hasRoblox ? robloxRaw.slice(0, MAX_ROBLOX_LEN) : "",

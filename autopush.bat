@@ -1,54 +1,56 @@
 @echo off
-chcp 65001 >nul
-title Auto Push – AnimeVanguards-VVX
-color 0a
+:: === AutoPush without GitHub CLI ===
+:: Works even if main is protected or CLI isn't installed
 
-echo =====================================
-echo       Auto Push – AnimeVanguards-VVX
-echo =====================================
-echo.
+setlocal enabledelayedexpansion
+cd /d "%~dp0"
 
-REM --- Check for commit message file ---
-set "msgFile=commitmsg.txt"
-if exist "%msgFile%" (
-    set /p msg=<"%msgFile%"
-) else (
-    set msg=Auto commit on %date% %time%
-    echo %msg%>"%msgFile%"
+echo 🔄 Cleaning up local branches...
+git fetch --prune
+git branch | findstr /v "main" | findstr /v "*" > tmp_branches.txt
+for /f "tokens=*" %%b in (tmp_branches.txt) do (
+    git branch -D %%b >nul 2>&1
 )
+del tmp_branches.txt >nul 2>&1
+echo ✅ Local branches cleaned.
+echo.
 
-REM --- Stage, commit, and push ---
-git add -A
-git commit -m "%msg%" >nul 2>&1
+for /f "tokens=1-3 delims=/ " %%a in ("%date%") do set d=%%c-%%a-%%b
+for /f "tokens=1-3 delims=: " %%a in ("%time%") do set t=%%a%%b
+set "branch=update-%d%-%t%"
+set "branch=%branch: =0%"
 
-echo Pushing to remote...
-git push origin main >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Main branch protected. Creating temporary branch...
-    setlocal enabledelayedexpansion
-    set /a rand=%random% * 10000 + 1000
-    set "branch=temp-!rand!"
-    echo Creating branch !branch! ...
-    git push origin HEAD:!branch!
-    if %errorlevel% neq 0 (
-        echo ❌ Failed to push to remote. Please check your network or credentials.
-        pause
-        exit /b
-    )
-    echo.
-    echo ✅ Pushed to new branch: !branch!
-    echo 🔗 Opening Pull Request link...
-    echo https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!
-    start "" "https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!"
-    endlocal
-) else (
-    echo ✅ Push complete to main!
+echo 🚀 Creating branch: %branch%
+git checkout main
+git pull origin main
+git checkout -b %branch%
+echo.
+
+echo 💾 Adding all changes...
+git add .
+git commit -m "Auto update %branch%" || echo (No new commits)
+echo.
+
+echo 📤 Pushing branch to GitHub...
+git push origin %branch% --force
+if errorlevel 1 (
+    echo ❌ Push failed. You might not have permission.
+    pause
+    exit /b
 )
+echo ✅ Pushed successfully.
+echo.
 
-echo.
-echo GitHub: https://github.com/Vaulted-Values-X/AnimeVanguards-VVX
-echo Vercel: https://vvx-anime-vanguards-vvx.vercel.app
-echo.
-echo Press any key to close . . .
-pause >nul
-exit
+:: Get remote URL
+for /f "tokens=*" %%i in ('git config --get remote.origin.url') do set repoURL=%%i
+
+:: Convert SSH or HTTPS remote URL into browser link
+set repoURL=%repoURL:git@github.com:=% 
+set repoURL=%repoURL:https://github.com/=% 
+set repoURL=https://github.com/%repoURL:.git=%
+
+echo 🌐 Opening Pull Request page...
+start "" "%repoURL%/compare/main...%branch%"
+
+echo ✅ Pull request page opened. Click "Create Pull Request" to finish.
+pause
