@@ -191,6 +191,30 @@ export async function GET(req) {
     const db = client.db(DB_NAME);
     await ensureIndexes(db);
 
+    // --- Validate units before inserting trade ---
+const unitsCollection = db.collection("units");
+
+// Helper function to verify and normalize units
+async function validateUnit(unitName) {
+  if (!unitName) throw new Error("Unit name missing");
+  const match = await unitsCollection.findOne({ Name: unitName });
+  if (!match) throw new Error(`Invalid or unknown unit: ${unitName}`);
+  // Return canonical Name and Value to ensure perfect matching
+  return {
+    Name: match.Name,
+    Value: Number(match.Value ?? 0),
+  };
+}
+
+// Replace raw user-provided unit arrays with verified data
+const validatedPlayer1 = await Promise.all(player1.map(async (u) => await validateUnit(u.Name)));
+const validatedPlayer2 = await Promise.all(player2.map(async (u) => await validateUnit(u.Name)));
+
+// Reassign the validated arrays
+player1.splice(0, player1.length, ...validatedPlayer1);
+player2.splice(0, player2.length, ...validatedPlayer2);
+
+
     const q = new URL(req.url).searchParams;
     const limit = Math.min(100, Number(q.get("limit") || 50));
     const skip = Math.max(0, Number(q.get("skip") || 0));
@@ -365,8 +389,6 @@ if (userFilters.length > 0) {
 
     // build doc (store the provided discord/roblox raw values)
     // re-cast unit values as numbers (prevents "Value: N/A")
-player1.forEach(u => u.Value = Number(u.Value ?? 0));
-player2.forEach(u => u.Value = Number(u.Value ?? 0));
     const doc = {
       title,
       description,
