@@ -5,10 +5,10 @@ import ScrollFade from "./components/ScrollFade";
 
 export const metadata = {
   title: "King Values | #1 AV Value List & Trading Hub",
-  description: "Live & accurate community-led values + trade hub - Anime Vanguards",
+  description: "Discover the #1 Anime Vanguards Value List & Trading Hub — updated daily with accurate, community-driven unit values, fair trade comparisons, and player rankings. Trusted by top traders for real-time AV prices, demand charts, and tier lists.",
   openGraph: {
     title: "King Values | #1 AV Value List & Trading Hub",
-    description: "Live & accurate community-led values + trade hub - Anime Vanguards",
+    description: "Discover the #1 Anime Vanguards Value List & Trading Hub — updated daily with accurate, community-driven unit values, fair trade comparisons, and player rankings. Trusted by top traders for real-time AV prices, demand charts, and tier lists.",
     url: "https://animevanguardsvalues.com",
     siteName: "AV Values",
     images: [
@@ -25,7 +25,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "King Values | #1 AV Value List & Trading Hub",
-    description: "Live & accurate community-led values + trade hub - Anime Vanguards",
+    description: "Discover the #1 Anime Vanguards Value List & Trading Hub — updated daily with accurate, community-driven unit values, fair trade comparisons, and player rankings. Trusted by top traders for real-time AV prices, demand charts, and tier lists.",
     images: ["https://animevanguardsvalues.com/og-banner.png"],
   },
 };
