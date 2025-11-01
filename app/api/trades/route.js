@@ -364,15 +364,16 @@ if (userFilters.length > 0) {
 }
 
     // build doc (store the provided discord/roblox raw values)
+    // re-cast unit values as numbers (prevents "Value: N/A")
+player1.forEach(u => u.Value = Number(u.Value ?? 0));
+player2.forEach(u => u.Value = Number(u.Value ?? 0));
     const doc = {
       title,
       description,
       player1,
       player2,
-      p1Total: Number(body.p1Total || 0),
-      p2Total: Number(body.p2Total || 0),
-      p1Total: body.p1Total,
-p2Total: body.p2Total,
+   p1Total: Number(body.p1Total ?? 0),
+p2Total: Number(body.p2Total ?? 0),
       verdict: cleanStr(body.verdict || ""),
       discord: hasDiscord ? discordRaw.slice(0, MAX_DISCORD_LEN) : "",
       roblox: hasRoblox ? robloxRaw.slice(0, MAX_ROBLOX_LEN) : "",

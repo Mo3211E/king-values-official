@@ -5,8 +5,8 @@ import GalaxyBackground from "../components/GalaxyBackground";
 import CompactUnitCard from "../components/CompactUnitCard";
 
 function toNumber(v) {
-  const n = Number(v);
-  return Number.isFinite(n) ? n : 0;
+  const n = parseFloat(v);
+  return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
 export default function TradeHub() {
