@@ -77,13 +77,13 @@ const unit = unitsData.find(
     );
   }
 
-  const {
-    Name,
-    Category,
-    Obtainment,
-    Justification,
-    ValueHistory = [],
-  } = unit;
+const Name = unit.Name || unit.name || "Unknown";
+const Category = unit.Category || unit.category || "Units";
+const Obtainment = unit.Obtainment || unit.obtainment || "Unknown";
+const Justification =
+unit.Justification || unit.justification || "Added via CSV sync";
+const ValueHistory = unit.ValueHistory || unit.valueHistory || [];
+
 
   const { shiny, base } = splitName(Name);
   const baseNameColor = tryGetTitleColor(Category, shiny ? base : Name);

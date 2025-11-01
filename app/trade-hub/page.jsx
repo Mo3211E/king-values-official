@@ -5,8 +5,8 @@ import GalaxyBackground from "../components/GalaxyBackground";
 import CompactUnitCard from "../components/CompactUnitCard";
 
 function toNumber(v) {
-  const n = Number(v);
-  return Number.isFinite(n) ? n : 0;
+  const n = parseFloat(v);
+  return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
 export default function TradeHub() {
@@ -57,7 +57,7 @@ export default function TradeHub() {
         `/api/trades${query ? `?search=${encodeURIComponent(query)}` : ""}`
       );
       const data = await res.json();
-      if (data.success) setAds(data.data || []);
+      if (data.success && Array.isArray(data.data)) setAds(data.data);
     } catch (err) {
       console.error("Failed to load trades:", err);
     } finally {
@@ -124,7 +124,7 @@ export default function TradeHub() {
       }
 
       // Success — reset form
-      setAds([data.trade, ...ads]);
+      setAds([data.doc, ...ads]);
       setDescription("");
       setPlayer1([]);
       setPlayer2([]);
