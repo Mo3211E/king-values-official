@@ -78,8 +78,17 @@ export default function NavBar() {
         ))}
       </div>
 
-      {/* ✨ Title */}
-<Link href="/" className="z-10 cursor-pointer select-none">
+{/* ✨ Title with Logo */}
+<Link href="/" className="z-10 cursor-pointer select-none flex items-center gap-2">
+  <Image
+    src="/logo.png"
+    alt="AV Logo"
+    width={40}
+    height={40}
+    unoptimized
+    priority
+    className="transition-transform duration-300 hover:scale-105"
+  />
   <h1
     className="font-extrabold text-[1.7rem] sm:text-[2.1rem] leading-[1.15] bg-clip-text text-transparent transition-all duration-300 hover:scale-[1.05]"
     style={{
@@ -95,9 +104,10 @@ export default function NavBar() {
       `,
     }}
   >
-    AV Values
+    King Values
   </h1>
 </Link>
+
 
 
       {/* 🔹 Navigation Links */}

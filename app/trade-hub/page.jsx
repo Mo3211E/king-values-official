@@ -134,7 +134,7 @@ export default function TradeHub() {
       setErrorActive(false);
     } catch (err) {
       console.error("Post trade failed:", err);
-      setErrorMsg("Server unreachable — please try again later.");
+      setErrorMsg(err?.message || "Server unreachable — please try again later.");
       setErrorActive(true);
     }
   };
@@ -465,7 +465,7 @@ export default function TradeHub() {
                     ))}
                   </div>
                   <p className="mt-1 text-white/80">
-                    Total: {ad.p1Total.toLocaleString()}
+                    Total: {(Number(ad.p1Total) || 0).toLocaleString()}
                   </p>
                 </div>
 
@@ -479,7 +479,7 @@ export default function TradeHub() {
                     ))}
                   </div>
                   <p className="mt-1 text-white/80">
-                    Total: {ad.p2Total.toLocaleString()}
+                    Total: {(Number(ad.p2Total) || 0).toLocaleString()}
                   </p>
                 </div>
               </div>

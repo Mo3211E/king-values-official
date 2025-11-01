@@ -4,11 +4,11 @@ import NavBar from "./components/NavBar";
 import ScrollFade from "./components/ScrollFade";
 
 export const metadata = {
-  title: "AV Values | Anime Vanguards Value Reference",
-  description: "Accurate, community-led value references for Anime Vanguards.",
+  title: "King Values | #1 AV Value List & Trading Hub",
+  description: "Live & accurate community-led values + trade hub - Anime Vanguards",
   openGraph: {
-    title: "AV Values | Anime Vanguards Value Reference",
-    description: "Accurate, community-led value references for Anime Vanguards.",
+    title: "King Values | #1 AV Value List & Trading Hub",
+    description: "Live & accurate community-led values + trade hub - Anime Vanguards",
     url: "https://animevanguardsvalues.com",
     siteName: "AV Values",
     images: [
@@ -24,8 +24,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AV Values | Anime Vanguards Value Reference",
-    description: "Accurate, community-led value references for Anime Vanguards.",
+    title: "King Values | #1 AV Value List & Trading Hub",
+    description: "Live & accurate community-led values + trade hub - Anime Vanguards",
     images: ["https://animevanguardsvalues.com/og-banner.png"],
   },
 };
