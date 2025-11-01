@@ -1,54 +1,51 @@
 @echo off
-chcp 65001 >nul
-title Auto Push – AnimeVanguards-VVX
-color 0a
+echo ---------------------------------------
+echo 🔁 AutoPush to GitHub + Vercel
+echo ---------------------------------------
 
-echo =====================================
-echo       Auto Push – AnimeVanguards-VVX
-echo =====================================
-echo.
+:: Ensure you're in the project directory
+cd /d "%~dp0"
 
-REM --- Check for commit message file ---
-set "msgFile=commitmsg.txt"
-if exist "%msgFile%" (
-    set /p msg=<"%msgFile%"
-) else (
-    set msg=Auto commit on %date% %time%
-    echo %msg%>"%msgFile%"
+:: Make sure Git is initialized
+if not exist ".git" (
+    echo ❌ Git repository not found.
+    echo Initializing new repository...
+    git init
 )
 
-REM --- Stage, commit, and push ---
-git add -A
-git commit -m "%msg%" >nul 2>&1
-
-echo Pushing to remote...
-git push origin main >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Main branch protected. Creating temporary branch...
-    setlocal enabledelayedexpansion
-    set /a rand=%random% * 10000 + 1000
-    set "branch=temp-!rand!"
-    echo Creating branch !branch! ...
-    git push origin HEAD:!branch!
-    if %errorlevel% neq 0 (
-        echo ❌ Failed to push to remote. Please check your network or credentials.
-        pause
-        exit /b
-    )
-    echo.
-    echo ✅ Pushed to new branch: !branch!
-    echo 🔗 Opening Pull Request link...
-    echo https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!
-    start "" "https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!"
-    endlocal
+:: Check current branch
+for /f "delims=" %%b in ('git branch --show-current') do set BRANCH=%%b
+if "%BRANCH%"=="" (
+    echo⚙️ No branch detected, defaulting to main...
+    git checkout -b main
 ) else (
-    echo ✅ Push complete to main!
+    echo ✅ Current branch: %BRANCH%
 )
 
-echo.
-echo GitHub: https://github.com/Vaulted-Values-X/AnimeVanguards-VVX
-echo Vercel: https://vvx-anime-vanguards-vvx.vercel.app
-echo.
-echo Press any key to close . . .
-pause >nul
-exit
+:: Sync remote origin
+git remote remove origin 2>nul
+git remote add origin https://github.com/Vaulted-Values-X/AnimeVanguards-VVX.git
+
+:: Stage all changes
+echo 🧩 Adding all new/modified files...
+git add .
+
+:: Commit changes
+set /p MSG=💬 Commit message (press Enter for default):
+if "%MSG%"=="" set MSG=Auto update
+git commit -m "%MSG%"
+
+:: Pull remote main to merge latest updates
+git fetch origin main
+git pull origin main --rebase
+
+:: Push changes forcefully to ensure sync
+echo 🚀 Pushing to GitHub main branch...
+git push -u origin main --force
+
+:: Deploy trigger info
+echo ---------------------------------------
+echo ✅ Push complete! 
+echo Vercel will auto-build your latest commit.
+echo ---------------------------------------
+pause
