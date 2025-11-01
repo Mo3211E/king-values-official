@@ -1,54 +1,34 @@
 @echo off
-chcp 65001 >nul
-title Auto Push – AnimeVanguards-VVX
-color 0a
+:: === AutoPush with PR Support for Protected Branch ===
+:: Runs inside your project folder
 
-echo =====================================
-echo       Auto Push – AnimeVanguards-VVX
-echo =====================================
+:: Step 1: Save all current changes
+echo Adding all files...
+git add .
+
+:: Step 2: Create commit
+set datetime=%date:~10,4%-%date:~4,2%-%date:~7,2%_%time:~0,2%-%time:~3,2%
+set datetime=%datetime: =0%
+set branch=update-%datetime%
+
+git commit -m "Auto update at %datetime%"
 echo.
 
-REM --- Check for commit message file ---
-set "msgFile=commitmsg.txt"
-if exist "%msgFile%" (
-    set /p msg=<"%msgFile%"
-) else (
-    set msg=Auto commit on %date% %time%
-    echo %msg%>"%msgFile%"
-)
+:: Step 3: Create and switch to new branch
+echo Creating branch: %branch%
+git checkout -b %branch%
 
-REM --- Stage, commit, and push ---
-git add -A
-git commit -m "%msg%" >nul 2>&1
-
-echo Pushing to remote...
-git push origin main >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Main branch protected. Creating temporary branch...
-    setlocal enabledelayedexpansion
-    set /a rand=%random% * 10000 + 1000
-    set "branch=temp-!rand!"
-    echo Creating branch !branch! ...
-    git push origin HEAD:!branch!
-    if %errorlevel% neq 0 (
-        echo ❌ Failed to push to remote. Please check your network or credentials.
-        pause
-        exit /b
-    )
-    echo.
-    echo ✅ Pushed to new branch: !branch!
-    echo 🔗 Opening Pull Request link...
-    echo https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!
-    start "" "https://github.com/Vaulted-Values-X/AnimeVanguards-VVX/compare/main...!branch!"
-    endlocal
-) else (
-    echo ✅ Push complete to main!
-)
-
+:: Step 4: Push new branch to origin
+echo Pushing branch to GitHub...
+git push origin %branch%
 echo.
-echo GitHub: https://github.com/Vaulted-Values-X/AnimeVanguards-VVX
-echo Vercel: https://vvx-anime-vanguards-vvx.vercel.app
+
+:: Step 5: Create pull request to main using GitHub CLI
+echo Opening pull request...
+gh pr create --base main --head %branch% --title "Auto Update %datetime%" --body "Automatic update triggered by autopush.bat"
+
+:: Step 6: Done
 echo.
-echo Press any key to close . . .
-pause >nul
-exit
+echo ✅ Pull request created successfully! 
+echo 🔗 Open GitHub to review and merge changes into main.
+pause
