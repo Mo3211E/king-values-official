@@ -13,7 +13,7 @@ export const metadata = {
     title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
     description: "", // blank = no text in Discord embed
     url: "https://animevanguardsvalues.com",
-    siteName: "AV Values",
+    siteName: "King Values",
     images: [
       {
         url: "https://animevanguardsvalues.com/og-banner.png",
