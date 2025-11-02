@@ -83,18 +83,16 @@ function namesSignature(list = []) {
 
 // ----------------- DB index helpers -----------------
 async function ensureIndexes(db) {
-  // Safe to call multiple times
-  try {
-    await db.collection(TRADES).createIndex({ title: 1, description: 1 }, { name: "title_description_idx" });
-    await db.collection(TRADES).createIndex({ createdAt: 1 }, { expireAfterSeconds: 7 * 24 * 60 * 60, name: "ttl_createdAt_7d" });
-    // rate_limits for buckets + TTL
-    await db.collection(RATE).createIndex({ ip: 1, ua: 1, bucket: 1 }, { name: "rate_bucket_idx" });
-    await db.collection(RATE).createIndex({ createdAt: 1 }, { expireAfterSeconds: 2 * 24 * 60 * 60, name: "ttl_rate_2d" });
-  } catch (e) {
-    // index creation should not block operations; log for debugging
-    console.error("ensureIndexes error:", e?.message || e);
-  }
+  const trades = db.collection("trades");
+  const rate   = db.collection("rate_limits");
+
+  await trades.createIndex({ title: 1, description: 1 }, { name: "title_desc" });
+  await trades.createIndex({ createdAt: 1 }, { expireAfterSeconds: 7 * 24 * 60 * 60, name: "ttl_7d" });
+
+  await rate.createIndex({ id: 1, bucket: 1 }, { name: "rate_bucket" });
+  await rate.createIndex({ createdAt: 1 }, { expireAfterSeconds: 2 * 24 * 60 * 60, name: "ttl_rate_2d" });
 }
+
 
 // ----------------- Throttle function (hardening) -----------------
 async function throttle(db, fingerprint, ip, ua) {
@@ -184,44 +182,35 @@ if (process.env.SITE_LOCKDOWN === "true") {
   }
 }
   */
-// GET - list recent trades (basic)
+
 export async function GET(req) {
   try {
+    const url = new URL(req.url);
+    const limit = Math.min(100, Number(url.searchParams.get("limit") || 50));
+    const skip  = Math.max(0,   Number(url.searchParams.get("skip")  || 0 ));
+    const q     = (url.searchParams.get("search") || "").trim().toLowerCase();
+
     const client = await clientPromise;
     const db = client.db(DB_NAME);
-    await ensureIndexes(db);
 
-    // --- Validate units before inserting trade ---
-const unitsCollection = db.collection("units");
-
-// Helper function to verify and normalize units
-async function validateUnit(unitName) {
-  if (!unitName) throw new Error("Unit name missing");
-  const match = await unitsCollection.findOne({ Name: unitName });
-  if (!match) throw new Error(`Invalid or unknown unit: ${unitName}`);
-  // Return canonical Name and Value to ensure perfect matching
-  return {
-    Name: match.Name,
-    Value: Number(match.Value ?? 0),
-  };
-}
-
-// Replace raw user-provided unit arrays with verified data
-const validatedPlayer1 = await Promise.all(player1.map(async (u) => await validateUnit(u.Name)));
-const validatedPlayer2 = await Promise.all(player2.map(async (u) => await validateUnit(u.Name)));
-
-// Reassign the validated arrays
-player1.splice(0, player1.length, ...validatedPlayer1);
-player2.splice(0, player2.length, ...validatedPlayer2);
-
-
-    const q = new URL(req.url).searchParams;
-    const limit = Math.min(100, Number(q.get("limit") || 50));
-    const skip = Math.max(0, Number(q.get("skip") || 0));
+    // optional text-ish filter on title/description
+    const filter = q
+      ? {
+          $or: [
+            { title:       { $regex: q, $options: "i" } },
+            { description: { $regex: q, $options: "i" } },
+          ],
+        }
+      : {};
 
     const docs = await db
       .collection(TRADES)
-      .find({})
+      .find(filter, {
+        projection: {
+          // keep everything you need on the page, hide internals
+          ip: 0, ua: 0, fingerprint: 0,
+        },
+      })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
@@ -229,7 +218,7 @@ player2.splice(0, player2.length, ...validatedPlayer2);
 
     return NextResponse.json({ success: true, data: docs });
   } catch (err) {
-    console.error("GET /api/trades error:", err?.message || err);
+    console.error("GET /api/trades error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -271,6 +260,48 @@ if (!ip || ip === "") ip = req.ip || "0.0.0.0";
     // normalize players
     const player1 = normalizePlayers(player1Raw);
     const player2 = normalizePlayers(player2Raw);
+
+    // --- Verify units against Mongo 'units' collection and normalize their Values ---
+const unitsCollection = db.collection("units");
+
+async function verifyAndHydrate(unitsArr) {
+  const out = [];
+  for (const u of unitsArr) {
+    const match = await db.collection("units").findOne({ Name: u.Name });
+    if (!match) return { ok: false, msg: `Invalid or unknown unit: ${u.Name}` };
+    out.push({
+      Name: match.Name,
+      Value: Number(match.Value ?? 0),
+      Category: match.Category ?? "",
+      "In Game Name": match["In Game Name"] ?? "",
+      Image: match.Image || match.image || "", // ✅ ensures CompactUnitCard shows images
+      Demand: match.Demand ?? "",
+      ShinyType: match.ShinyType ?? "", // optional, some cards show shiny color
+    });
+  }
+  return { ok: true, list: out };
+}
+
+const p1Check = await verifyAndHydrate(player1);
+if (!p1Check.ok) return NextResponse.json({ error: p1Check.msg }, { status: 400 });
+
+const p2Check = await verifyAndHydrate(player2);
+if (!p2Check.ok) return NextResponse.json({ error: p2Check.msg }, { status: 400 });
+
+const player1Verified = p1Check.list;
+const player2Verified = p2Check.list;
+
+// Recompute totals on the server (authoritative)
+const p1TotalServer = player1Verified.reduce((s, u) => s + (Number(u.Value) || 0), 0);
+const p2TotalServer = player2Verified.reduce((s, u) => s + (Number(u.Value) || 0), 0);
+
+// Prevent mirror/self trades (same sets swapped)
+function namesSig(list) {
+  return list.map(u => (u.Name || "").toLowerCase()).sort().join("|");
+}
+if (namesSig(player1Verified) === namesSig(player2Verified)) {
+  return NextResponse.json({ error: "Cannot trade the same items for the same items." }, { status: 400 });
+}
 
     // must have at least one unit on each side
     if (!player1.length || !player2.length) {
@@ -340,15 +371,14 @@ if (!ip || ip === "") ip = req.ip || "0.0.0.0";
     }
 
     // self-trade guard: compare name lists signatures
-    const p1sig = namesSignature(player1);
-    const p2sig = namesSignature(player2);
+const p1sig = namesSignature(player1Verified);
+const p2sig = namesSignature(player2Verified);
     if (p1sig && p1sig === p2sig) {
       return NextResponse.json({ error: "Cannot trade the same items for the same items." }, { status: 400 });
     }
-// block mirrored trades (offering/looking swapped)
 const mirrorExists = await db.collection(TRADES).countDocuments({
-  "player1.Name": { $in: player2.map(u => u.Name) },
-  "player2.Name": { $in: player1.map(u => u.Name) },
+  "player1.Name": { $in: player2Verified.map(u => u.Name) },
+  "player2.Name": { $in: player1Verified.map(u => u.Name) },
   createdAt: { $gte: since },
 });
 if (mirrorExists > 0) {
@@ -389,21 +419,23 @@ if (userFilters.length > 0) {
 
     // build doc (store the provided discord/roblox raw values)
     // re-cast unit values as numbers (prevents "Value: N/A")
-    const doc = {
-      title,
-      description,
-      player1,
-      player2,
-   p1Total: Number(body.p1Total ?? 0),
-p2Total: Number(body.p2Total ?? 0),
-      verdict: cleanStr(body.verdict || ""),
-      discord: hasDiscord ? discordRaw.slice(0, MAX_DISCORD_LEN) : "",
-      roblox: hasRoblox ? robloxRaw.slice(0, MAX_ROBLOX_LEN) : "",
-      ip,
-      ua: ua.slice(0, 200),
-      fingerprint,
-      createdAt: new Date(),
-    };
+const doc = {
+  title,
+  description,
+  player1: player1Verified,
+  player2: player2Verified,
+  p1Total: p1TotalServer,
+  p2Total: p2TotalServer,
+  verdict: p1TotalServer === p2TotalServer
+    ? "Fair Trade"
+    : p1TotalServer < p2TotalServer
+      ? "Win for Advertiser"
+      : "Loss for Advertiser",
+  discord: hasDiscord ? discordRaw.slice(0, 64) : "",
+  roblox:  hasRoblox  ? robloxRaw.slice(0, 20) : "",
+  ip, ua: ua.slice(0, 200), fingerprint,
+  createdAt: new Date(),
+};
 
     const ins = await db.collection(TRADES).insertOne(doc);
 

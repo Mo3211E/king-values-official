@@ -1,10 +1,9 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import unitsData from "../../data/units.json";
 import * as ColorConfig from "../../colorConfig";
 import UnitCard from "../../components/UnitCard";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import VoteBox from "../../components/VoteBox";
 
 import {
@@ -57,18 +56,68 @@ function fmt(v) {
 
 /* ----------------------------- Page ----------------------------- */
 
-export default function UnitPage({ params }) {
+export default function UnitPage() {
+  const { id } = useParams();
+  const router = useRouter();
+  const decodedId = decodeURIComponent(id).toLowerCase().trim();
+
+  const [units, setUnits] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    let alive = true;
+    (async () => {
+      try {
+        const res = await fetch("/api/units");
+        const data = await res.json();
+        if (!alive) return;
+        setUnits(Array.isArray(data) ? data : (data.data || []));
+      } catch (e) {
+        console.error("Failed to load units:", e);
+      } finally {
+        if (alive) setLoading(false);
+      }
+    })();
+    return () => { alive = false; };
   }, []);
-const { id } = useParams();
-const router = useRouter();
-const decodedId = decodeURIComponent(id).toLowerCase().trim();
 
-const unit = unitsData.find(
-  (u) => u.Name?.toLowerCase().trim() === decodedId
-);
+  const unit = units.find((u) => u.Name?.toLowerCase().trim() === decodedId);
 
+if (loading) {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center text-white relative overflow-hidden bg-black">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a0034] via-[#300060] to-[#0a0015]" />
+
+      {/* Purple Stream Bar */}
+      <div className="relative w-3/4 h-2 rounded-full overflow-hidden bg-[#220042] shadow-[0_0_20px_rgba(180,100,255,0.25)]">
+        <div
+          className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#a663ff] via-[#e3b2ff] to-[#ffffff] transition-all duration-700 ease-out"
+          style={{ width: "90%" }}
+        />
+      </div>
+
+      <h1 className="mt-10 text-4xl font-extrabold tracking-widest drop-shadow-[0_0_20px_rgba(200,150,255,0.8)]">
+        Loading Unit…
+      </h1>
+
+      {/* Static Background Stars */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(40)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-[2px] h-[2px] bg-white rounded-full opacity-60"
+            style={{
+              top: `${(i * 97) % 100}%`,
+              left: `${(i * 43) % 100}%`,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
   if (!unit) {
     return (
       <div className="min-h-screen flex items-center justify-center text-white">

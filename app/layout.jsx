@@ -2,6 +2,7 @@ import "./globals.css";
 import GalaxyBackground from "./components/GalaxyBackground";
 import NavBar from "./components/NavBar";
 import ScrollFade from "./components/ScrollFade";
+import Script from "next/script";
 
 export const metadata = {
   title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
@@ -42,6 +43,18 @@ export default function RootLayout({ children }) {
         <GalaxyBackground />
         <ScrollFade />
         <NavBar />
+        <Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-W1WQTFYLGZ"
+  strategy="afterInteractive"
+/>
+<Script id="ga-init" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-W1WQTFYLGZ');
+  `}
+</Script>
         <main className="relative z-10 pt-28">{children}</main>
       </body>
     </html>

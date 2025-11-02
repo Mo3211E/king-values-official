@@ -1,6 +1,5 @@
 "use client";
 import { useMemo, useState, useEffect } from "react";
-import unitsRaw from "../data/units.json";
 import CompactUnitCard from "./CompactUnitCard";
 
 function toNumber(v) {
@@ -13,6 +12,23 @@ export default function UnitPickerModal({ onClose, onSelect }) {
   const [debouncedQ, setDebouncedQ] = useState("");
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("value-desc");
+  const [unitsRaw, setUnitsRaw] = useState([]);
+
+useEffect(() => {
+  let alive = true;
+  (async () => {
+    try {
+      const res = await fetch("/api/units");
+      const data = await res.json();
+      if (!alive) return;
+      // your /api/units returns either array or {data}
+      setUnitsRaw(Array.isArray(data) ? data : (data.data || []));
+    } catch (e) {
+      console.error("Failed to load units:", e);
+    }
+  })();
+  return () => { alive = false; };
+}, []);
 
   // debounce to prevent lag when typing
   useEffect(() => {
@@ -39,7 +55,7 @@ export default function UnitPickerModal({ onClose, onSelect }) {
         _demand: toNumber(u.Demand),
       }))
       .filter((u) => u._name.length > 0);
-  }, []);
+  }, [unitsRaw]);
 
   const categories = useMemo(() => {
     const set = new Set(memoizedUnits.map((u) => u._category).filter(Boolean));
@@ -293,38 +309,48 @@ export default function UnitPickerModal({ onClose, onSelect }) {
             }
           `}</style>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-y-1 gap-x-4 justify-center">
-            {filtered.slice(0, 500).map((u, i) => (
-              <button
-                key={i}
-                onClick={() =>
-                  onSelect({
-                    ...u,
-                    Name: u._name,
-                    Category: u._category,
-                    Value: u._value,
-                  })
-                }
-                className="group block rounded-xl focus:outline-none cursor-pointer transition-transform duration-200 hover:scale-105"
-                style={{
-                  background: "transparent",
-                  padding: 0,
-                  margin: 0,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxShadow: "none", // disables any lingering glow
-                }}
-              >
-
-                <div className="relative flex justify-center items-center">
-                  <div style={{ transform: "scale(0.85)" }}>
-                    <CompactUnitCard u={u} clickable={false} />
-                  </div>
-                </div>
-              </button>
-            ))}
+<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-y-1 gap-x-4 justify-center">
+  {unitsRaw.length === 0 ? (
+    <div className="col-span-full flex flex-col items-center justify-center py-10">
+      <div className="w-1/2 h-2 bg-[#220042] rounded-full overflow-hidden shadow-[0_0_20px_rgba(180,100,255,0.25)] mb-5">
+        <div
+          className="h-full bg-gradient-to-r from-[#a663ff] via-[#e3b2ff] to-[#ffffff] animate-pulse"
+          style={{ width: "80%" }}
+        />
+      </div>
+      <h2 className="text-2xl font-bold text-[#e0b3ff]">Loading Units…</h2>
+    </div>
+  ) : (
+    filtered.slice(0, 500).map((u, i) => (
+      <button
+        key={i}
+        onClick={() =>
+          onSelect({
+            ...u,
+            Name: u._name,
+            Category: u._category,
+            Value: u._value,
+          })
+        }
+        className="group block rounded-xl focus:outline-none cursor-pointer transition-transform duration-200 hover:scale-105"
+        style={{
+          background: "transparent",
+          padding: 0,
+          margin: 0,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div className="relative flex justify-center items-center">
+          <div style={{ transform: "scale(0.85)" }}>
+            <CompactUnitCard u={u} clickable={false} />
           </div>
+        </div>
+      </button>
+    ))
+  )}
+</div>
         </div>
       </div>
     </div>

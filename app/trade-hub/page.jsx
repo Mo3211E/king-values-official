@@ -53,9 +53,9 @@ export default function TradeHub() {
   async function loadTrades(query = "") {
     setLoading(true);
     try {
-      const res = await fetch(
-        `/api/trades${query ? `?search=${encodeURIComponent(query)}` : ""}`
-      );
+   const res = await fetch(`/api/trades${query ? `?search=${encodeURIComponent(query)}` : ""}`, {
+  cache: "no-store",
+});
       const data = await res.json();
       if (data.success && Array.isArray(data.data)) setAds(data.data);
     } catch (err) {
@@ -124,7 +124,7 @@ export default function TradeHub() {
       }
 
       // Success — reset form
-      setAds([data.doc, ...ads]);
+      setAds(prev => [data.doc, ...prev]);
       setDescription("");
       setPlayer1([]);
       setPlayer2([]);
@@ -299,7 +299,7 @@ export default function TradeHub() {
               setDiscordValid(!invalid);
             }}
             placeholder="Discord Username and/or"
-            maxLength={15}
+            maxLength={32}
             className={`w-full px-3 py-2 rounded-lg mb-3 outline-none text-white placeholder-white/60 transition-all ${discordValid ? "" : "border-red-500 bg-red-950/30"
               }`}
             style={{

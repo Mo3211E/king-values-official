@@ -101,10 +101,17 @@ export default function UnitsPage() {
   useEffect(() => {
     async function fetchUnits() {
       try {
+        const cached = sessionStorage.getItem("unitsCache");
+if (cached) {
+  setUnitsData(JSON.parse(cached));
+  setLoading(false);
+  return;
+}
         const res = await fetch("/api/units");
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setUnitsData(data);
+        sessionStorage.setItem("unitsCache", JSON.stringify(data));
       } catch (err) {
         console.error("Error loading units:", err);
       }
@@ -247,6 +254,7 @@ export default function UnitsPage() {
               <h2 className="text-3xl font-bold text-[#cda6ff] mb-4 text-center">Values Guide</h2>
 
               <ul className="list-disc list-inside space-y-3 text-[1.05rem] leading-relaxed text-white/90">
+              <li>STATE: Current Values are based on Pre-Release Trading, will soon be updated to accurately represent demand, stability, and post release values</li>
                 <li>
                   Rarities:{" "}
                   <span style={{ color: "#ffa0e4" }}>Exclusive</span> |{" "}
@@ -453,7 +461,6 @@ export default function UnitsPage() {
   <span className="text-lg font-extrabold leading-none">?</span>
   <span>Guide</span>
 </button>
-
         </div>
 
         {/* ---------------- GRID ---------------- */}
