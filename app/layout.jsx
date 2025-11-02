@@ -8,16 +8,33 @@ export const metadata = {
   title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
   description:
     "The #1 Anime Vanguards Value List & Trading Hub — updated daily with accurate, community-led unit values, fair trade comparisons, and live rankings. Trusted by top players for verified AV values, tier lists, and real-time trading insights.",
-  
+  keywords: [
+    "Anime Vanguards",
+    "AV Values",
+    "AV Value List",
+    "Vanguards Values",
+    "Vanguards Trading Hub",
+    "Anime Vanguards Trading",
+    "AV Trade Hub",
+    "King Values",
+    "Anime Vanguards Value List",
+    "AV Trade Calculator",
+    "Anime Vanguards Trade Hub",
+    "AV Trading Site",
+    "Anime Vanguards Values",
+    "Anime Vanguards Trading Website"
+  ],
+
   // 👇 OpenGraph (for Discord/FB) — no description to keep it clean
   openGraph: {
     title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
     description: "", // blank = no text in Discord embed
-    url: "https://animevanguardsvalues.com",
+    url: "https://king-values.com",
     siteName: "King Values",
     images: [
       {
-        url: "https://animevanguardsvalues.com/og-banner.png",
+        url: "https://king-values.com/logo.png",
+        logo: "https://king-values.com/og-banner.png",
         width: 1200,
         height: 630,
         alt: "Anime Vanguards Trading Value List",
@@ -32,7 +49,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
     description: "", // hide description in Twitter/Discord previews
-    images: ["https://animevanguardsvalues.com/og-banner.png"],
+    logo: "https://king-values.com/og-banner.png",
   },
 };
 
@@ -44,16 +61,66 @@ export default function RootLayout({ children }) {
         <ScrollFade />
         <NavBar />
         <Script
-  src="https://www.googletagmanager.com/gtag/js?id=G-W1WQTFYLGZ"
-  strategy="afterInteractive"
-/>
-<Script id="ga-init" strategy="afterInteractive">
-  {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-W1WQTFYLGZ');
-  `}
+          src="https://www.googletagmanager.com/gtag/js?id=G-W1WQTFYLGZ"
+          strategy="afterInteractive"
+        />
+{/* --- Google Organization Schema --- */}
+<Script id="ld-org" type="application/ld+json" strategy="afterInteractive">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "King Values",
+    url: "https://king-values.com",
+    logo: "https://king-values.com/logo.png",
+    sameAs: [
+      "https://discord.gg/cUGkAtsFNT",
+      "https://twitter.com/KingValues",
+      "https://www.youtube.com/@KingValues"
+    ]
+  })}
+</Script>
+
+{/* --- Website Schema --- */}
+<Script id="ld-website" type="application/ld+json" strategy="afterInteractive">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    url: "https://king-values.com",
+    name: "King Values | Anime Vanguards Value List & Trading Hub",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://king-values.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  })}
+</Script>
+
+{/* --- Optional FAQ Schema for extra visibility --- */}
+<Script id="ld-faq" type="application/ld+json" strategy="afterInteractive">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is the King Values Anime Vanguards List?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "King Values provides the most accurate and community-verified Anime Vanguards (AV) value list and trading hub, updated daily."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "How often are the values updated?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Our team updates values every 24 hours with live trade data and verified market trends."
+        }
+      }
+    ]
+  })}
 </Script>
         <main className="relative z-10 pt-28">{children}</main>
       </body>
