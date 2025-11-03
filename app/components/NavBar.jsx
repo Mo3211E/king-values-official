@@ -81,14 +81,26 @@ export default function NavBar() {
 {/* ✨ Title with Logo */}
 <Link href="/" className="z-10 cursor-pointer select-none flex items-center gap-2">
   <Image
-    src="/logo.png"
-    alt="AV Logo"
-    width={40}
-    height={40}
-    unoptimized
-    priority
-    className="transition-transform duration-300 hover:scale-105"
-  />
+  src="/logo.png"
+  alt="AV Logo"
+  width={40}
+  height={40}
+  unoptimized
+  priority
+  className="transition-transform duration-300 hover:scale-105"
+  style={{
+    filter: `
+      drop-shadow(0 0 6px rgba(255, 230, 180, 0.45))
+      drop-shadow(0 0 12px rgba(255, 210, 150, 0.25))
+      drop-shadow(0 0 20px rgba(255, 230, 255, 0.25))
+    `,
+    WebkitFilter: `
+      drop-shadow(0 0 6px rgba(255, 230, 180, 0.45))
+      drop-shadow(0 0 12px rgba(255, 210, 150, 0.25))
+      drop-shadow(0 0 20px rgba(255, 230, 255, 0.25))
+    `,
+  }}
+/>
   <h1
     className="font-extrabold text-[1.7rem] sm:text-[2.1rem] leading-[1.15] bg-clip-text text-transparent transition-all duration-300 hover:scale-[1.05]"
     style={{
