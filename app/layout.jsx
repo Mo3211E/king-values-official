@@ -27,7 +27,7 @@ export const metadata = {
 
 openGraph: {
     title: "King Values | #1 Anime Vanguards Value List & Trade Hub",
-    description: " ", // blank = Discord shows no text
+    description: "Accurate Values You Can Trust & Rely On", //Discord text
     url: "https://king-values.com",
     siteName: "King Values",
     images: [

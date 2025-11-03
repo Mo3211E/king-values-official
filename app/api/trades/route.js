@@ -85,23 +85,23 @@ async function ensureIndexes(db) {
 
   try {
     await trades.createIndex({ title: 1, description: 1 }, { name: "title_desc", background: true });
-  } catch (_) {}
+  } catch (_) { }
   try {
     await trades.createIndex(
       { createdAt: 1 },
       { expireAfterSeconds: 7 * 24 * 60 * 60, name: "ttl_7d", background: true }
     );
-  } catch (_) {}
+  } catch (_) { }
 
   try {
     await rate.createIndex({ id: 1, bucket: 1 }, { name: "rate_bucket", background: true });
-  } catch (_) {}
+  } catch (_) { }
   try {
     await rate.createIndex(
       { createdAt: 1 },
       { expireAfterSeconds: 2 * 24 * 60 * 60, name: "ttl_rate_2d", background: true }
     );
-  } catch (_) {}
+  } catch (_) { }
 }
 
 // ----------------- Throttle function (hardening) -----------------
@@ -194,11 +194,11 @@ export async function GET(req) {
 
     const filter = q
       ? {
-          $or: [
-            { title: { $regex: q, $options: "i" } },
-            { description: { $regex: q, $options: "i" } },
-          ],
-        }
+        $or: [
+          { title: { $regex: q, $options: "i" } },
+          { description: { $regex: q, $options: "i" } },
+        ],
+      }
       : {};
 
     const docs = await db
@@ -270,8 +270,10 @@ export async function POST(req) {
     async function verifyAndHydrate(unitsArr) {
       const out = [];
       for (const u of unitsArr) {
+        // Escape special regex chars in unit names like ( ) ~ [ ] + * ?
+        const safeName = u.Name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         const match = await unitsCollection.findOne(
-          { Name: { $regex: `^${u.Name}$`, $options: "i" } },
+          { Name: { $regex: `^${safeName}$`, $options: "i" } },
           {
             projection: {
               Name: 1,
@@ -362,15 +364,15 @@ export async function POST(req) {
 
     const MAX_TRADES_PER_WINDOW = 2;
     if (recentByFingerprint >= MAX_TRADES_PER_WINDOW || recentByIp >= MAX_TRADES_PER_WINDOW) {
-const oldest = await db
-  .collection(TRADES)
-  .find({ $or: [{ fingerprint }, { ip }], createdAt: { $gte: since24h } })
-  .sort({ createdAt: 1 })
-  .limit(1)
-  .toArray();
+      const oldest = await db
+        .collection(TRADES)
+        .find({ $or: [{ fingerprint }, { ip }], createdAt: { $gte: since24h } })
+        .sort({ createdAt: 1 })
+        .limit(1)
+        .toArray();
 
-// createdAt could be Date or string from old docs — normalize safely
-const firstTime = new Date(oldest[0]?.createdAt || Date.now()).getTime();
+      // createdAt could be Date or string from old docs — normalize safely
+      const firstTime = new Date(oldest[0]?.createdAt || Date.now()).getTime();
       const waitMs = firstTime + WINDOW_24H_MS - Date.now();
       if (waitMs > 0) {
         const hours = Math.max(0, Math.floor(waitMs / 3600000));
@@ -433,8 +435,8 @@ const firstTime = new Date(oldest[0]?.createdAt || Date.now()).getTime();
       p1TotalServer === p2TotalServer
         ? "Fair Trade"
         : p1TotalServer < p2TotalServer
-        ? "Win for Advertiser"
-        : "Loss for Advertiser";
+          ? "Win for Advertiser"
+          : "Loss for Advertiser";
 
     const doc = {
       title,
