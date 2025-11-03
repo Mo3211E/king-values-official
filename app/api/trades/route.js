@@ -1,6 +1,6 @@
-// route.js
+// app/api/trades/route.js
 import { NextResponse } from "next/server";
-import clientPromise from "../../../lib/mongodb.js"; // <- adjust path if needed
+import clientPromise from "../../../lib/mongodb.js"; // path: app/api/trades -> lib/
 
 // ---------------- SETTINGS ----------------
 const DB_NAME = "avvalues";
@@ -8,8 +8,8 @@ const TRADES = "trades";
 const RATE = "rate_limits";
 
 const WINDOW_24H_MS = 24 * 60 * 60 * 1000;
-const PER_MINUTE_MAX = 60; // global minute cap per fingerprint (lenient)
-const PER_HOUR_MAX = 600;  // global hour cap per fingerprint (lenient)
+const PER_MINUTE_MAX = 60; // fingerprint minute cap (lenient)
+const PER_HOUR_MAX = 600;  // fingerprint hour cap (lenient)
 
 // Strict IP-only caps (hard to bypass)
 const IP_MINUTE_LIMIT = 5;
@@ -28,18 +28,15 @@ function cleanStr(s = "") {
   return String(s || "").trim();
 }
 
-// Roblox: allow alphanumeric + underscore, no spaces
+// Roblox: allow alphanumeric + underscore/dot/hyphen, no spaces
 function validateRoblox(name = "") {
   if (!name) return false;
   if (name.length > MAX_ROBLOX_LEN) return false;
-  // no spaces allowed
   if (/\s/.test(name)) return false;
-  // allow letters (any case), numbers, underscore, dot, hyphen
   return /^[A-Za-z0-9_.-]+$/.test(name);
 }
 
-// Discord: any trimmed string up to MAX length (front-end already encourages "username#tag")
-// We only trim and cap length here.
+// Discord: any trimmed string up to MAX length
 function validateDiscord(name = "") {
   if (!name) return false;
   const s = String(name).trim();
@@ -48,7 +45,7 @@ function validateDiscord(name = "") {
 
 // Make a fingerprint from ip + ua (server-side)
 function makeFingerprint(ip = "", ua = "") {
-  return `${ip}_${(ua || "").slice(0, 140)}`; // UA trimmed to avoid huge strings
+  return `${ip}_${(ua || "").slice(0, 140)}`;
 }
 
 // Return normalized players arrays (ensure names exist)
@@ -57,7 +54,7 @@ function normalizePlayers(arr = []) {
   return arr
     .map((u) => {
       if (!u) return null;
-      const Name = cleanStr(u.Name || u.name || u.Name || "");
+      const Name = cleanStr(u.Name || u.name || "");
       const Id = cleanStr(u.Id || u.id || "");
       return Name ? { Name, Id } : null;
     })
@@ -72,7 +69,7 @@ function titleFor(p1, p2) {
   return `${p1n || "—"} FOR ${p2n || "—"}`;
 }
 
-// simple deep equal for name lists (used for self-trade)
+// simple signature for self-trade detection
 function namesSignature(list = []) {
   return (list || [])
     .map((u) => (u.Name || "").toLowerCase())
@@ -83,16 +80,29 @@ function namesSignature(list = []) {
 
 // ----------------- DB index helpers -----------------
 async function ensureIndexes(db) {
-  const trades = db.collection("trades");
-  const rate   = db.collection("rate_limits");
+  const trades = db.collection(TRADES);
+  const rate = db.collection(RATE);
 
-  await trades.createIndex({ title: 1, description: 1 }, { name: "title_desc" });
-  await trades.createIndex({ createdAt: 1 }, { expireAfterSeconds: 7 * 24 * 60 * 60, name: "ttl_7d" });
+  try {
+    await trades.createIndex({ title: 1, description: 1 }, { name: "title_desc", background: true });
+  } catch (_) {}
+  try {
+    await trades.createIndex(
+      { createdAt: 1 },
+      { expireAfterSeconds: 7 * 24 * 60 * 60, name: "ttl_7d", background: true }
+    );
+  } catch (_) {}
 
-  await rate.createIndex({ id: 1, bucket: 1 }, { name: "rate_bucket" });
-  await rate.createIndex({ createdAt: 1 }, { expireAfterSeconds: 2 * 24 * 60 * 60, name: "ttl_rate_2d" });
+  try {
+    await rate.createIndex({ id: 1, bucket: 1 }, { name: "rate_bucket", background: true });
+  } catch (_) {}
+  try {
+    await rate.createIndex(
+      { createdAt: 1 },
+      { expireAfterSeconds: 2 * 24 * 60 * 60, name: "ttl_rate_2d", background: true }
+    );
+  } catch (_) {}
 }
-
 
 // ----------------- Throttle function (hardening) -----------------
 async function throttle(db, fingerprint, ip, ua) {
@@ -143,11 +153,10 @@ async function throttle(db, fingerprint, ip, ua) {
 
   try {
     await rate.bulkWrite(bulk, { ordered: false });
-  } catch (e) {
+  } catch {
     // non-fatal
   }
 
-  // read counts
   const [mDoc, hDoc, ipMDoc, ipHDoc] = await Promise.all([
     rate.findOne(minuteKey, { projection: { count: 1 } }),
     rate.findOne(hourKey, { projection: { count: 1 } }),
@@ -155,38 +164,38 @@ async function throttle(db, fingerprint, ip, ua) {
     rate.findOne(ipHourKey, { projection: { count: 1 } }),
   ]);
 
-  // check fingerprint caps
-  if ((mDoc?.count ?? 0) > PER_MINUTE_MAX) return { ok: false, code: 429, msg: "Too many requests (minute cap)." };
-  if ((hDoc?.count ?? 0) > PER_HOUR_MAX) return { ok: false, code: 429, msg: "Too many requests (hour cap)." };
+  if ((mDoc?.count ?? 0) > PER_MINUTE_MAX)
+    return { ok: false, code: 429, msg: "Too many requests (minute cap)." };
+  if ((hDoc?.count ?? 0) > PER_HOUR_MAX)
+    return { ok: false, code: 429, msg: "Too many requests (hour cap)." };
 
-  // ip-only strict caps
-  if ((ipMDoc?.count ?? 0) > IP_MINUTE_LIMIT) return { ok: false, code: 429, msg: "Too many requests from this IP (minute)." };
-  if ((ipHDoc?.count ?? 0) > IP_HOUR_LIMIT) return { ok: false, code: 429, msg: "Too many requests from this IP (hour)." };
+  if ((ipMDoc?.count ?? 0) > IP_MINUTE_LIMIT)
+    return { ok: false, code: 429, msg: "Too many requests from this IP (minute)." };
+  if ((ipHDoc?.count ?? 0) > IP_HOUR_LIMIT)
+    return { ok: false, code: 429, msg: "Too many requests from this IP (hour)." };
 
   if ((ipMDoc?.count ?? 0) > IP_MINUTE_LIMIT - 1) {
-  console.warn("⚠️ Possible bot near-limit:", ip);
-}
+    console.warn("⚠️ Possible bot near-limit:", ip);
+  }
 
   return { ok: true };
 }
 
-// ----------------- API handlers -----------------
-
+// ----------------- API: GET -----------------
 export async function GET(req) {
   try {
     const url = new URL(req.url);
     const limit = Math.min(100, Number(url.searchParams.get("limit") || 50));
-    const skip  = Math.max(0,   Number(url.searchParams.get("skip")  || 0 ));
-    const q     = (url.searchParams.get("search") || "").trim().toLowerCase();
+    const skip = Math.max(0, Number(url.searchParams.get("skip") || 0));
+    const q = (url.searchParams.get("search") || "").trim().toLowerCase();
 
     const client = await clientPromise;
     const db = client.db(DB_NAME);
 
-    // optional text-ish filter on title/description
     const filter = q
       ? {
           $or: [
-            { title:       { $regex: q, $options: "i" } },
+            { title: { $regex: q, $options: "i" } },
             { description: { $regex: q, $options: "i" } },
           ],
         }
@@ -195,10 +204,7 @@ export async function GET(req) {
     const docs = await db
       .collection(TRADES)
       .find(filter, {
-        projection: {
-          // keep everything you need on the page, hide internals
-          ip: 0, ua: 0, fingerprint: 0,
-        },
+        projection: { ip: 0, ua: 0, fingerprint: 0 },
       })
       .sort({ createdAt: -1 })
       .skip(skip)
@@ -212,20 +218,21 @@ export async function GET(req) {
   }
 }
 
+// ----------------- API: POST -----------------
 export async function POST(req) {
   try {
     const body = await req.json().catch(() => null);
     if (!body) return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
 
-    // connect to DB right away (needed for unit verification)
     const client = await clientPromise;
     const db = client.db(DB_NAME);
     await ensureIndexes(db);
 
-    // gather request meta
-    let ip = (req.headers.get("x-forwarded-for") || "").split(",").shift()?.trim();
-    if (!ip) ip = req.headers.get("x-real-ip");
-    if (!ip) ip = req.ip || "0.0.0.0";
+    // request meta
+    let ip =
+      (req.headers.get("x-forwarded-for") || "").split(",").shift()?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "0.0.0.0";
     const ua = req.headers.get("user-agent") || "";
     const fingerprint = makeFingerprint(ip, ua);
 
@@ -235,14 +242,17 @@ export async function POST(req) {
     const player1Raw = Array.isArray(body.player1) ? body.player1 : [];
     const player2Raw = Array.isArray(body.player2) ? body.player2 : [];
 
-    // require at least one contact (discord OR roblox)
+    // need at least one contact
     const hasDiscord = discordRaw.length > 0;
     const hasRoblox = robloxRaw.length > 0;
     if (!hasDiscord && !hasRoblox) {
-      return NextResponse.json({ error: "Either Discord or Roblox username is required." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Either Discord or Roblox username is required." },
+        { status: 400 }
+      );
     }
 
-    // server-side validation
+    // validate usernames
     if (hasDiscord && !validateDiscord(discordRaw)) {
       return NextResponse.json({ error: "Discord username invalid or too long." }, { status: 400 });
     }
@@ -250,28 +260,38 @@ export async function POST(req) {
       return NextResponse.json({ error: "Roblox username invalid. No spaces allowed." }, { status: 400 });
     }
 
-    // normalize players
+    // normalize units from client
     const player1 = normalizePlayers(player1Raw);
     const player2 = normalizePlayers(player2Raw);
 
-  // --- Verify units against Mongo 'units' collection and normalize their Values ---
+    // verify & hydrate from Mongo 'units' (force numeric Value, include Image)
     const unitsCollection = db.collection("units");
+
     async function verifyAndHydrate(unitsArr) {
       const out = [];
       for (const u of unitsArr) {
-        // exact match by Name coming from your UnitPicker
         const match = await unitsCollection.findOne(
-          { Name: u.Name },
-          { projection: { Name: 1, Value: 1, Category: 1, "In Game Name": 1, Image: 1, Demand: 1, ShinyType: 1 } }
+          { Name: { $regex: `^${u.Name}$`, $options: "i" } },
+          {
+            projection: {
+              Name: 1,
+              Value: 1,
+              Category: 1,
+              "In Game Name": 1,
+              Image: 1,
+              Demand: 1,
+              ShinyType: 1,
+            },
+          }
         );
         if (!match) return { ok: false, msg: `Invalid or unknown unit: ${u.Name}` };
+
         out.push({
-          Value: isNaN(Number(match.Value)) ? 0 : Number(match.Value),
           Name: match.Name,
-          Value: Number(match.Value ?? 0),                // ✅ force numeric
-         Category: match.Category ?? "",
+          Value: Number(match.Value ?? 0),
+          Category: match.Category ?? "",
           "In Game Name": match["In Game Name"] ?? "",
-          Image: match.Image || "",                       // ✅ ensure present
+          Image: match.Image || "",
           Demand: match.Demand ?? "",
           ShinyType: match.ShinyType ?? "",
         });
@@ -279,66 +299,78 @@ export async function POST(req) {
       return { ok: true, list: out };
     }
 
-const p1Check = await verifyAndHydrate(player1);
-if (!p1Check.ok) return NextResponse.json({ error: p1Check.msg }, { status: 400 });
+    const p1Check = await verifyAndHydrate(player1);
+    if (!p1Check.ok) return NextResponse.json({ error: p1Check.msg }, { status: 400 });
+    const p2Check = await verifyAndHydrate(player2);
+    if (!p2Check.ok) return NextResponse.json({ error: p2Check.msg }, { status: 400 });
 
-const p2Check = await verifyAndHydrate(player2);
-if (!p2Check.ok) return NextResponse.json({ error: p2Check.msg }, { status: 400 });
+    const player1Verified = p1Check.list;
+    const player2Verified = p2Check.list;
 
-const player1Verified = p1Check.list;
-const player2Verified = p2Check.list;
+    // server-authoritative totals
+    const p1TotalServer = player1Verified.reduce((s, u) => s + (Number(u.Value) || 0), 0);
+    const p2TotalServer = player2Verified.reduce((s, u) => s + (Number(u.Value) || 0), 0);
 
-// Recompute totals on the server (authoritative)
-const p1TotalServer = player1Verified.reduce((s, u) => s + (Number(u.Value) || 0), 0);
-const p2TotalServer = player2Verified.reduce((s, u) => s + (Number(u.Value) || 0), 0);
-
-// Prevent mirror/self trades (same sets swapped)
-function namesSig(list) {
-  return list.map(u => (u.Name || "").toLowerCase()).sort().join("|");
-}
-if (namesSig(player1Verified) === namesSig(player2Verified)) {
-  return NextResponse.json({ error: "Cannot trade the same items for the same items." }, { status: 400 });
-}
-
-    // must have at least one unit on each side
-    if (!player1.length || !player2.length) {
-      return NextResponse.json({ error: "Add units/items to both offering and looking-for fields." }, { status: 400 });
+    // must have at least one unit each side
+    if (!player1Verified.length || !player2Verified.length) {
+      return NextResponse.json(
+        { error: "Add units/items to both offering and looking-for fields." },
+        { status: 400 }
+      );
     }
 
-    // create title
-    const title = cleanStr(body.title || titleFor(player1, player2));
+    // prevent mirror/self trades
+    const p1sig = namesSignature(player1Verified);
+    const p2sig = namesSignature(player2Verified);
+    if (p1sig && p1sig === p2sig) {
+      return NextResponse.json(
+        { error: "Cannot trade the same items for the same items." },
+        { status: 400 }
+      );
+    }
 
-    // run throttle
+    const since24h = new Date(Date.now() - WINDOW_24H_MS);
+
+    const mirrorExists = await db.collection(TRADES).countDocuments({
+      "player1.Name": { $in: player2Verified.map((u) => u.Name) },
+      "player2.Name": { $in: player1Verified.map((u) => u.Name) },
+      createdAt: { $gte: since24h },
+    });
+    if (mirrorExists > 0) {
+      return NextResponse.json(
+        { error: "Mirror/self trade detected (same items swapped)." },
+        { status: 400 }
+      );
+    }
+
+    // title
+    const title = cleanStr(body.title || titleFor(player1Verified, player2Verified));
+
+    // rate limits (fingerprint + IP)
     const guard = await throttle(db, fingerprint, ip, ua);
     if (!guard.ok) return NextResponse.json({ error: guard.msg }, { status: guard.code });
 
-    // 2-per-24h rule enforced by BOTH fingerprint and IP
-    const since = new Date(Date.now() - WINDOW_24H_MS);
-
+    // 2 per 24h across fingerprint/IP
     const recentByFingerprint = await db.collection(TRADES).countDocuments({
       fingerprint,
-      createdAt: { $gte: since },
+      createdAt: { $gte: since24h },
     });
-
     const recentByIp = await db.collection(TRADES).countDocuments({
       ip,
-      createdAt: { $gte: since },
+      createdAt: { $gte: since24h },
     });
 
     const MAX_TRADES_PER_WINDOW = 2;
     if (recentByFingerprint >= MAX_TRADES_PER_WINDOW || recentByIp >= MAX_TRADES_PER_WINDOW) {
-      // compute first timestamp of relevant set to tell wait time
-      const oldest = await db
-        .collection(TRADES)
-        .find({
-          $or: [{ fingerprint }, { ip }],
-          createdAt: { $gte: since },
-        })
-        .sort({ createdAt: 1 })
-        .limit(1)
-        .toArray();
+const oldest = await db
+  .collection(TRADES)
+  .find({ $or: [{ fingerprint }, { ip }], createdAt: { $gte: since24h } })
+  .sort({ createdAt: 1 })
+  .limit(1)
+  .toArray();
 
-      const firstTime = oldest[0]?.createdAt?.getTime() || Date.now();
+// createdAt could be Date or string from old docs — normalize safely
+const firstTime = new Date(oldest[0]?.createdAt || Date.now()).getTime();
       const waitMs = firstTime + WINDOW_24H_MS - Date.now();
       if (waitMs > 0) {
         const hours = Math.max(0, Math.floor(waitMs / 3600000));
@@ -350,7 +382,7 @@ if (namesSig(player1Verified) === namesSig(player2Verified)) {
       }
     }
 
-    // duplicate content guard (blocks same content posted many times in recent window)
+    // duplicate content guard in the last DUP_WINDOW_MS
     const dupWindow = new Date(Date.now() - DUP_WINDOW_MS);
     const dupCount = await db.collection(TRADES).countDocuments({
       title,
@@ -358,80 +390,69 @@ if (namesSig(player1Verified) === namesSig(player2Verified)) {
       "player2.0": { $exists: true },
       createdAt: { $gte: dupWindow },
     });
-
     if (dupCount >= DUP_LIMIT) {
       return NextResponse.json({ error: "Duplicate trade spam detected." }, { status: 429 });
     }
 
-    // self-trade guard: compare name lists signatures
-const p1sig = namesSignature(player1Verified);
-const p2sig = namesSignature(player2Verified);
-    if (p1sig && p1sig === p2sig) {
-      return NextResponse.json({ error: "Cannot trade the same items for the same items." }, { status: 400 });
+    // block exact duplicate title by same fingerprint within 24h
+    const dupSameTitle = await db.collection(TRADES).countDocuments({
+      fingerprint,
+      title,
+      createdAt: { $gte: since24h },
+    });
+    if (dupSameTitle > 0) {
+      return NextResponse.json({ error: "Duplicate trade detected." }, { status: 429 });
     }
-const mirrorExists = await db.collection(TRADES).countDocuments({
-  "player1.Name": { $in: player2Verified.map(u => u.Name) },
-  "player2.Name": { $in: player1Verified.map(u => u.Name) },
-  createdAt: { $gte: since },
-});
-if (mirrorExists > 0) {
-  return NextResponse.json({ error: "Mirror/self trade detected (same items swapped)." }, { status: 400 });
-}
 
-// block exact duplicate title by same fingerprint within 24h
-const dupSameTitle = await db.collection(TRADES).countDocuments({
-  fingerprint,
-  title,
-  createdAt: { $gte: since },
-});
-if (dupSameTitle > 0) {
-  return NextResponse.json({ error: "Duplicate trade detected." }, { status: 429 });
-}
+    // weekly user limit (discord/roblox optional)
+    const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const userFilters = [{ fingerprint }, { ip }];
+    if (hasDiscord) userFilters.push({ discord: discordRaw });
+    if (hasRoblox) userFilters.push({ roblox: robloxRaw });
 
-    // Weekly user limit check (max 14 trades per user/discord/roblox)
-const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-const userFilters = [{ fingerprint }, { ip }];
-if (hasDiscord) userFilters.push({ discord: discordRaw });
-if (hasRoblox) userFilters.push({ roblox: robloxRaw });
+    if (userFilters.length > 0) {
+      const userTradeCount = await db.collection(TRADES).countDocuments({
+        createdAt: { $gte: weekAgo },
+        $or: userFilters,
+      });
 
-if (userFilters.length > 0) {
-  const userTradeCount = await db.collection(TRADES).countDocuments({
-    createdAt: { $gte: weekAgo },
-    $or: userFilters,
-  });
+      const MAX_WEEKLY_TRADES = 14;
+      const RESUME_THRESHOLD = 12;
+      if (userTradeCount >= MAX_WEEKLY_TRADES) {
+        return NextResponse.json(
+          {
+            error: `User trade limit reached (${userTradeCount} active). You can post again once your active trades drop below ${RESUME_THRESHOLD}.`,
+          },
+          { status: 429 }
+        );
+      }
+    }
 
-  const MAX_WEEKLY_TRADES = 14;
-  const RESUME_THRESHOLD = 12;
+    // verdict
+    const verdict =
+      p1TotalServer === p2TotalServer
+        ? "Fair Trade"
+        : p1TotalServer < p2TotalServer
+        ? "Win for Advertiser"
+        : "Loss for Advertiser";
 
-  if (userTradeCount >= MAX_WEEKLY_TRADES) {
-    return NextResponse.json({
-      error: `User trade limit reached (${userTradeCount} active). You can post again once your active trades drop below ${RESUME_THRESHOLD}.`,
-    }, { status: 429 });
-  }
-}
-
-    // build doc (store the provided discord/roblox raw values)
-    // re-cast unit values as numbers (prevents "Value: N/A")
-const doc = {
-  title,
-  description,
-  player1: player1Verified,
-  player2: player2Verified,
-  p1Total: p1TotalServer,
-  p2Total: p2TotalServer,
-  verdict: p1TotalServer === p2TotalServer
-    ? "Fair Trade"
-    : p1TotalServer < p2TotalServer
-      ? "Win for Advertiser"
-      : "Loss for Advertiser",
-  discord: hasDiscord ? discordRaw.slice(0, 64) : "",
-  roblox:  hasRoblox  ? robloxRaw.slice(0, 20) : "",
-  ip, ua: ua.slice(0, 200), fingerprint,
-  createdAt: new Date(),
-};
+    const doc = {
+      title,
+      description,
+      player1: player1Verified,
+      player2: player2Verified,
+      p1Total: p1TotalServer,
+      p2Total: p2TotalServer,
+      verdict,
+      discord: hasDiscord ? discordRaw.slice(0, MAX_DISCORD_LEN) : "",
+      roblox: hasRoblox ? robloxRaw.slice(0, MAX_ROBLOX_LEN) : "",
+      ip,
+      ua: ua.slice(0, 200),
+      fingerprint,
+      createdAt: new Date(),
+    };
 
     const ins = await db.collection(TRADES).insertOne(doc);
-
     return NextResponse.json({ success: true, id: ins.insertedId, doc });
   } catch (err) {
     console.error("POST /api/trades error:", err?.message || err);
@@ -439,7 +460,7 @@ const doc = {
   }
 }
 
-// DELETE - admin only, deletes all trades
+// ----------------- API: DELETE (admin) -----------------
 export async function DELETE(req) {
   try {
     const adminKeyHeader = req.headers.get ? req.headers.get("x-admin-key") : null;
@@ -451,7 +472,6 @@ export async function DELETE(req) {
     const client = await clientPromise;
     const db = client.db(DB_NAME);
 
-    // delete all trades and rate limits (admin action)
     await db.collection(TRADES).deleteMany({});
     await db.collection(RATE).deleteMany({});
 
