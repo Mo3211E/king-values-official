@@ -163,6 +163,10 @@ async function throttle(db, fingerprint, ip, ua) {
   if ((ipMDoc?.count ?? 0) > IP_MINUTE_LIMIT) return { ok: false, code: 429, msg: "Too many requests from this IP (minute)." };
   if ((ipHDoc?.count ?? 0) > IP_HOUR_LIMIT) return { ok: false, code: 429, msg: "Too many requests from this IP (hour)." };
 
+  if ((ipMDoc?.count ?? 0) > IP_MINUTE_LIMIT - 1) {
+  console.warn("⚠️ Possible bot near-limit:", ip);
+}
+
   return { ok: true };
 }
 
@@ -230,9 +234,9 @@ export async function POST(req) {
     if (!body) return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
 
     // gather request meta
-let ip = (req.headers.get("x-forwarded-for") || "").split(",").shift()?.trim();
-if (!ip || ip === "") ip = req.headers.get("x-real-ip");
-if (!ip || ip === "") ip = req.ip || "0.0.0.0";
+    let ip = (req.headers.get("x-forwarded-for") || "").split(",").shift()?.trim();
+    if (!ip) ip = req.headers.get("x-real-ip");
+    if (!ip) ip = req.ip || "0.0.0.0";
     const ua = req.headers.get("user-agent") || "";
     const fingerprint = makeFingerprint(ip, ua);
 
@@ -261,26 +265,30 @@ if (!ip || ip === "") ip = req.ip || "0.0.0.0";
     const player1 = normalizePlayers(player1Raw);
     const player2 = normalizePlayers(player2Raw);
 
-    // --- Verify units against Mongo 'units' collection and normalize their Values ---
-const unitsCollection = db.collection("units");
-
-async function verifyAndHydrate(unitsArr) {
-  const out = [];
-  for (const u of unitsArr) {
-    const match = await db.collection("units").findOne({ Name: u.Name });
-    if (!match) return { ok: false, msg: `Invalid or unknown unit: ${u.Name}` };
-    out.push({
-      Name: match.Name,
-      Value: Number(match.Value ?? 0),
-      Category: match.Category ?? "",
-      "In Game Name": match["In Game Name"] ?? "",
-      Image: match.Image || match.image || "", // ✅ ensures CompactUnitCard shows images
-      Demand: match.Demand ?? "",
-      ShinyType: match.ShinyType ?? "", // optional, some cards show shiny color
-    });
-  }
-  return { ok: true, list: out };
-}
+  // --- Verify units against Mongo 'units' collection and normalize their Values ---
+    const unitsCollection = db.collection("units");
+    async function verifyAndHydrate(unitsArr) {
+      const out = [];
+      for (const u of unitsArr) {
+        // exact match by Name coming from your UnitPicker
+        const match = await unitsCollection.findOne(
+          { Name: u.Name },
+          { projection: { Name: 1, Value: 1, Category: 1, "In Game Name": 1, Image: 1, Demand: 1, ShinyType: 1 } }
+        );
+        if (!match) return { ok: false, msg: `Invalid or unknown unit: ${u.Name}` };
+        out.push({
+          Value: isNaN(Number(match.Value)) ? 0 : Number(match.Value),
+          Name: match.Name,
+          Value: Number(match.Value ?? 0),                // ✅ force numeric
+         Category: match.Category ?? "",
+          "In Game Name": match["In Game Name"] ?? "",
+          Image: match.Image || "",                       // ✅ ensure present
+          Demand: match.Demand ?? "",
+          ShinyType: match.ShinyType ?? "",
+        });
+      }
+      return { ok: true, list: out };
+    }
 
 const p1Check = await verifyAndHydrate(player1);
 if (!p1Check.ok) return NextResponse.json({ error: p1Check.msg }, { status: 400 });

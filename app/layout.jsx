@@ -33,8 +33,8 @@ export const metadata = {
     siteName: "King Values",
     images: [
       {
-        url: "https://king-values.com/logo.png",
-        logo: "https://king-values.com/og-banner.png",
+        url: "https://king-values.com/og-banner.png",
+        logo: "https://king-values.com/logo.png",
         width: 1200,
         height: 630,
         alt: "Anime Vanguards Trading Value List",
