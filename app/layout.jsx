@@ -3,6 +3,7 @@ import GalaxyBackground from "./components/GalaxyBackground";
 import NavBar from "./components/NavBar";
 import ScrollFade from "./components/ScrollFade";
 import Script from "next/script";
+import Head from "next/head";
 
 export const metadata = {
   title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
@@ -46,7 +47,7 @@ openGraph: {
   twitter: {
     card: "summary_large_image",
     title: "King Values | #1 Anime Vanguards Value List & Trade Hub",
-    description: " ", // hide description on Twitter/Discord
+    description: "Accurate Values You Can Trust & Rely On", // hide description on Twitter/Discord
     images: ["https://king-values.com/og-banner.png"],
   },
 };
@@ -119,6 +120,20 @@ export default function RootLayout({ children }) {
       }
     ]
   })}
+</Script>
+<Script id="ld-org" type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "King Values",
+  url: "https://king-values.com",
+  logo: "https://king-values.com/og-banner.png",
+  sameAs: [
+    "https://www.youtube.com/@King_Mo3211",
+    "https://discord.gg/cUGkAtsFNT"
+  ],
+  description: "Anime Vanguards Value List and Trade Hub for Roblox — Accurate values and real-time community trades."
+})}
 </Script>
         <main className="relative z-10 pt-28">{children}</main>
       </body>
