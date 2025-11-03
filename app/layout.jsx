@@ -25,31 +25,29 @@ export const metadata = {
     "Anime Vanguards Trading Website"
   ],
 
-  // 👇 OpenGraph (for Discord/FB) — no description to keep it clean
-  openGraph: {
-    title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
-    description: "", // blank = no text in Discord embed
+openGraph: {
+    title: "King Values | #1 Anime Vanguards Value List & Trade Hub",
+    description: " ", // blank = Discord shows no text
     url: "https://king-values.com",
     siteName: "King Values",
     images: [
       {
         url: "https://king-values.com/og-banner.png",
-        logo: "https://king-values.com/logo.png",
         width: 1200,
         height: 630,
-        alt: "Anime Vanguards Trading Value List",
+        alt: "King Values — Anime Vanguards Value List and Trading Hub",
       },
     ],
     locale: "en_US",
     type: "website",
   },
 
-  // 👇 Twitter card — blank description too
+  // ✅ Twitter card — same trick to suppress text in embeds
   twitter: {
     card: "summary_large_image",
-    title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
-    description: "", // hide description in Twitter/Discord previews
-    logo: "https://king-values.com/og-banner.png",
+    title: "King Values | #1 Anime Vanguards Value List & Trade Hub",
+    description: " ", // hide description on Twitter/Discord
+    images: ["https://king-values.com/og-banner.png"],
   },
 };
 

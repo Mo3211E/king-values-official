@@ -258,7 +258,7 @@ export default function Home() {
             Simple, Kegs, Exs, Awesometicklenip, Void, Feh, Nathan, Knull,
             Nat, Manjiro
             <br />
-            <span className="text-[#f9cb9c]">Partners:</span> VVX (Chemical & LOOP), Peryfc, Illusion (Discord Server){" "}
+            <span className="text-[#f9cb9c]">Partners:</span> Peryfc, Illusion (Discord Server){" "}
           </p>
         </div>
 

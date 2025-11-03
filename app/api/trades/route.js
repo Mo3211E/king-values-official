@@ -172,21 +172,6 @@ async function throttle(db, fingerprint, ip, ua) {
 
 // ----------------- API handlers -----------------
 
-/*
-// Optional lockdown mode (set SITE_LOCKDOWN="true" in env to disable GET/POST)
-if (process.env.SITE_LOCKDOWN === "true") {
-  export async function GET() {
-    return new Response("Trade Hub temporarily offline for maintenance.", { status: 503 });
-  }
-  export async function POST() {
-    return new Response("Trade Hub temporarily offline for maintenance.", { status: 503 });
-  }
-  export async function DELETE() {
-    return new Response("Trade Hub temporarily offline for maintenance.", { status: 503 });
-  }
-}
-  */
-
 export async function GET(req) {
   try {
     const url = new URL(req.url);
@@ -227,11 +212,15 @@ export async function GET(req) {
   }
 }
 
-// POST - create a trade (with hardening)
 export async function POST(req) {
   try {
     const body = await req.json().catch(() => null);
     if (!body) return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
+
+    // connect to DB right away (needed for unit verification)
+    const client = await clientPromise;
+    const db = client.db(DB_NAME);
+    await ensureIndexes(db);
 
     // gather request meta
     let ip = (req.headers.get("x-forwarded-for") || "").split(",").shift()?.trim();
@@ -318,10 +307,6 @@ if (namesSig(player1Verified) === namesSig(player2Verified)) {
 
     // create title
     const title = cleanStr(body.title || titleFor(player1, player2));
-
-    const client = await clientPromise;
-    const db = client.db(DB_NAME);
-    await ensureIndexes(db);
 
     // run throttle
     const guard = await throttle(db, fingerprint, ip, ua);
