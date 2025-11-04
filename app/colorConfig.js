@@ -33,14 +33,14 @@ export const unitColors = {
   "Aladdin": "#ffa0e4",
   "Lucy": "#ffa0e4",
   "David": "#ffa0e4",
-  "Haruka Rin": "#ffa0e4",
+  "Haruka Rin (Evo)": "#ffa0e4",
   "Unevo Haruka Rin": "#ffa0e4",
   "Emilia": "#ffa0e4",
   "Fubuki": "#ffa0e4",
   "Peeny-Weeny": "#ffa0e4",
   "Momo": "#ffa0e4",
   "Judar": "#ffa0e4",
-  "Karem": "#ffa0e4",
+  "Kareem": "#ffa0e4",
   "Rem and Ram": "#ffa0e4",
   "Weather Report": "#ffa0e4",
   "Sakuya": "#ffa0e4",
@@ -95,9 +95,10 @@ export const unitColors = {
 
 // ----------- CATEGORY COLORS -----------
 export const categoryColors = {
-  Units: "#555555",          // dark grey for category label on cards
+  Units: "#797979ff",          // dark grey for category label on cards
   Familiars: "#3c78d8",      // force familiar names to this color
-  Skins: "#00ffff"
+  Skins: "#00ffff",
+  Stats: "#008b8b"           // 🆕 dark turquoise for Stats
 };
 
 export const SHINY_GOLD = "#efbf04";
@@ -154,7 +155,7 @@ export function getNameColor(category, rawName) {
   }
 
   // Normal category colors for Familiars and others
-  if (category === "Familiars" || category === "Robux Items") {
+  if (category === "Familiars" || category === "Robux Items" || category === "Stats") {
     return categoryColors[category];
   }
 
@@ -169,6 +170,7 @@ export function getCategoryLabelColor(category) {
     return "linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet)";
   }
 
+  if (category === "Stats") return categoryColors.Stats;
   if (category === "Units") return categoryColors.Units;
   return categoryColors[category] || "#a9b0bb";
 }

@@ -264,7 +264,7 @@ if (cached) {
               <h2 className="text-3xl font-bold text-[#cda6ff] mb-4 text-center">Values Guide</h2>
 
               <ul className="list-disc list-inside space-y-3 text-[1.05rem] leading-relaxed text-white/90">
-              <li>STATE: Current Values are based on Pre-Release Trading, will soon be updated to accurately represent demand, stability, and post release values</li>
+              <li>STATE: Finalized & Accurate Values, 100% up to date </li>
                 <li>
                   Rarities:{" "}
                   <span style={{ color: "#ffa0e4" }}>Exclusive</span> |{" "}
