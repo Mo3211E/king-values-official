@@ -262,23 +262,46 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Discord */}
-        <div className="max-w-[60rem] w-full rounded-3xl p-[2px] bg-[linear-gradient(90deg,#ff9ee6,#ffb07c,#ffe49e)] animate-gradientSlow mb-20 text-[1.8rem]">
-          <div
-            className="rounded-3xl bg-[#0e0e15] p-10"
-            style={{ textShadow: "0 0 25px rgba(255,158,230,0.4)" }}
-          >
-            <h2 className="font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#ff9ee6] to-[#ffb07c]">
-              Join our Discord
-            </h2>
-            <p className="text-white/70 mb-6">
-              Template placeholder — coming soon.
-            </p>
-            <button className="px-10 py-4 rounded-2xl font-semibold text-white bg-gradient-to-r from-[#ff9ee6] to-[#ffb07c] hover:opacity-90 transition">
-              Join Discord
-            </button>
-          </div>
-        </div>
+{/* Discord */}
+<div className="max-w-[60rem] w-full rounded-3xl p-[2px] bg-[linear-gradient(90deg,#c6a4ff,#f3b5ff,#b9b4ff,#c6a4ff)] animate-gradientSlow mb-20 text-[1.8rem]">
+  <div
+    className="rounded-3xl bg-[#0e0e15] p-10 text-center"
+    style={{ textShadow: "0 0 25px rgba(198,164,255,0.3)" }}
+  >
+    <h2
+      className="font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#f7b3ff] to-[#c6a4ff] text-[2.3rem]"
+      style={{
+        backgroundSize: "300% 300%",
+        animation: "titleGradient 12s ease-in-out infinite",
+      }}
+    >
+      Join our Discord
+    </h2>
+
+    <p className="text-white/80 mb-6">
+      Complete and finalize trades faster with the community — join our Discord server below!
+    </p>
+
+    <a
+      href="https://discord.gg/cUGkAtsFNT"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block px-10 py-4 rounded-2xl font-semibold text-white transition-all hover:scale-[1.05] pulse-glow"
+      style={{
+        background:
+          "linear-gradient(90deg, rgba(160,90,255,0.85), rgba(240,150,255,0.8))",
+        border: "1px solid rgba(190,160,255,0.4)",
+        boxShadow:
+          "0 0 25px rgba(200,150,255,0.3), inset 0 0 10px rgba(180,120,255,0.25)",
+        color: "white",
+        textShadow:
+          "0 0 15px rgba(230,200,255,0.4), 0 0 25px rgba(190,140,255,0.2)",
+      }}
+    >
+      Join Discord
+    </a>
+  </div>
+</div>
 
         {/* AV Sheet */}
         <div className="max-w-[70rem] w-full rounded-3xl p-[2px] bg-[linear-gradient(90deg,#ffe49e,#ffb07c,#ff9ee6)] animate-gradientSlow text-[1.8rem] mb-10">

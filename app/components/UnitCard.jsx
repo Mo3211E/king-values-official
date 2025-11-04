@@ -208,10 +208,37 @@ export default function UnitCard({ u, compact, isLink = true, onClick }) {
 /* ----------------------------- Subcomponent ----------------------------- */
 
 function Row({ label, value }) {
+  const color =
+    ColorConfig.getStatColor?.(label, value) || "#ffffff";
+  const isGradient = color.startsWith("linear-gradient");
+
   return (
     <div className="flex items-center justify-between py-1.5">
       <span className="font-semibold text-white/85">{label}:</span>
-      <span className="font-bold text-white">{value}</span>
+      {isGradient ? (
+        <span
+          className="font-extrabold"
+          style={{
+            background: color,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            textShadow: "0 0 8px rgba(255,255,255,0.25)",
+          }}
+        >
+          {value}
+        </span>
+      ) : (
+        <span
+          className="font-bold"
+          style={{
+            color,
+            textShadow: "0 0 8px rgba(255,255,255,0.25)",
+          }}
+        >
+          {value}
+        </span>
+      )}
     </div>
   );
 }
+

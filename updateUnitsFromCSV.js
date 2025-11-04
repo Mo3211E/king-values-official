@@ -31,11 +31,19 @@ function loadCsvRows() {
     console.error("PapaParse errors:", parsed.errors.slice(0, 3));
   }
 
-  const rows = (parsed.data || []).map(r => ({
-    name: String(r["Name"] ?? "").trim(),
-    value: String(r["Value (RR)"] ?? r["Value"] ?? "").trim(),
-    demand: String(r["Demand"] ?? "").trim(),
-  })).filter(r => r.name);
+const rows = (parsed.data || [])
+  .map((r) => {
+    let rawValue = String(r["Value (RR)"] ?? r["Value"] ?? "").trim();
+    if (rawValue.toLowerCase().includes("owner")) rawValue = "Owner's Choice";
+
+    return {
+      name: String(r["Name"] ?? "").trim(),
+      value: rawValue,
+      demand: String(r["Demand"] ?? "").trim(),
+      stability: String(r["Stability"] ?? r["Stability "] ?? "Unknown").trim(),
+    };
+  })
+  .filter((r) => r.name);
 
   console.log(`🔍 Detected delimiter: ','`);
   return rows;
@@ -53,11 +61,11 @@ async function main() {
     await client.connect();
     const col = client.db(DB_NAME).collection(COLLECTION);
 
-    for (const { name, value, demand } of updates) {
-      const res = await col.updateOne(
-        { Name: name },
-        { $set: { Value: value, Demand: demand } }
-      );
+for (const { name, value, demand, stability } of updates) {
+  const res = await col.updateOne(
+    { Name: name },
+    { $set: { Value: value, Demand: demand, Stability: stability } }
+  );
       if (res.matchedCount === 0) {
         await col.insertOne({
           Name: name,
@@ -93,25 +101,26 @@ async function main() {
   const units = JSON.parse(fs.readFileSync(JSON_FILE, "utf8"));
   const byName = new Map(units.map(u => [String(u.Name || "").trim(), u]));
 
-  for (const { name, value, demand } of updates) {
-    const hit = byName.get(name);
-    if (hit) {
-      hit.Value = value;
-      hit.Demand = demand;
-    } else {
-      units.push({
-        Name: name,
-        Value: value,
-        Demand: demand,
-        Category: "Units",
-        Stability: "Stable",
-        Obtainment: "Unknown",
-        Justification: "Added via CSV sync",
-        votes: {},
-        feedbacks: [],
-      });
-    }
+for (const { name, value, demand, stability } of updates) {
+  const hit = byName.get(name);
+  if (hit) {
+    hit.Value = value;
+    hit.Demand = demand;
+    hit.Stability = stability;
+  } else {
+    units.push({
+      Name: name,
+      Value: value,
+      Demand: demand,
+      Category: "Units",
+      Stability: stability || "Stable",
+      Obtainment: "Unknown",
+      Justification: "Added via CSV sync",
+      votes: {},
+      feedbacks: [],
+    });
   }
+}
 
   fs.writeFileSync(JSON_FILE, JSON.stringify(units, null, 2));
   console.log(`💾 units.json successfully updated! (backup: ${path.basename(backup)})`);

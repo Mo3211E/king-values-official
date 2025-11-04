@@ -102,6 +102,37 @@ export const categoryColors = {
 
 export const SHINY_GOLD = "#efbf04";
 
+// ---------- DEMAND COLORS ----------
+export const demandColors = {
+  "9": "linear-gradient(90deg, #00ff84, #4dffb8)", // bright green gradient for max demand
+  "10": "linear-gradient(90deg, #00ffa3, #80ffe0, #ccfff5)", // special gradient
+  "7": "#80ff80",
+  "8": "#40ff60",
+  "5": "#aaff80",
+  "6": "#99ff80",
+  "3": "#ff6666",
+  "4": "#ff8080",
+  "1": "#ff3333",
+  "2": "#ff4d4d",
+  default: "#ffffff",
+};
+
+// ---------- STABILITY COLORS ----------
+export const stabilityColors = {
+  Stable: "#00ff80", // bright green
+  Increasing: "#ffe87d", // goldish yellow
+  Overpriced: "linear-gradient(90deg, #8c52ff, #b87fff, #d6b3ff)", // galaxy purple gradient to fit site theme
+  Unstable: "#ff5e5e", // red
+  Decreasing: "#c0392b", // deep red
+  default: "#ffffff",
+};
+
+// ---------- VALUE COLORS ----------
+export const valueColors = {
+  "Owner's Choice": "linear-gradient(90deg, #fff3a0, #ffd84d, #fff8cc)",
+  default: "#ffffff",
+};
+
 export function splitNameParts(full) {
   if (!full) return { shiny: "", base: "" };
   const has = full.trim().toLowerCase().startsWith("shiny ");
@@ -140,4 +171,25 @@ export function getCategoryLabelColor(category) {
 
   if (category === "Units") return categoryColors.Units;
   return categoryColors[category] || "#a9b0bb";
+}
+
+export function getStatColor(label, value) {
+  const v = String(value ?? "").trim();
+  const low = v.toLowerCase();
+
+  if (label === "Value") {
+    if (low.includes("owner")) return valueColors["Owner's Choice"];
+    return valueColors.default;
+  }
+
+  if (label === "Demand") {
+    const num = parseInt(v, 10);
+    return demandColors[num] || demandColors.default;
+  }
+
+  if (label === "Stability") {
+    return stabilityColors[v] || stabilityColors.default;
+  }
+
+  return "#ffffff";
 }
