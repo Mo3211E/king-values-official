@@ -9,15 +9,6 @@ const COLLECTION = "units";
 const CSV_FILE = path.resolve("./AV_AIO.csv");
 const JSON_FILE = path.resolve("./app/data/units.json");
 
-const parseNumber = (v) => {
-  const s = String(v ?? "").trim();
-  if (!s) return NaN;
-  const m = s.toLowerCase().replace(/,/g, "").replace(/\s/g, "");
-  if (m.endsWith("k")) return parseFloat(m) * 1_000;
-  if (m.endsWith("m")) return parseFloat(m) * 1_000_000;
-  return parseFloat(m);
-};
-
 function loadCsvRows() {
   if (!fs.existsSync(CSV_FILE)) throw new Error(`CSV not found at ${CSV_FILE}`);
 
@@ -42,7 +33,7 @@ function loadCsvRows() {
 
   const rows = (parsed.data || []).map(r => ({
     name: String(r["Name"] ?? "").trim(),
-    value: parseNumber(r["Value (RR)"] ?? r["Value"]),
+    value: String(r["Value (RR)"] ?? r["Value"] ?? "").trim(),
     demand: String(r["Demand"] ?? "").trim(),
   })).filter(r => r.name);
 

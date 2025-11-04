@@ -3,7 +3,9 @@ import { useMemo, useState, useEffect } from "react";
 import CompactUnitCard from "./CompactUnitCard";
 
 function toNumber(v) {
-  const n = Number(v);
+  const s = String(v || "").trim().toLowerCase();
+  if (s.includes("owner")) return 1e12; // Highest possible value
+  const n = Number(s);
   return Number.isFinite(n) ? n : 0;
 }
 
@@ -18,11 +20,19 @@ useEffect(() => {
   let alive = true;
   (async () => {
     try {
+      const cached = sessionStorage.getItem("unitsCache");
+      if (cached) {
+        const data = JSON.parse(cached);
+        if (alive) setUnitsRaw(data);
+        return;
+      }
+
       const res = await fetch("/api/units");
+      if (!res.ok) throw new Error("Failed to fetch");
       const data = await res.json();
-      if (!alive) return;
-      // your /api/units returns either array or {data}
-      setUnitsRaw(Array.isArray(data) ? data : (data.data || []));
+      const arr = Array.isArray(data) ? data : (data.data || []);
+      if (alive) setUnitsRaw(arr);
+      sessionStorage.setItem("unitsCache", JSON.stringify(arr));
     } catch (e) {
       console.error("Failed to load units:", e);
     }

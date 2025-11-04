@@ -83,16 +83,26 @@ export default function UnitsPage() {
   const unitBtnRef = useRef(null);
   const filterBtnRef = useRef(null);
 
-  const processedUnits = useMemo(() => {
-    return (unitsData || [])
-      .map((u) => ({
+const processedUnits = useMemo(() => {
+  return (unitsData || [])
+    .map((u) => {
+      const val = String(u.Value || "").trim();
+      let numericValue = Number(val);
+      if (isNaN(numericValue)) numericValue = 0;
+
+      // Give “Owner’s Choice” highest priority
+      const priority =
+        val.toLowerCase().includes("owner") ? 1e12 : numericValue;
+
+      return {
         ...u,
-        _value: Number(u.Value) || 0,
+        _value: priority,
         _name: String(u.Name || "").trim(),
         _category: String(u.Category || "").trim(),
-      }))
-      .filter((u) => u._name.length > 0);
-  }, [unitsData]);
+      };
+    })
+    .filter((u) => u._name.length > 0);
+}, [unitsData]);
 
   useEffect(() => {
     if (isMobile) setCompact(true);

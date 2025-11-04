@@ -1,7 +1,7 @@
 [
   {
     "Name": "Shiny DBZ Broly",
-    "Value": "O/C",
+    "Value": null,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -12,7 +12,7 @@
   },
   {
     "Name": "Shiny Diavolo",
-    "Value": "2000",
+    "Value": 2000,
     "Category": "Units",
     "Demand": "7",
     "Stability": "Stable",
@@ -33,7 +33,7 @@
   },
   {
     "Name": "Shiny Octopus",
-    "Value": "O/C",
+    "Value": null,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -44,7 +44,7 @@
   },
   {
     "Name": "DBZ Broly ",
-    "Value": "1,050",
+    "Value": 1050,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -55,7 +55,7 @@
   },
   {
     "Name": "Shiny Subaru",
-    "Value": "630",
+    "Value": 630,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -66,7 +66,7 @@
   },
   {
     "Name": "Shiny Esdeath",
-    "Value": "590",
+    "Value": 590,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -87,7 +87,7 @@
   },
   {
     "Name": "Shiny Seven",
-    "Value": "520",
+    "Value": 520,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -98,7 +98,7 @@
   },
   {
     "Name": "Octopus",
-    "Value": "800",
+    "Value": 800,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -109,7 +109,7 @@
   },
   {
     "Name": "Roy Mustang",
-    "Value": "430",
+    "Value": 430,
     "Category": "Skins",
     "Demand": "4",
     "Stability": "Stable",
@@ -120,7 +120,7 @@
   },
   {
     "Name": "Shiny Seiko",
-    "Value": "460",
+    "Value": 460,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -142,7 +142,7 @@
   },
   {
     "Name": "Shiny Gogeta",
-    "Value": "385",
+    "Value": 385,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -153,7 +153,7 @@
   },
   {
     "Name": "Diavolo",
-    "Value": "600",
+    "Value": 600,
     "Category": "Units",
     "Demand": "9",
     "Stability": "Stable",
@@ -164,7 +164,7 @@
   },
   {
     "Name": "Shiny Giselle",
-    "Value": "365",
+    "Value": 365,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -185,7 +185,7 @@
   },
   {
     "Name": "Seven",
-    "Value": "285",
+    "Value": 285,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -206,7 +206,7 @@
   },
   {
     "Name": "Janny",
-    "Value": "270",
+    "Value": 270,
     "Category": "Skins",
     "Demand": "3",
     "Stability": "Stable",
@@ -217,7 +217,7 @@
   },
   {
     "Name": "10k Robux Bundle",
-    "Value": "280",
+    "Value": 280,
     "Category": "Robux Items",
     "Demand": "9",
     "Stability": "Stable",
@@ -247,7 +247,7 @@
   },
   {
     "Name": "Shiny Mark",
-    "Value": "310",
+    "Value": 310,
     "Category": "Units",
     "Demand": "7",
     "Stability": "Stable",
@@ -258,7 +258,7 @@
   },
   {
     "Name": "Shiny Katakuri",
-    "Value": "290",
+    "Value": 290,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -269,7 +269,7 @@
   },
   {
     "Name": "Shiny Jin Mori",
-    "Value": "305",
+    "Value": 305,
     "Category": "Units",
     "Demand": "8",
     "Stability": "Stable",
@@ -291,7 +291,7 @@
   },
   {
     "Name": "Shiny Diego",
-    "Value": "280",
+    "Value": 280,
     "Category": "Units",
     "Demand": "7",
     "Stability": "Stable",
@@ -312,7 +312,7 @@
   },
   {
     "Name": "Shiny Gilgamesh",
-    "Value": "175",
+    "Value": 175,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -323,7 +323,7 @@
   },
   {
     "Name": "Shiny Rengoku",
-    "Value": "200",
+    "Value": 200,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -334,7 +334,7 @@
   },
   {
     "Name": "Shiny Toji",
-    "Value": "170",
+    "Value": 170,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -345,7 +345,7 @@
   },
   {
     "Name": "Shiny Kaguya",
-    "Value": "420",
+    "Value": 420,
     "Category": "Units",
     "Demand": "9",
     "Stability": "Stable",
@@ -356,7 +356,7 @@
   },
   {
     "Name": "Shiny Frieren",
-    "Value": "250",
+    "Value": 250,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -367,7 +367,7 @@
   },
   {
     "Name": "Shiny Ragna",
-    "Value": "210",
+    "Value": 210,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -399,7 +399,7 @@
   },
   {
     "Name": "Shiny Mahito",
-    "Value": "51",
+    "Value": 51,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -410,7 +410,7 @@
   },
   {
     "Name": "Shiny Mechamaru",
-    "Value": "51",
+    "Value": 51,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -441,7 +441,7 @@
   },
   {
     "Name": "Shiny Rimuru",
-    "Value": "55",
+    "Value": 55,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -463,7 +463,7 @@
   },
   {
     "Name": "Esdeath",
-    "Value": "120",
+    "Value": 120,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -474,7 +474,7 @@
   },
   {
     "Name": "Subaru",
-    "Value": "115",
+    "Value": 115,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -485,7 +485,7 @@
   },
   {
     "Name": "Gogeta",
-    "Value": "100",
+    "Value": 100,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -496,7 +496,7 @@
   },
   {
     "Name": "Galaxy Ishtar",
-    "Value": "70",
+    "Value": 70,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -507,7 +507,7 @@
   },
   {
     "Name": "~7.5% Silly Fairy (C3)",
-    "Value": "95",
+    "Value": 95,
     "Category": "Familiars",
     "Demand": "6",
     "Stability": "Stable",
@@ -517,7 +517,7 @@
   },
   {
     "Name": "2k Robux Bundle",
-    "Value": "67",
+    "Value": 67,
     "Category": "Robux Items",
     "Demand": "8",
     "Stability": "Stable",
@@ -527,7 +527,7 @@
   },
   {
     "Name": "Kaguya",
-    "Value": "150",
+    "Value": 150,
     "Category": "Units",
     "Demand": "10",
     "Stability": "Stable",
@@ -538,7 +538,7 @@
   },
   {
     "Name": "Giselle",
-    "Value": "65",
+    "Value": 65,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -549,7 +549,7 @@
   },
   {
     "Name": "Seiko",
-    "Value": "63",
+    "Value": 63,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -560,7 +560,7 @@
   },
   {
     "Name": "Shiny Ishtar",
-    "Value": "19",
+    "Value": 19,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -581,7 +581,7 @@
   },
   {
     "Name": "~5s Padoru (C3)",
-    "Value": "23",
+    "Value": 23,
     "Category": "Familiars",
     "Demand": "4",
     "Stability": "Stable",
@@ -591,7 +591,7 @@
   },
   {
     "Name": "Shiny Hunter",
-    "Value": "45",
+    "Value": 45,
     "Category": "Robux Items",
     "Demand": "7",
     "Stability": "Stable",
@@ -612,7 +612,7 @@
   },
   {
     "Name": "Hatsune Miku",
-    "Value": "22",
+    "Value": 22,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -623,7 +623,7 @@
   },
   {
     "Name": "Knight Artorias",
-    "Value": "36",
+    "Value": 36,
     "Category": "Skins",
     "Demand": "6",
     "Stability": "Stable",
@@ -634,7 +634,7 @@
   },
   {
     "Name": "Casual Gilgamesh",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -645,7 +645,7 @@
   },
   {
     "Name": "Timika",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -656,7 +656,7 @@
   },
   {
     "Name": "Mark Variants",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -667,7 +667,7 @@
   },
   {
     "Name": "Casual Ichigo",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -678,7 +678,7 @@
   },
   {
     "Name": "Kimono Saber",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -689,7 +689,7 @@
   },
   {
     "Name": "Drip Goku",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -700,7 +700,7 @@
   },
   {
     "Name": "Baddie Vergil",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -711,7 +711,7 @@
   },
   {
     "Name": "Baddie Katakuri",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -722,9 +722,9 @@
   },
   {
     "Name": "Goth Ackermans",
-    "Value": "35",
+    "Value": 20,
     "Category": "Skins",
-    "Demand": "5",
+    "Demand": "Ice Cold",
     "Stability": "Stable",
     "Obtainment": "2k Robux Bundle",
     "Justification": "Ice Cold",
@@ -733,7 +733,7 @@
   },
   {
     "Name": "Summer Rimuru",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -744,7 +744,7 @@
   },
   {
     "Name": "Final Boss",
-    "Value": "36",
+    "Value": 36,
     "Category": "Skins",
     "Demand": "6",
     "Stability": "Stable",
@@ -755,7 +755,7 @@
   },
   {
     "Name": "Suit Gojo",
-    "Value": "35",
+    "Value": 35,
     "Category": "Skins",
     "Demand": "5",
     "Stability": "Stable",
@@ -766,7 +766,7 @@
   },
   {
     "Name": "A Pimp Named Slickback",
-    "Value": "37",
+    "Value": 37,
     "Category": "Skins",
     "Demand": "7",
     "Stability": "Stable",
@@ -777,7 +777,7 @@
   },
   {
     "Name": "Ascended Nirvana",
-    "Value": "36",
+    "Value": 36,
     "Category": "Skins",
     "Demand": "6",
     "Stability": "Stable",
@@ -788,7 +788,7 @@
   },
   {
     "Name": "Shiny Killer Bee",
-    "Value": "50",
+    "Value": 50,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -799,7 +799,7 @@
   },
   {
     "Name": "Shiny Rock Lee",
-    "Value": "50",
+    "Value": 50,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -810,7 +810,7 @@
   },
   {
     "Name": "Shiny Ginyu",
-    "Value": "49",
+    "Value": 49,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -821,7 +821,7 @@
   },
   {
     "Name": "Shiny Bardock",
-    "Value": "49",
+    "Value": 49,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -832,7 +832,7 @@
   },
   {
     "Name": "Shiny Okarun",
-    "Value": "20",
+    "Value": 20,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -843,7 +843,7 @@
   },
   {
     "Name": "Diego",
-    "Value": "38",
+    "Value": 38,
     "Category": "Units",
     "Demand": "6",
     "Stability": "Stable",
@@ -865,7 +865,7 @@
   },
   {
     "Name": "Premium Pass",
-    "Value": "18",
+    "Value": 18,
     "Category": "Robux Items",
     "Demand": "8",
     "Stability": "Stable",
@@ -885,7 +885,7 @@
   },
   {
     "Name": "Shiny Lucy",
-    "Value": "10",
+    "Value": 10,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -907,9 +907,9 @@
   },
   {
     "Name": "Mark ",
-    "Value": "30",
+    "Value": 15,
     "Category": "Units",
-    "Demand": "6",
+    "Demand": "Ice Cold",
     "Stability": "Stable",
     "Obtainment": "Season 5 Worldlines",
     "Justification": "Conqueror VS Invulnerable | Good DPS/RNG/AOE",
@@ -918,7 +918,7 @@
   },
   {
     "Name": "Katakuri",
-    "Value": "29",
+    "Value": 29,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -929,7 +929,7 @@
   },
   {
     "Name": "Jin Mori",
-    "Value": "33",
+    "Value": 33,
     "Category": "Units",
     "Demand": "7",
     "Stability": "Stable",
@@ -951,7 +951,7 @@
   },
   {
     "Name": "Shiny Emilia",
-    "Value": "5",
+    "Value": 5,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -962,7 +962,7 @@
   },
   {
     "Name": "Shiny Fubuki",
-    "Value": "5",
+    "Value": 5,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -983,7 +983,7 @@
   },
   {
     "Name": "Shiny Momo",
-    "Value": "20",
+    "Value": 20,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -994,7 +994,7 @@
   },
   {
     "Name": "Mahito",
-    "Value": "16",
+    "Value": 16,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -1005,7 +1005,7 @@
   },
   {
     "Name": "Mechamaru",
-    "Value": "16",
+    "Value": 16,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -1016,7 +1016,7 @@
   },
   {
     "Name": "Killer Bee",
-    "Value": "17",
+    "Value": 17,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -1027,7 +1027,7 @@
   },
   {
     "Name": "Rock Lee",
-    "Value": "17",
+    "Value": 17,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -1038,7 +1038,7 @@
   },
   {
     "Name": "Ginyu",
-    "Value": "15",
+    "Value": 15,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -1049,7 +1049,7 @@
   },
   {
     "Name": "Bardock",
-    "Value": "15",
+    "Value": 15,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -1060,7 +1060,7 @@
   },
   {
     "Name": "Shiny Aladdin",
-    "Value": "11",
+    "Value": 11,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -1071,7 +1071,7 @@
   },
   {
     "Name": "Frieren",
-    "Value": "27",
+    "Value": 27,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1093,7 +1093,7 @@
   },
   {
     "Name": "Shiny Rem and Ram",
-    "Value": "5",
+    "Value": 5,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -1104,9 +1104,9 @@
   },
   {
     "Name": "Rimuru",
-    "Value": "8",
+    "Value": 11,
     "Category": "Units",
-    "Demand": "5",
+    "Demand": "Ice Cold",
     "Stability": "Stable",
     "Obtainment": "Winter Event Secret",
     "Justification": "Great Unit for Beginners",
@@ -1126,7 +1126,7 @@
   },
   {
     "Name": "Ragna",
-    "Value": "13",
+    "Value": 13,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -1137,7 +1137,7 @@
   },
   {
     "Name": "Gilgamesh ",
-    "Value": "8",
+    "Value": 8,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -1148,7 +1148,7 @@
   },
   {
     "Name": "Shiny Sakuya",
-    "Value": "11",
+    "Value": 11,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -1159,7 +1159,7 @@
   },
   {
     "Name": "Rengoku",
-    "Value": "14",
+    "Value": 14,
     "Category": "Units",
     "Demand": "5",
     "Stability": "Stable",
@@ -1170,7 +1170,7 @@
   },
   {
     "Name": "VIP",
-    "Value": "9",
+    "Value": 9,
     "Category": "Robux Items",
     "Demand": "6",
     "Stability": "Stable",
@@ -1180,7 +1180,7 @@
   },
   {
     "Name": "Doorman",
-    "Value": "14",
+    "Value": 14,
     "Category": "Skins",
     "Demand": "3",
     "Stability": "Stable",
@@ -1191,7 +1191,7 @@
   },
   {
     "Name": "Kye",
-    "Value": "14",
+    "Value": 14,
     "Category": "Skins",
     "Demand": "3",
     "Stability": "Stable",
@@ -1202,7 +1202,7 @@
   },
   {
     "Name": "Witch UmaFuma",
-    "Value": "14",
+    "Value": 14,
     "Category": "Skins",
     "Demand": "3",
     "Stability": "Stable",
@@ -1213,7 +1213,7 @@
   },
   {
     "Name": "Lucy UmaFuma",
-    "Value": "14",
+    "Value": 14,
     "Category": "Skins",
     "Demand": "3",
     "Stability": "Stable",
@@ -1235,7 +1235,7 @@
   },
   {
     "Name": "Shiny Judar",
-    "Value": "5",
+    "Value": 5,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -1246,7 +1246,7 @@
   },
   {
     "Name": "Shiny Hibana",
-    "Value": "4",
+    "Value": 4,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -1257,7 +1257,7 @@
   },
   {
     "Name": "Shiny Arcueid",
-    "Value": "4",
+    "Value": 4,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -1268,7 +1268,7 @@
   },
   {
     "Name": "Shiny Reimu",
-    "Value": "4",
+    "Value": 4,
     "Category": "Units",
     "Demand": "4",
     "Stability": "Stable",
@@ -1309,7 +1309,7 @@
   },
   {
     "Name": "Shiny Vergil",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1320,7 +1320,7 @@
   },
   {
     "Name": "Shiny Dante",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1331,7 +1331,7 @@
   },
   {
     "Name": "Shiny Merlin",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1342,7 +1342,7 @@
   },
   {
     "Name": "Shiny Rudeus",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1353,7 +1353,7 @@
   },
   {
     "Name": "Shiny David",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1364,7 +1364,7 @@
   },
   {
     "Name": "Okarun",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "2",
     "Stability": "Stable",
@@ -1385,7 +1385,7 @@
   },
   {
     "Name": "Momo",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "2",
     "Stability": "Stable",
@@ -1418,7 +1418,7 @@
   },
   {
     "Name": "Emilia",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1429,7 +1429,7 @@
   },
   {
     "Name": "Fubuki",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1451,7 +1451,7 @@
   },
   {
     "Name": "Rem and Ram",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "2",
     "Stability": "Stable",
@@ -1462,7 +1462,7 @@
   },
   {
     "Name": "Hibana",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1473,7 +1473,7 @@
   },
   {
     "Name": "Arcueid",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "2",
     "Stability": "Stable",
@@ -1484,7 +1484,7 @@
   },
   {
     "Name": "Toji ",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1495,7 +1495,7 @@
   },
   {
     "Name": "Ishtar",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1517,7 +1517,7 @@
   },
   {
     "Name": "Merlin",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "2",
     "Stability": "Stable",
@@ -1528,7 +1528,7 @@
   },
   {
     "Name": "Rudeus",
-    "Value": "2",
+    "Value": 2,
     "Category": "Units",
     "Demand": "2",
     "Stability": "Stable",
@@ -1539,7 +1539,7 @@
   },
   {
     "Name": "Shiny Deidara",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1550,7 +1550,7 @@
   },
   {
     "Name": "Shiny Sasori",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1561,7 +1561,7 @@
   },
   {
     "Name": "Shiny Julius",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1605,7 +1605,7 @@
   },
   {
     "Name": "Hiei",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1638,7 +1638,7 @@
   },
   {
     "Name": "Lucy",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1649,7 +1649,7 @@
   },
   {
     "Name": "David",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1660,7 +1660,7 @@
   },
   {
     "Name": "Vergil",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1671,7 +1671,7 @@
   },
   {
     "Name": "Dante",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1682,7 +1682,7 @@
   },
   {
     "Name": "Deidara",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1693,7 +1693,7 @@
   },
   {
     "Name": "Sasori",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1704,7 +1704,7 @@
   },
   {
     "Name": "Event Banner Skins",
-    "Value": "0.5",
+    "Value": 0.5,
     "Category": "Skins",
     "Demand": "1",
     "Stability": "Stable",
@@ -1714,7 +1714,7 @@
   },
   {
     "Name": "Julius",
-    "Value": "0.2",
+    "Value": 0.2,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1724,7 +1724,7 @@
   },
   {
     "Name": "Sion",
-    "Value": "0.1",
+    "Value": 0.1,
     "Category": "Units",
     "Demand": "1",
     "Stability": "Stable",
@@ -1734,7 +1734,7 @@
   },
   {
     "Name": "Goblin Slayer",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1745,7 +1745,7 @@
   },
   {
     "Name": "Priestess",
-    "Value": "1",
+    "Value": 1,
     "Category": "Units",
     "Demand": "3",
     "Stability": "Stable",
@@ -1756,7 +1756,7 @@
   },
   {
     "Name": "~Perfect Birb (C3)",
-    "Value": "1150",
+    "Value": 1150,
     "Demand": "6",
     "Category": "Units",
     "Stability": "Stable",
@@ -1767,7 +1767,7 @@
   },
   {
     "Name": "Shiny Choi",
-    "Value": "265",
+    "Value": 265,
     "Demand": "3",
     "Category": "Units",
     "Stability": "Stable",
@@ -1778,7 +1778,7 @@
   },
   {
     "Name": "~Perfect Birb (Uncorrupted)",
-    "Value": "330",
+    "Value": 330,
     "Demand": "6",
     "Category": "Units",
     "Stability": "Stable",
@@ -1789,7 +1789,7 @@
   },
   {
     "Name": "~3/4 Birb (C3)",
-    "Value": "275",
+    "Value": 275,
     "Demand": "6",
     "Category": "Units",
     "Stability": "Stable",
@@ -1800,7 +1800,7 @@
   },
   {
     "Name": "~15% Foo (C3)",
-    "Value": "255",
+    "Value": 255,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -1822,7 +1822,7 @@
   },
   {
     "Name": "~3/4 Birb (Uncorrupted)",
-    "Value": "110",
+    "Value": 110,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -1855,7 +1855,7 @@
   },
   {
     "Name": "15% Blast BS 94.5-100% (C4)",
-    "Value": "91",
+    "Value": 91,
     "Demand": "4",
     "Category": "Units",
     "Stability": "Stable",
@@ -1866,7 +1866,7 @@
   },
   {
     "Name": "~10% Foo (Uncorrupted)",
-    "Value": "90",
+    "Value": 90,
     "Demand": "4",
     "Category": "Units",
     "Stability": "Stable",
@@ -1877,7 +1877,7 @@
   },
   {
     "Name": "Unevo Haruka",
-    "Value": "85",
+    "Value": 85,
     "Demand": "6",
     "Category": "Units",
     "Stability": "Stable",
@@ -1910,8 +1910,8 @@
   },
   {
     "Name": "Knight of Artorias",
-    "Value": "36",
-    "Demand": "6",
+    "Value": 35,
+    "Demand": "1",
     "Category": "Units",
     "Stability": "Stable",
     "Obtainment": "Unknown",
@@ -1921,7 +1921,7 @@
   },
   {
     "Name": "Furn",
-    "Value": "35",
+    "Value": 35,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -1932,7 +1932,7 @@
   },
   {
     "Name": "Goth Ackers",
-    "Value": "35",
+    "Value": 35,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -1943,7 +1943,7 @@
   },
   {
     "Name": "~140%+ Black Spirit (C3)",
-    "Value": "25",
+    "Value": 25,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -1965,7 +1965,7 @@
   },
   {
     "Name": "Choi Jong-In",
-    "Value": "40",
+    "Value": 40,
     "Demand": "3",
     "Category": "Units",
     "Stability": "Stable",
@@ -1987,7 +1987,7 @@
   },
   {
     "Name": "Shiny Peeny-Weeny",
-    "Value": "20",
+    "Value": 20,
     "Demand": "3",
     "Category": "Units",
     "Stability": "Stable",
@@ -1998,7 +1998,7 @@
   },
   {
     "Name": "Skip 10 Levels",
-    "Value": "18",
+    "Value": 18,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -2009,7 +2009,7 @@
   },
   {
     "Name": "Mark (Invincible)",
-    "Value": "30",
+    "Value": 30,
     "Demand": "6",
     "Category": "Units",
     "Stability": "Stable",
@@ -2031,7 +2031,7 @@
   },
   {
     "Name": "Display All Units",
-    "Value": "10",
+    "Value": 10,
     "Demand": "6",
     "Category": "Units",
     "Stability": "Stable",
@@ -2042,7 +2042,7 @@
   },
   {
     "Name": "Slime (King) / Rimuru",
-    "Value": "8",
+    "Value": 8,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -2053,7 +2053,7 @@
   },
   {
     "Name": "Extra Unit Storage",
-    "Value": "6",
+    "Value": 6,
     "Demand": "6",
     "Category": "Units",
     "Stability": "Stable",
@@ -2064,7 +2064,7 @@
   },
   {
     "Name": "Shiny Kareem",
-    "Value": "5",
+    "Value": 5,
     "Demand": "4",
     "Category": "Units",
     "Stability": "Stable",
@@ -2075,7 +2075,7 @@
   },
   {
     "Name": "Shiny Goblin Slayer",
-    "Value": "4",
+    "Value": 4,
     "Demand": "4",
     "Category": "Units",
     "Stability": "Stable",
@@ -2086,7 +2086,7 @@
   },
   {
     "Name": "Shiny Priestess",
-    "Value": "4",
+    "Value": 4,
     "Demand": "4",
     "Category": "Units",
     "Stability": "Stable",
@@ -2119,7 +2119,7 @@
   },
   {
     "Name": "Aladdin",
-    "Value": "3",
+    "Value": 3,
     "Demand": "4",
     "Category": "Units",
     "Stability": "Stable",
@@ -2130,7 +2130,7 @@
   },
   {
     "Name": "Sakuya",
-    "Value": "3",
+    "Value": 3,
     "Demand": "4",
     "Category": "Units",
     "Stability": "Stable",
@@ -2141,7 +2141,7 @@
   },
   {
     "Name": "Peeny-Weeny",
-    "Value": "2",
+    "Value": 2,
     "Demand": "2",
     "Category": "Units",
     "Stability": "Stable",
@@ -2163,7 +2163,7 @@
   },
   {
     "Name": "Judar",
-    "Value": "2",
+    "Value": 2,
     "Demand": "3",
     "Category": "Units",
     "Stability": "Stable",
@@ -2174,7 +2174,7 @@
   },
   {
     "Name": "Reimu",
-    "Value": "2",
+    "Value": 2,
     "Demand": "3",
     "Category": "Units",
     "Stability": "Stable",
@@ -2185,7 +2185,7 @@
   },
   {
     "Name": "Kareem",
-    "Value": "2",
+    "Value": 2,
     "Demand": "2",
     "Category": "Units",
     "Stability": "Stable",
@@ -2196,7 +2196,7 @@
   },
   {
     "Name": "Shiny Sion",
-    "Value": "1",
+    "Value": 1,
     "Demand": "1",
     "Category": "Units",
     "Stability": "Stable",
@@ -2229,7 +2229,7 @@
   },
   {
     "Name": "5 High Roll Strange Cat (C4)",
-    "Value": "105",
+    "Value": 105,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -2240,7 +2240,7 @@
   },
   {
     "Name": "5 High Roll Strange Cat (C3)",
-    "Value": "43",
+    "Value": 43,
     "Demand": "4",
     "Category": "Units",
     "Stability": "Stable",
@@ -2251,7 +2251,7 @@
   },
   {
     "Name": "Haruka Rin (Evo)",
-    "Value": "31",
+    "Value": 31,
     "Demand": "6",
     "Category": "Units",
     "Stability": "Stable",
@@ -2262,7 +2262,7 @@
   },
   {
     "Name": "~75% Kon or Ro jer (C3)",
-    "Value": "24",
+    "Value": 24,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -2273,7 +2273,7 @@
   },
   {
     "Name": "~15% 24k Gold Labubu (C3)",
-    "Value": "12",
+    "Value": 12,
     "Demand": "5",
     "Category": "Units",
     "Stability": "Stable",
@@ -2284,7 +2284,7 @@
   },
   {
     "Name": "80 Robux Bundle",
-    "Value": "5",
+    "Value": 5,
     "Demand": "8",
     "Category": "Units",
     "Stability": "Stable",
@@ -2295,96 +2295,8 @@
   },
   {
     "Name": "Bad Stat Familiars (Uncorrupted)",
-    "Value": "3",
+    "Value": 3,
     "Demand": "5",
-    "Category": "Units",
-    "Stability": "Stable",
-    "Obtainment": "Unknown",
-    "Justification": "Added via CSV sync",
-    "votes": {},
-    "feedbacks": []
-  },
-  {
-    "Name": "Shiny Choi Jong-In",
-    "Value": "265",
-    "Demand": "3",
-    "Category": "Units",
-    "Stability": "Stable",
-    "Obtainment": "Unknown",
-    "Justification": "Added via CSV sync",
-    "votes": {},
-    "feedbacks": []
-  },
-  {
-    "Name": "Unevo Haruka Rin",
-    "Value": "85",
-    "Demand": "6",
-    "Category": "Units",
-    "Stability": "Stable",
-    "Obtainment": "Unknown",
-    "Justification": "Added via CSV sync",
-    "votes": {},
-    "feedbacks": []
-  },
-  {
-    "Name": "Fern",
-    "Value": "35",
-    "Demand": "5",
-    "Category": "Units",
-    "Stability": "Stable",
-    "Obtainment": "Unknown",
-    "Justification": "Added via CSV sync",
-    "votes": {},
-    "feedbacks": []
-  },
-  {
-    "Name": "~75% Kon (C3)",
-    "Value": "24",
-    "Demand": "5",
-    "Category": "Units",
-    "Stability": "Stable",
-    "Obtainment": "Unknown",
-    "Justification": "Added via CSV sync",
-    "votes": {},
-    "feedbacks": []
-  },
-  {
-    "Name": "~75% Ro jer (C3)",
-    "Value": "24",
-    "Demand": "5",
-    "Category": "Units",
-    "Stability": "Stable",
-    "Obtainment": "Unknown",
-    "Justification": "Added via CSV sync",
-    "votes": {},
-    "feedbacks": []
-  },
-  {
-    "Name": "High Godly Stat [24.3-25]",
-    "Value": "12",
-    "Demand": "5",
-    "Category": "Units",
-    "Stability": "Stable",
-    "Obtainment": "Unknown",
-    "Justification": "Added via CSV sync",
-    "votes": {},
-    "feedbacks": []
-  },
-  {
-    "Name": "Low Godly Stat [23.5-24.2]",
-    "Value": "12",
-    "Demand": "5",
-    "Category": "Units",
-    "Stability": "Stable",
-    "Obtainment": "Unknown",
-    "Justification": "Added via CSV sync",
-    "votes": {},
-    "feedbacks": []
-  },
-  {
-    "Name": "Z+ or Lower Stat",
-    "Value": "0.3",
-    "Demand": "1",
     "Category": "Units",
     "Stability": "Stable",
     "Obtainment": "Unknown",

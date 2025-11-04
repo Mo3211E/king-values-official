@@ -1,180 +1,160 @@
-State: Make final changes in announcements then complete finalization + load in site to start promotion,,,,,
-Name,Value (RR),Demand,Stability,Obtainment,Justification
-神 Tier,,,,,
-Shiny DBZ Broly,1800,1,Stable,Season 0 LB,Top 12 Season 1 Leaderboard Reward
-Shiny Diavolo,1725,1,Stable,Occult Banner Vanguard,Occult Hunt Event Banner Vanguard
-Shiny Octopus,1400,1,Stable,Cid Raid,Top 12 Season 4 Leaderboard Reward
-~Perfect Birb (C3),1100,1,Stable,Season 4 LB,30% DMG | 45% Crit DMG | 30% RNG | 30% Crit Chance ~
-Z+ Tier,,,,,
-DBZ Broly,675,1,Stable,Tuff lil Vanguard n shi,Top 32 Season 1 Leaderboard Reward
-Shiny Subaru,655,1,Stable,Tuff lil Vanguard n shi,Season 1 Worldlines
-Shiny Esdeath,650,1,Stable,Tuff lil Vanguard n shi,"Season 2 Worldlines, Top 12 Season 2 Wordlines Reward"
-Octopus,525,1,Stable,Tuff lil Vanguard n shi,Top 32 Season 4 Leaderboard Reward
-Shiny Seven,520,1,Stable,Tuff lil Vanguard n shi,"Top 12 Season 1, 2 & 3 Worldlines, Season 2 & 3 Leaderboards Reward"
-Roy Mustang,500,1,Stable,Tuff lil Vanguard n shi,Season 7 Top 32 Leaderboard reward
-Z Tier,,,,,
-Shiny Seiko,435,1,Stable,Tuff lil Vanguard n shi,Occult Hunt Event Completion Reward
-Shiny Choi,430,1,Stable,Tuff lil Vanguard n shi,Ant Island Dungeon Completion Reward
-Diavolo,400,1,Stable,Tuff lil Vanguard n shi,Occult Hunt Event Banner Vanguard
-Shiny Gogeta,385,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Vanguard
-~Perfect Birb (Uncorrupted),370,1,Stable,Tuff lil Vanguard n shi,20% DMG | 30% Crit DMG | 20% RNG | 20% Crit Chance ~
-Shiny Giselle,365,1,Stable,Tuff lil Vanguard n shi,Valentines Event Shop
-~3/4 Birb (C3),320,1,Stable,Tuff lil Vanguard n shi,22.5% DMG | 30% Crit DMG | 22.5% RNG | 22.5% Crit Chance ~
-Seven,300,1,Stable,Tuff lil Vanguard n shi,"Top 32 Season 1, 2 & 3 Worldlines, Season 2 & 3 Leaderboards Reward"
-Janny,295,1,Stable,Tuff lil Vanguard n shi,Season 5 & Season 6 Top 32 Leaderboard reward
-10k Robux Bundle,250,1,Stable,Tuff lil Vanguard n shi,-
-~15% Foo (C3),235,1,Stable,Tuff lil Vanguard n shi,14.6-15% Additive increase to buffs
-S Tier,,,,,
-Shiny Mark,230,1,Stable,Tuff lil Vanguard n shi,"Season 5 Worldlines, Top 12 Season 5 Wordlines Reward"
-Shiny Katakuri,220,1,Stable,Tuff lil Vanguard n shi,"Season 4 Worldlines, Top 12 Season 4 Wordlines Reward"
-Shiny Jin Mori,210,1,Stable,Tuff lil Vanguard n shi,"Season 6 Worldlines, Top 12 Season 6 Wordlines Reward"
-Shiny Coyote Starrk,205,1,Stable,Tuff lil Vanguard n shi,"Season 7 Worldlines, Top 12 Season 7 Wordlines Reward"
-Shiny Diego,200,1,Stable,Tuff lil Vanguard n shi,Update 1.75 Act 4 & 5 Raid Drop
-~3/4 Birb (Uncorrupted),180,1,Stable,Tuff lil Vanguard n shi,15% DMG | 22.5% Crit DMG | 15% RNG | 15% Crit Chance ~
-Shiny Gilgamesh,160,1,Stable,Tuff lil Vanguard n shi,Key of Babylon Quest Reward
-Shiny Rengoku,155,1,Stable,Tuff lil Vanguard n shi,Update 0.5 Act 4 Raid Drop
-Shiny Toji,140,1,Stable,Tuff lil Vanguard n shi,Cursed Worm Quest Reward
-Shiny Kaguya,130,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Vanguard
-Shiny Frieren,130,1,Stable,Tuff lil Vanguard n shi,"Season 3 Worldlines, Top 12 Season 3 Wordlines Reward"
-Shiny Ragna,125,1,Stable,Tuff lil Vanguard n shi,Tier 10 Winter Portal Completion Reward
-Full High Roll Strange Cat (C4),120,1,Stable,Tuff lil Vanguard n shi,45-50% Elemental Damage
-A Tier,,,,,
-15% Blast BS 94.5-100% (C4),105,1,Stable,Tuff lil Vanguard n shi,Cid best in slot familiar
-Esdeath,95,1,Stable,Tuff lil Vanguard n shi,"Season 2 Worldlines, Top 32 Season 2 Wordlines Reward"
-Subaru,90,1,Stable,Tuff lil Vanguard n shi,Season 1 Worldlines
-Gogeta,80,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Vanguard
-~10% Foo (Uncorrupted),70,1,Stable,Tuff lil Vanguard n shi,10% Additive increase to buffs
-~7.5% Silly Fairy (C3),70,1,Stable,Tuff lil Vanguard n shi,7.5% Placement and Upgrade Cost Reduction
-Shiny Escanor,67,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Vanguard
-Galaxy Ishtar,65,1,Stable,Tuff lil Vanguard n shi,"9,999 ROBUX bundle, available on Valentines event 4.0"
-Unevo Haruka,60,1,Stable,,To get emote
-Shiny Rimuru,55,1,Stable,Tuff lil Vanguard n shi,Tier 10 Spring Portal Completion Reward
-2k Robux Bundle,50,1,Stable,Tuff lil Vanguard n shi,-
-Giselle,45,1,Stable,Tuff lil Vanguard n shi,Valentines Event Shop
-Seiko,43,1,Stable,Tuff lil Vanguard n shi,Occult Hunt Event Completion Reward
-Kaguya,40,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Vanguard
-Shiny Mereoleona,40,1,Stable,Tuff lil Vanguard n shi,Tier 10 Summer Portal Completion Reward
-Full High Roll Strange Cat (C3),40,1,Stable,Tuff lil Vanguard n shi,30%+ average rolls
-B Tier,,,,,
-Knight of Artorias,35,1,Stable,Tuff lil Vanguard n shi,
-Ascended Nirvana,35,1,Stable,Tuff lil Vanguard n shi,
-A Pimp Named Slickback,35,1,Stable,Tuff lil Vanguard n shi,
-Casual Gilgamesh,35,1,Stable,Tuff lil Vanguard n shi,
-Suit Gojo,35,1,Stable,Tuff lil Vanguard n shi,
-Kimono Saber,35,1,Stable,Tuff lil Vanguard n shi,
-Furn,35,1,Stable,Tuff lil Vanguard n shi,
-Final Boss,35,1,Stable,Tuff lil Vanguard n shi,
-Baddie Katakuri,35,1,Stable,Tuff lil Vanguard n shi,
-Drip Goku,35,1,Stable,Tuff lil Vanguard n shi,
-Baddie Vergil,35,1,Stable,Tuff lil Vanguard n shi,
-Timika,35,1,Stable,Tuff lil Vanguard n shi,
-Mark Variants,35,1,Stable,Tuff lil Vanguard n shi,
-Casual Ichigo,35,1,Stable,Tuff lil Vanguard n shi,
-Goth Ackers,35,1,Stable,Tuff lil Vanguard n shi,
-Summer Rimuru,35,1,Stable,Tuff lil Vanguard n shi,
-Shiny Hunter,35,1,Stable,Tuff lil Vanguard n shi,Increases your odds at getting a Shiny Unit by 2%
-~140%+ Black Spirit (C3),33,1,Stable,Tuff lil Vanguard n shi,Best for Slow buildup meters
-~75% Kon / Ro jer (C3),32,1,Stable,Tuff lil Vanguard n shi,Tournament Viable | Situational
-~5s Padoru (C3),31,1,Stable,Tuff lil Vanguard n shi,Cost Reduction
-Hatsune Miku,25,1,Stable,Tuff lil Vanguard n shi,Exclusive rarity from Occult Banner
-Shiny Mahito,23,1,Stable,Tuff lil Vanguard n shi,Weeks 1-12 Top 1 Tournament Reward
-Shiny Mechamaru,23,1,Stable,Tuff lil Vanguard n shi,Weeks 1-12 Top 1 Tournament Reward
-Shiny Killer Bee,22,1,Stable,Tuff lil Vanguard n shi,Weeks 25-32 Top 1 Tournament Reward
-Shiny Rock Lee,22,1,Stable,Tuff lil Vanguard n shi,Weeks 25-32 Top 1 Tournament Reward
-Shiny Ginyu,21,1,Stable,Tuff lil Vanguard n shi,Weeks 13-24 Top 1 Tournament Reward
-Shiny Bardock,21,1,Stable,Tuff lil Vanguard n shi,Weeks 13-24 Top 1 Tournament Reward
-Choi Jong-In,20,1,Stable,Tuff lil Vanguard n shi,Ant Island Dungeon Completion Reward
-Escanor,19,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Vanguard
-C Tier,,,,,
-Shiny Ishtar,18,1,Stable,Tuff lil Vanguard n shi,Limited Gem Banner Summon
-Shiny Okarun,18,1,Stable,Tuff lil Vanguard n shi,Occult Hunt Event Banner Summon
-Shiny Peeny-Weeny,18,1,Stable,Tuff lil Vanguard n shi,Occult Hunt Event Banner Summon
-Shiny Momo,18,1,Stable,Tuff lil Vanguard n shi,Occult Hunt Event Banner Summon
-Diego,17,1,Stable,Tuff lil Vanguard n shi,Update 1.75 Act 4 & 5 Raid Drop
-Skip 10 Levels,16,1,Stable,Tuff lil Vanguard n shi,Unlocks the Premium Pass
-Premium Pass,16,1,Stable,Tuff lil Vanguard n shi,Unlocks the Premium Pass
-Haruka Rin,15,1,Stable,Tuff lil Vanguard n shi,Season 1 Battlepass Tier 25
-Mark (Invincible),15,1,Stable,Tuff lil Vanguard n shi,"Season 5 Worldlines, Top 32 Season 5 Wordlines Reward"
-Frieren,15,1,Stable,Tuff lil Vanguard n shi,"Season 5 Worldlines, Top 32 Season 5 Wordlines Reward"
-Katakuri,14,1,Stable,Tuff lil Vanguard n shi,"Season 4 Worldlines, Top 32 Season 4 Wordlines Reward"
-Jin Mori,14,1,Stable,Tuff lil Vanguard n shi,"Season 6 Worldlines, Top 32 Season 6 Wordlines Reward"
-Coyote Starrk,13,1,Stable,Tuff lil Vanguard n shi,"Season 7 Worldlines, Top 32 Season 6 Wordlines Reward"
-Shiny Aladdin,12,1,Stable,Tuff lil Vanguard n shi,Season 6 Battlepass Tier 50
-Shiny Sakuya,12,1,Stable,Tuff lil Vanguard n shi,Season 7 Battlepass Tier 50
-Shiny Lucy,11,1,Stable,Tuff lil Vanguard n shi,Season 4 Battlepass Tier 25
-Ragna,11,1,Stable,Tuff lil Vanguard n shi,Tier 10 Winter Portal Completion Reward
-D Tier,,,,,
-Display All Units,10,1,Stable,Tuff lil Vanguard n shi,Unlocks the Premium Pass
-Rengoku,10,1,Stable,Tuff lil Vanguard n shi,Update 0.5 Act 4 Raid Drop
-VIP,9,1,Stable,Tuff lil Vanguard n shi,"20% off summons, VIP Nametag, 2x Time Machine Gems, 10% EXP Earned"
-Slime (King) / Rimuru,8,1,Stable,Tuff lil Vanguard n shi,Tier 10 Spring Portal Completion Reward
-Gilgamesh,8,1,Stable,Tuff lil Vanguard n shi,Key of Babylon Quest Reward
-Rock Lee,7,1,Stable,Tuff lil Vanguard n shi,Weeks 25-32 Top 5 Tournament Reward
-Killer Bee,7,1,Stable,Tuff lil Vanguard n shi,Weeks 25-32 Top 5 Tournament Reward
-Mahito,7,1,Stable,Tuff lil Vanguard n shi,Weeks 1-12 Top 5 Tournament Reward
-Mechamaru,7,1,Stable,Tuff lil Vanguard n shi,Weeks 1-12 Top 5 Tournament Reward
-Ginyu,7,1,Stable,Tuff lil Vanguard n shi,Weeks 13-24 Top 5 Tournament Reward
-Bardock,7,1,Stable,Tuff lil Vanguard n shi,Weeks 13-24 Top 5 Tournament Reward
-Lucy UmaFuma,7,1,Stable,Tuff lil Vanguard n shi,Weeks 44 - ? Top 5 Tournament rewards
-Witch UmaFuma,7,1,Stable,Tuff lil Vanguard n shi,Weeks 44 - ? Top 5 Tournament rewards
-Doorman,7,1,Stable,Tuff lil Vanguard n shi,Weeks 32 - 44 Top 5 Tournament rewards
-Kye,7,1,Stable,Tuff lil Vanguard n shi,Weeks 32 - 44 Top 5 Tournament rewards
-Extra Unit Storage,6,1,Stable,Tuff lil Vanguard n shi,Unlocks the Premium Pass
-Shiny Fubuki,6,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Summon
-Shiny Emilia,6,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Summon
-Shiny Kareem,5,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Summon
-Shiny Rem and Ram,5,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Summon
-Shiny Weather Report,5,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Summon
-Shiny Hiei,5,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Summon
-Shiny Judar,5,1,Stable,Tuff lil Vanguard n shi,Season 6 Battlepass Tier 25
-Shiny Hibana,4,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Summon
-Shiny Arcueid,4,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Summon
-Shiny Reimu,4,1,Stable,Tuff lil Vanguard n shi,Season 7 Battlepass Tier 25
-Shiny Goblin Slayer,4,1,Stable,Tuff lil Vanguard n shi,Season 7 Battlepass Tier 25
-Shiny Priestess,4,1,Stable,Tuff lil Vanguard n shi,Season 7 Battlepass Tier 25
-Permanent Vanguard Familiars,3,1,Stable,Tuff lil Vanguard n shi,Cost Reduction
-Bad Stat Uncorrupted Familiars,3,1,Stable,Tuff lil Vanguard n shi,Cost Reduction
-Aladdin,3,1,Stable,Tuff lil Vanguard n shi,Season 6 Battlepass Tier 50
-Sakuya,3,1,Stable,Tuff lil Vanguard n shi,Season 7 Battlepass Tier 50
-Shiny Vergil,2,1,Stable,Tuff lil Vanguard n shi,Season 5 Battlepass Tier 50
-Shiny Dante,2,1,Stable,Tuff lil Vanguard n shi,Season 5 Battlepass Tier 25
-Shiny Merlin,2,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Summon
-Shiny Rudeus,2,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Summon
-Shiny David,2,1,Stable,Tuff lil Vanguard n shi,Season 4 Battlepass Tier 50
-Okarun,2,1,Stable,Tuff lil Vanguard n shi,Occult Hunt Event Banner Summon
-Momo,2,1,Stable,Tuff lil Vanguard n shi,Occult Hunt Event Banner Summon
-Peeny-Weeny,2,1,Stable,Tuff lil Vanguard n shi,Occult Hunt Event Banner Summon
-Shiny Quetzalcoatl,2,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Summon
-Shiny Alibaba,2,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Summon
-Judar,2,1,Stable,Tuff lil Vanguard n shi,Season 6 Battlepass Tier 25
-Reimu,2,1,Stable,Tuff lil Vanguard n shi,Season 7 Battlepass Tier 25
-Emilia,2,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Summon
-Rem and Ram,2,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Summon
-Kareem,2,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Summon
-Fubuki,2,1,Stable,Tuff lil Vanguard n shi,Winter Event Banner Summon
-Merlin,2,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Summon
-Rudeus,2,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Summon
-Arcueid,2,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Summon
-Hibana,2,1,Stable,Tuff lil Vanguard n shi,Spring Event Banner Summon
-Toji,2,1,Stable,Tuff lil Vanguard n shi,Cursed Worm Quest Reward
-Ishtar,1,1,Stable,Tuff lil Vanguard n shi,Limited Gem Banner Summon
-Mereoleona,1,1,Stable,Tuff lil Vanguard n shi,Tier 10 Summer Portal Completion Reward
-Shiny Deidara,1,1,Stable,Tuff lil Vanguard n shi,Season 3 Battlepass Tier 50
-Shiny Sasori,1,1,Stable,Tuff lil Vanguard n shi,Season 3 Battlepass Tier 25
-Shiny Julius,1,1,Stable,Tuff lil Vanguard n shi,Season 2 Battlepass Tier 25
-Shiny Sion,1,1,Stable,Tuff lil Vanguard n shi,Season 2 Battlepass Tier 50
-Goblin Slayer,1,1,,,
-Priestess,1,1,,,
-Weather Report,1,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Summon
-Alibaba,1,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Summon
-Quetzalcoatl,1,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Summon
-Hiei,1,1,Stable,Tuff lil Vanguard n shi,Summer Event Banner Summon
-Lucy,1,1,Stable,Tuff lil Vanguard n shi,Season 4 Battlepass Tier 25
-David,1,1,Stable,Tuff lil Vanguard n shi,Season 4 Battlepass Tier 50
-Dante,1,1,Stable,Tuff lil Vanguard n shi,Season 5 Battlepass Tier 25
-Virgil,1,1,Stable,Tuff lil Vanguard n shi,Season 5 Battlepass Tier 50
-Deidara,1,1,Stable,Tuff lil Vanguard n shi,Season 3 Battlepass Tier 50
-Sasori,1,1,Stable,Tuff lil Vanguard n shi,Season 3 Battlepass Tier 25
-Event Banner Skins,0.5,1,Stable,Tuff lil Vanguard n shi,
-Julius,0.2,1,Stable,Tuff lil Vanguard n shi,Season 2 Battlepass Tier 25
-Sion,0.1,1,Stable,Tuff lil Vanguard n shi,Season 2 Battlepass Tier 50
+Name,Value (RR),Demand,Stability
+Shiny DBZ Broly,O/C,5,Stable
+Shiny Octopus,O/C,4,Stable
+Shiny Diavolo,2000,7,Stable
+~Perfect Birb (C3),1150,6,Stable
+DBZ Broly,"1,050",5,Stable
+Octopus,800,4,Stable
+Shiny Subaru,630,6,Stable
+Diavolo,600,9,Overpriced
+Shiny Esdeath,590,6,Stable
+Shiny Seven,520,4,Unstable
+Shiny Seiko,460,5,Stable
+Roy Mustang,430,4,Unstable
+Shiny Kaguya,420,9,Overpriced
+Shiny Gogeta,385,5,Stable
+Shiny Giselle,365,5,Stable
+~Perfect Birb (Uncorrupted),330,6,Stable
+Shiny Mark,310,7,Stable
+Shiny Jin Mori,305,8,Increasing
+Shiny Katakuri,290,6,Stable
+Seven,285,4,Unstable
+10k Robux Bundle,280,9,Increasing
+Shiny Diego,280,7,Increasing
+~3/4 Birb (C3),275,6,Stable
+Janny,270,3,Unstable
+Shiny Choi Jong-In,265,3,Decreasing
+~15% Foo (C3),255,5,Stable
+Shiny Frieren,250,5,Unstable
+Shiny Ragna,210,6,Stable
+Shiny Rengoku,200,5,Stable
+Shiny Gilgamesh,175,4,Unstable
+Shiny Toji,170,4,Unstable
+Kaguya,150,10,Overpriced
+Esdeath,120,6,Stable
+Subaru,115,6,Stable
+~3/4 Birb (Uncorrupted),110,5,Stable
+5 High Roll Strange Cat (C4),105,5,Stable
+Gogeta,100,5,Stable
+~7.5% Silly Fairy (C3),95,6,Stable
+15% Blast BS 94.5-100% (C4),91,4,Stable
+~10% Foo (Uncorrupted),90,4,Stable
+Unevo Haruka Rin,85,6,Increasing
+Galaxy Ishtar,70,5,Stable
+2k Robux Bundle,67,8,Increasing
+Giselle,65,5,Stable
+Seiko,63,5,Stable
+Shiny Rimuru,55,5,Stable
+Shiny Mahito,51,5,Unstable
+Shiny Mechamaru,51,5,Unstable
+Shiny Killer Bee,50,5,Stable
+Shiny Rock Lee,50,5,Stable
+Shiny Ginyu,49,6,Stable
+Shiny Bardock,49,6,Stable
+Shiny Hunter,45,7,Stable
+5 High Roll Strange Cat (C3),43,4,Unstable
+Choi Jong-In,40,3,Decreasing
+Diego,38,6,Increasing
+A Pimp Named Slickback,37,7,Increasing
+Ascended Nirvana,36,6,Stable
+Knight of Artorias,36,6,Stable
+Final Boss,36,6,Stable
+Casual Gilgamesh,35,5,Stable
+Suit Gojo,35,5,Stable
+Kimono Saber,35,5,Stable
+Fern,35,5,Stable
+Baddie Katakuri,35,5,Stable
+Drip Goku,35,5,Stable
+Baddie Vergil,35,5,Stable
+Timika,35,5,Stable
+Mark Variants,35,5,Stable
+Casual Ichigo,35,5,Stable
+Goth Ackermans,35,5,Stable
+Summer Rimuru,35,5,Stable
+Jin Mori,33,7,Increasing
+Haruka Rin (Evo),31,6,Stable
+Mark,30,6,Stable
+Katakuri,29,5,Stable
+Frieren,27,3,Unstable
+~140%+ Black Spirit (C3),25,5,Stable
+~75% Kon (C3),24,5,Stable
+~75% Ro jer (C3),24,5,Stable
+~5s Padoru (C3),23,4,Stable
+Hatsune Miku,22,6,Increasing
+Shiny Okarun,20,3,Unstable
+Shiny Peeny-Weeny,20,3,Unstable
+Shiny Momo,20,3,Unstable
+Shiny Ishtar,19,3,Declining
+Skip 10 Levels,18,5,Stable
+Premium Pass,18,8,Increasing
+Rock Lee,17,4,Stable
+Killer Bee,17,4,Stable
+Mahito,16,4,Stable
+Mechamaru,16,4,Stable
+Ginyu,15,5,Stable
+Bardock,15,5,Stable
+Rengoku,14,5,Stable
+Lucy UmaFuma,14,3,Unstable
+Witch UmaFuma,14,3,Unstable
+Doorman,14,3,Unstable
+Kye,14,3,Unstable
+Ragna,13,5,Stable
+High Godly Stat [24.3-25],12,5,Stable
+Shiny Aladdin,11,5,Stable
+Shiny Sakuya,11,5,Stable
+Shiny Lucy,10,5,Stable
+Display All Units,10,6,Stable
+VIP,9,6,Stable
+Low Godly Stat [23.5-24.2],12,5,Stable
+Rimuru,8,5,Stable
+Gilgamesh,8,5,Stable
+Extra Unit Storage,6,6,Stable
+Shiny Fubuki,5,4,Stable
+Shiny Emilia,5,4,Stable
+Shiny Kareem,5,4,Stable
+Shiny Rem and Ram,5,4,Stable
+Shiny Judar,5,4,Stable
+Shiny Hibana,4,4,Stable
+Shiny Arcueid,4,4,Stable
+Shiny Reimu,4,4,Stable
+Shiny Goblin Slayer,4,4,Stable
+Shiny Priestess,4,4,Stable
+Bad Stat Familiars (Uncorrupted),3,5,Stable
+Aladdin,3,4,Stable
+Sakuya,3,4,Stable
+Shiny Vergil,2,3,Stable
+Shiny Dante,2,3,Stable
+Shiny Merlin,2,3,Stable
+Shiny Rudeus,2,3,Stable
+Shiny David,2,3,Stable
+Judar,2,3,Stable
+Reimu,2,3,Stable
+Emilia,2,3,Stable
+Fubuki,2,3,Stable
+Hibana,2,3,Stable
+Toji,2,3,Stable
+Okarun,2,2,Stable
+Momo,2,2,Stable
+Peeny-Weeny,2,2,Stable
+Rem and Ram,2,2,Stable
+Kareem,2,2,Stable
+Merlin,2,2,Stable
+Rudeus,2,2,Stable
+Arcueid,2,2,Stable
+Ishtar,1,1,Stable
+Shiny Deidara,1,1,Stable
+Shiny Sasori,1,1,Stable
+Shiny Julius,1,1,Stable
+Shiny Sion,1,1,Stable
+Goblin Slayer,1,3,Stable
+Priestess,1,3,Stable
+Lucy,1,1,Stable
+David,1,1,Stable
+Dante,1,1,Stable
+Vergil,1,1,Stable
+Deidara,1,1,Stable
+Sasori,1,1,Stable
+Event Banner Skins,0.5,1,Stable
+Z+ or Lower Stat,0.3,1,Stable
+Julius,0.2,1,Stable
+Sion,0.1,1,Stable
