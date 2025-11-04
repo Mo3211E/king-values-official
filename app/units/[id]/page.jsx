@@ -146,13 +146,20 @@ const ValueHistory = unit.ValueHistory || unit.valueHistory || [];
     >
       {/* Back Arrow (under navbar, top-left corner) */}
 <div
-  onClick={() => {
-    const prevScroll = sessionStorage.getItem("scrollPos");
-    router.back();
-    if (prevScroll) {
-      setTimeout(() => window.scrollTo(0, parseFloat(prevScroll)), 250);
-    }
-  }}
+onClick={() => {
+  const prevScroll = sessionStorage.getItem("scrollPos");
+  const tradeData = sessionStorage.getItem("pendingTradeUnits");
+  if (tradeData) {
+    try {
+      const parsed = JSON.parse(tradeData);
+      sessionStorage.setItem("restoreTrade", JSON.stringify(parsed));
+    } catch {}
+  }
+  router.back();
+  if (prevScroll) {
+    setTimeout(() => window.scrollTo(0, parseFloat(prevScroll)), 250);
+  }
+}}
   className="absolute top-20 left-8 cursor-pointer flex items-center group transition-transform hover:scale-105"
 >
   <img

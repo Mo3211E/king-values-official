@@ -1,5 +1,6 @@
 "use client";
 import { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import UnitPickerModal from "./UnitPickerModal";
 import CompactUnitCard from "./CompactUnitCard";
 
@@ -10,6 +11,7 @@ function toNumber(v) {
 
 export default function TradeBox({ title, units, setUnits }) {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter(); // 🆕 router for navigation
 
   const totalValue = useMemo(
     () => units.reduce((sum, u) => sum + toNumber(u.Value), 0),
@@ -42,20 +44,41 @@ export default function TradeBox({ title, units, setUnits }) {
       </div>
 
       <div className="flex flex-wrap items-center gap-4 justify-center">
-        {units.map((u, i) => (
-          <div key={`${u.Name}-${i}`} className="relative group">
-            <CompactUnitCard u={u} clickable={false} />
-            <button
-              onClick={() => removeAt(i)}
-              className="absolute top-[4px] right-[4px] bg-black/60 text-xs px-[6px] py-[2px] rounded-md border border-red-500/70 text-red-400 hover:text-white hover:border-red-400 hover:shadow-[0_0_12px_rgba(255,80,80,0.8)] transition z-50"
-              style={{
-                pointerEvents: "all",
-              }}
-            >
-              ✕
-            </button>
-          </div>
-        ))}
+{units.map((u, i) => (
+  <div
+    key={`${u.Name}-${i}`}
+    className="relative group cursor-pointer"
+    onClick={() => {
+      // 🧠 Save current trade state to sessionStorage before leaving
+      sessionStorage.setItem(
+        "pendingTradeUnits",
+        JSON.stringify({
+          you: units,
+          title: title,
+        })
+      );
+
+      // Navigate to the unit’s info page
+      router.push(`/units/${encodeURIComponent(u.Name)}`);
+    }}
+  >
+    <CompactUnitCard u={u} clickable={true} />
+
+    {/* Remove Button */}
+    <button
+      onClick={(e) => {
+        e.stopPropagation(); // Prevent navigation when clicking remove
+        removeAt(i);
+      }}
+      className="absolute top-[4px] right-[4px] bg-black/60 text-xs px-[6px] py-[2px] rounded-md border border-red-500/70 text-red-400 hover:text-white hover:border-red-400 hover:shadow-[0_0_12px_rgba(255,80,80,0.8)] transition z-50"
+      style={{
+        pointerEvents: "all",
+      }}
+    >
+      ✕
+    </button>
+  </div>
+))}
 
         <button
           onClick={() => setIsOpen(true)}

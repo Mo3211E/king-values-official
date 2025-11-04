@@ -9,7 +9,19 @@ export const metadata = {
   title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
   description:
     "The #1 Anime Vanguards Value List & Trading Hub — updated daily with accurate, community-led unit values, fair trade comparisons, and live rankings. Trusted by top players for verified AV values, tier lists, and real-time trading insights.",
-  keywords: [
+     icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
+    alternates: {
+  canonical: "https://king-values.com",
+},
+robots: {
+  index: true,
+  follow: true,
+},
+    keywords: [
     "Anime Vanguards",
     "AV Values",
     "AV Value List",

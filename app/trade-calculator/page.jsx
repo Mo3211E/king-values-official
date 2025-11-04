@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import TradeBox from "../components/TradeBox";
 import GalaxyBackground from "../components/GalaxyBackground";
 
@@ -11,6 +11,18 @@ function toNumber(v) {
 export default function TradeCalculator() {
   const [you, setYou] = useState([]);
   const [other, setOther] = useState([]);
+
+  useEffect(() => {
+  const saved = sessionStorage.getItem("pendingTradeUnits");
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+      if (data.you) setYou(data.you);
+      if (data.other) setOther(data.other);
+      sessionStorage.removeItem("pendingTradeUnits");
+    } catch {}
+  }
+}, []);
 
   const youTotal = useMemo(() => you.reduce((s, u) => s + toNumber(u.Value), 0), [you]);
   const otherTotal = useMemo(() => other.reduce((s, u) => s + toNumber(u.Value), 0), [other]);

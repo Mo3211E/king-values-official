@@ -254,9 +254,9 @@ export default function Home() {
           <p className="mt-3 font-medium">
             <span className="text-[#f9cb9c]">Co-Owners:</span> Me (King Mo3211), Ekuzotia, Zog, Pop{" "}
             <br />
-            <span className="text-[#f9cb9c]">Value Team:</span> Connos, Mespritian, Xon, Gohary, Void, Fadi,
-            Simple, Kegs, Exs, Awesometicklenip, Void, Feh, Nathan, Knull,
-            Nat, Manjiro
+            <span className="text-[#f9cb9c]">Value Team:</span> Connos, Mespritian, Xon, Gohary, Knull, Void, Kegs, Celestial, Fadi,
+            Exs, Feh, Nathan, Simple, Awesometicklenip,
+            Nat, Manjiro, Aync
             <br />
             <span className="text-[#f9cb9c]">Partners:</span> Peryfc, Illusion (Discord Server){" "}
           </p>
@@ -324,6 +324,14 @@ export default function Home() {
             </p>
           </div>
         </div>
+
+
+        <p className="text-white/70 text-[1.4rem] mt-6 max-w-[75rem] mx-auto leading-relaxed">
+  King Values is the #1 Anime Vanguards Value List & Trade Hub for Roblox players.
+  Updated daily with verified community data, we offer the most accurate values,
+  tier lists, and fair trade comparisons for every unit and familiar in Anime Vanguards.
+</p>
+
       </div>
 
       {/* CSS Animations */}
