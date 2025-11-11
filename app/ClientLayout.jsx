@@ -18,9 +18,9 @@ export default function ClientLayout({ children }) {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  return isMobile ? (
-    <MobileLayout>{children}</MobileLayout>
-  ) : (
+  if (isMobile) return <MobileLayout>{children}</MobileLayout>;
+
+  return (
     <>
       <GalaxyBackground />
       <ScrollFade />

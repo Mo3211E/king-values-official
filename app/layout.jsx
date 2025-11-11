@@ -1,20 +1,12 @@
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import Script from "next/script";
 import "./globals.css";
-import GalaxyBackground from "./components/GalaxyBackground";
-import NavBar from "./components/NavBar";
-import ScrollFade from "./components/ScrollFade";
 import ClientLayout from "./ClientLayout";
-
-const MobileLayout = dynamic(() => import("./mobile/MobileLayout"), { ssr: false });
 
 export const metadata = {
   title: "King Values | #1 Anime Vanguards Value List & Trading Hub",
   description:
     "The #1 Anime Vanguards Value List & Trading Hub — updated daily with accurate, community-led unit values, fair trade comparisons, and live rankings. Trusted by top players for verified AV values, tier lists, and real-time trading insights.",
 
-  // ✅ Favicon + Apple Touch + SEO icon metadata
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
@@ -73,39 +65,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
   return (
     <html lang="en">
       <head>
-        {/* ✅ Ensures Google recognizes your logo and brand */}
         <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/logo.png" />
         <meta name="theme-color" content="#000000" />
-
-        {/* ✅ Google site verification for ranking (add your code below if needed) */}
-        {/* <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> */}
       </head>
 
       <body className="relative overflow-x-hidden text-white bg-black" suppressHydrationWarning>
         <ClientLayout>{children}</ClientLayout>
-        {isMobile ? (
-          <MobileLayout>{children}</MobileLayout>
-        ) : (
-          <>
-            <GalaxyBackground />
-            <ScrollFade />
-            <NavBar />
-            <main className="relative z-10 pt-28">{children}</main>
-          </>
-        )}
 
         {/* ✅ Google Analytics */}
         <Script
@@ -121,7 +90,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {/* ✅ Organization schema (shows your logo on Google) */}
+        {/* ✅ Organization Schema for Logo */}
         <Script id="ld-org" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -136,49 +105,6 @@ export default function RootLayout({ children }) {
             ],
             description:
               "King Values — Anime Vanguards Value List & Trade Hub for Roblox. Accurate values, fair trade data, and real-time updates.",
-          })}
-        </Script>
-
-        {/* ✅ Website Schema (Search Action) */}
-        <Script id="ld-website" type="application/ld+json" strategy="afterInteractive">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            url: "https://king-values.com",
-            name: "King Values | Anime Vanguards Value List & Trading Hub",
-            potentialAction: {
-              "@type": "SearchAction",
-              target: "https://king-values.com/search?q={search_term_string}",
-              "query-input": "required name=search_term_string",
-            },
-          })}
-        </Script>
-
-        {/* ✅ FAQ Schema for Featured Snippet Boost */}
-        <Script id="ld-faq" type="application/ld+json" strategy="afterInteractive">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What is King Values?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text:
-                    "King Values is the #1 verified Anime Vanguards (AV) value list and trading hub, providing accurate, community-led data updated daily.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How often are values updated?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text:
-                    "Values are refreshed every 24 hours using verified trade data, ensuring fairness and reliability.",
-                },
-              },
-            ],
           })}
         </Script>
       </body>
