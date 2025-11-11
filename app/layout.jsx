@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Script from "next/script";
@@ -7,6 +5,7 @@ import "./globals.css";
 import GalaxyBackground from "./components/GalaxyBackground";
 import NavBar from "./components/NavBar";
 import ScrollFade from "./components/ScrollFade";
+import ClientLayout from "./ClientLayout";
 
 const MobileLayout = dynamic(() => import("./mobile/MobileLayout"), { ssr: false });
 
@@ -96,6 +95,7 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className="relative overflow-x-hidden text-white bg-black" suppressHydrationWarning>
+        <ClientLayout>{children}</ClientLayout>
         {isMobile ? (
           <MobileLayout>{children}</MobileLayout>
         ) : (
