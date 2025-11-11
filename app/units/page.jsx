@@ -184,15 +184,16 @@ if (cached) {
         (u) => u.Stability?.toLowerCase() === "stable"
       );
 
-    // Sort by value/demand
-    if (sortBy === "demand") {
-      const order = ["Very High", "High", "Medium", "Low"];
-      list = [...list].sort(
-        (a, b) => order.indexOf(a.Demand) - order.indexOf(b.Demand)
-      );
-    } else {
-      list = [...list].sort((a, b) => b._value - a._value);
-    }
+// Sort by value/demand
+if (sortBy === "demand") {
+  const toNumber = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : 0;
+  };
+  list = [...list].sort((a, b) => toNumber(b.Demand) - toNumber(a.Demand));
+} else {
+  list = [...list].sort((a, b) => b._value - a._value);
+}
 
     return list;
   }, [
