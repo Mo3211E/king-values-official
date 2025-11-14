@@ -23,7 +23,9 @@ export const metadata = {
   },
 
   keywords: [
-    "Anime Vanguards",
+    "Anime Vanguard Value List",
+    "Anime Vanguard Values",
+    "Anime Vanguard Trading",
     "AV Values",
     "AV Value List",
     "Vanguards Values",

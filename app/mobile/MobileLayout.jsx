@@ -8,19 +8,19 @@ import MobileHome from "./MobileHome";
 import MobileUnits from "./MobileUnits";
 import MobileUnitPage from "./MobileUnitPage";
 import MobileTradeHub from "./MobileTradeHub";
-import MobileTradeCalc from "./MobileTradeCalc";
+import MobileTradeCalc from "./MobileTradeCalculator";
 
 export default function MobileLayout({ children }) {
   const pathname = usePathname();
 
-  const which = (() => {
-    if (pathname === "/") return "home";
-    if (pathname.startsWith("/units/") && pathname !== "/units") return "unit";
-    if (pathname.startsWith("/units")) return "units";
-    if (pathname.startsWith("/tradehub")) return "tradehub";
-    if (pathname.startsWith("/tradecalculator")) return "tradecalc";
-    return "fallback";
-  })();
+const which = (() => {
+  if (pathname === "/") return "home";
+  if (pathname.startsWith("/units/") && pathname !== "/units") return "unit";
+  if (pathname.startsWith("/units")) return "units";
+  if (pathname.startsWith("/trade-hub")) return "tradehub";       // FIXED
+  if (pathname.startsWith("/trade-calculator")) return "tradecalc"; // FIXED
+  return "fallback";
+})();
 
   return (
     <div className="mobile-bg">

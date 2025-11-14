@@ -114,7 +114,6 @@ const processedUnits = useMemo(() => {
         const cached = sessionStorage.getItem("unitsCache");
 if (cached) {
   setUnitsData(JSON.parse(cached));
-  setLoading(false);
   return;
 }
         const res = await fetch("/api/units");

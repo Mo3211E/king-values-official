@@ -121,10 +121,11 @@ export const demandColors = {
 // ---------- STABILITY COLORS ----------
 export const stabilityColors = {
   Stable: "#00ff80", // bright green
-  Increasing: "#ffe87d", // goldish yellow
+  Rising: "#ffe87d", // goldish yellow
   Overpriced: "linear-gradient(90deg, #8c52ff, #b87fff, #d6b3ff)", // galaxy purple gradient to fit site theme
+  Underpriced: "linear-gradient(90deg, #ff5252ff, #f8b79dff, #ff6767ff)",
   Unstable: "#ff5e5e", // red
-  Decreasing: "#c0392b", // deep red
+  Declining: "#cc2d1bff", // deep red
   default: "#ffffff",
 };
 

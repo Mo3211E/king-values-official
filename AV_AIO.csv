@@ -1,138 +1,139 @@
 Name,Value (RR),Demand,Stability
-Shiny DBZ Broly,O/C,5,Stable
-Shiny Octopus,O/C,4,Stable
-Shiny Diavolo,2000,7,Stable
-~Perfect Birb (C3),1150,6,Stable
-DBZ Broly,"1,050",5,Stable
-Octopus,800,4,Stable
-Shiny Subaru,630,6,Stable
-Diavolo,600,9,Overpriced
+Shiny DBZ Broly,Owner's Choice,5,Stable
+Shiny Diavolo,Owner's Choice,7,Stable
+Shiny Octopus,1650,2,Underpriced
+~Perfect Birb (C3),1100,8,Stable
+DBZ Broly,1050,5,Stable
+Shiny Subaru,800,6,Overpriced
+Octopus,630,9,Underpriced
+Diavolo,600,2,Overpriced
 Shiny Esdeath,590,6,Stable
 Shiny Seven,520,4,Unstable
-Shiny Seiko,460,5,Stable
-Roy Mustang,430,4,Unstable
-Shiny Kaguya,420,9,Overpriced
-Shiny Gogeta,385,5,Stable
+Shiny Kaguya,420,4,Stable
+Shiny Diego,400,8,Overpriced
+Shiny Gogeta,385,7,Stable
 Shiny Giselle,365,5,Stable
-~Perfect Birb (Uncorrupted),330,6,Stable
-Shiny Mark,310,7,Stable
-Shiny Jin Mori,305,8,Increasing
-Shiny Katakuri,290,6,Stable
-Seven,285,4,Unstable
-10k Robux Bundle,280,9,Increasing
-Shiny Diego,280,7,Increasing
-~3/4 Birb (C3),275,6,Stable
-Janny,270,3,Unstable
-Shiny Choi Jong-In,265,3,Decreasing
-~15% Foo (C3),255,5,Stable
-Shiny Frieren,250,5,Unstable
-Shiny Ragna,210,6,Stable
+Shiny Seiko,350,5,Stable
+Roy Mustang,340,6,Unstable
+~Perfect Birb (Uncorrupted),330,4,Stable
+~3/4 Birb (C3),320,6,Stable
+Shiny Mark,310,5,Stable
+Shiny Jin Mori,300,6,Stable
+10k Robux Bundle,295,8,Stable
+Shiny Katakuri,290,5,Stable
+Seven,285,3,Unstable
+Shiny Frieren,270,5,Unstable
+Rigged Dice,245,2,Underpriced
+Janny,240,4,Unstable
+~15% Foo (C3),235,6,Stable
+Shiny Choi Jong-In,220,4,Declining
+Shiny Ragna,210,6,Rising
 Shiny Rengoku,200,5,Stable
-Shiny Gilgamesh,175,4,Unstable
+~3/4 Birb (Uncorrupted),180,5,Stable
 Shiny Toji,170,4,Unstable
-Kaguya,150,10,Overpriced
-Esdeath,120,6,Stable
-Subaru,115,6,Stable
-~3/4 Birb (Uncorrupted),110,5,Stable
-5 High Roll Strange Cat (C4),105,5,Stable
-Gogeta,100,5,Stable
-~7.5% Silly Fairy (C3),95,6,Stable
-15% Blast BS 94.5-100% (C4),91,4,Stable
-~10% Foo (Uncorrupted),90,4,Stable
-Unevo Haruka Rin,85,6,Increasing
-Galaxy Ishtar,70,5,Stable
-2k Robux Bundle,67,8,Increasing
-Giselle,65,5,Stable
+Shiny Gilgamesh,155,4,Unstable
+Shiny Ishtar,150,5,Rising
+Kaguya,130,9,Overpriced
+Subaru,125,6,Stable
+5 High Roll Strange Cat (C4),120,6,Stable
+Gogeta,110,5,Stable
+15% Blast BS 94.5-100% (C4),105,5,Stable
+Esdeath,100,5,Stable
+Galaxy Ishtar,95,6,Stable
+Unevo Haruka Rin,85,6,Rising
+~10% Foo (Uncorrupted),70,4,Stable
+~7.5% Silly Fairy (C3),70,5,Stable
+2k Robux Bundle,67,8,Rising
+Giselle,65,6,Stable
 Seiko,63,5,Stable
-Shiny Rimuru,55,5,Stable
+A Pimp Named Slickback,55,5,Rising
+Kimono Saber,55,4,Unstable
+Shiny Rimuru,55,4,Unstable
 Shiny Mahito,51,5,Unstable
 Shiny Mechamaru,51,5,Unstable
-Shiny Killer Bee,50,5,Stable
-Shiny Rock Lee,50,5,Stable
+High Godly Stat [24.3-25],35-50,5,Stable
+Shiny Killer Bee,50,4,Stable
+Shiny Rock Lee,50,4,Stable
 Shiny Ginyu,49,6,Stable
 Shiny Bardock,49,6,Stable
 Shiny Hunter,45,7,Stable
-5 High Roll Strange Cat (C3),43,4,Unstable
-Choi Jong-In,40,3,Decreasing
-Diego,38,6,Increasing
-A Pimp Named Slickback,37,7,Increasing
-Ascended Nirvana,36,6,Stable
-Knight of Artorias,36,6,Stable
-Final Boss,36,6,Stable
-Casual Gilgamesh,35,5,Stable
-Suit Gojo,35,5,Stable
-Kimono Saber,35,5,Stable
-Fern,35,5,Stable
+Ascended Nirvana,45,6,Unstable
+Final Boss,45,6,Unstable
+5 High Roll Strange Cat (C3),40,4,Unstable
+Diego,40,6,Rising
+Skip 10 Levels,40,5,Stable
+Choi Jong-In,35,3,Declining
+Knight Artorias,35,6,Unstable
+Casual Gilgamesh,35,5,Unstable
+Suit Gojo,35,5,Unstable
+Fern,35,4,Unstable
 Baddie Katakuri,35,5,Stable
 Drip Goku,35,5,Stable
-Baddie Vergil,35,5,Stable
-Timika,35,5,Stable
-Mark Variants,35,5,Stable
-Casual Ichigo,35,5,Stable
-Goth Ackermans,35,5,Stable
-Summer Rimuru,35,5,Stable
-Jin Mori,33,7,Increasing
-Haruka Rin (Evo),31,6,Stable
-Mark,30,6,Stable
-Katakuri,29,5,Stable
-Frieren,27,3,Unstable
+Baddie Vergil,35,3,Unstable
+Timika,35,4,Unstable
+Mark Variants,35,4,Unstable
+Casual Ichigo,35,4,Unstable
+Goth Ackermans,35,4,Unstable
+Summer Rimuru,35,4,Unstable
+Jin Mori,31,7,Stable
+Haruka Rin (Evo),30,6,Stable
+Mark,29,6,Stable
+Frieren,28,5,Stable
+Katakuri,28,5,Stable
+Premium Pass,26,8,Rising
 ~140%+ Black Spirit (C3),25,5,Stable
-~75% Kon (C3),24,5,Stable
+~75% Gon (C3),24,5,Stable
 ~75% Ro jer (C3),24,5,Stable
-~5s Padoru (C3),23,4,Stable
-Hatsune Miku,22,6,Increasing
+~5s Padoru (C3),33,3,Stable
+Hatsune Miku,60,9,Unstable
+Low Godly Stat [23.5-24.2],10-20,5,Stable
 Shiny Okarun,20,3,Unstable
 Shiny Peeny-Weeny,20,3,Unstable
 Shiny Momo,20,3,Unstable
-Shiny Ishtar,19,3,Declining
-Skip 10 Levels,18,5,Stable
-Premium Pass,18,8,Increasing
-Rock Lee,17,4,Stable
-Killer Bee,17,4,Stable
-Mahito,16,4,Stable
-Mechamaru,16,4,Stable
-Ginyu,15,5,Stable
-Bardock,15,5,Stable
-Rengoku,14,5,Stable
-Lucy UmaFuma,14,3,Unstable
-Witch UmaFuma,14,3,Unstable
-Doorman,14,3,Unstable
-Kye,14,3,Unstable
-Ragna,13,5,Stable
-High Godly Stat [24.3-25],12,5,Stable
+Mahito,17,3,Stable
+Mechamaru,17,3,Stable
+Rock Lee,16,2,Stable
+Killer Bee,16,2,Stable
+Ginyu,15,4,Stable
+Bardock,15,4,Stable
+Rengoku,14,4,Stable
+Ragna,13,4,Stable
 Shiny Aladdin,11,5,Stable
-Shiny Sakuya,11,5,Stable
+Shiny Sakuya,11,2,Stable
 Shiny Lucy,10,5,Stable
 Display All Units,10,6,Stable
 VIP,9,6,Stable
-Low Godly Stat [23.5-24.2],12,5,Stable
-Rimuru,8,5,Stable
-Gilgamesh,8,5,Stable
+Rimuru,8,3,Stable
+Lucy UmaFuma,7,5,Unstable
+Witch UmaFuma,7,5,Unstable
+Doorman,7,3,Unstable
+Kye,7,3,Unstable
+Gilgamesh,7,4,Stable
 Extra Unit Storage,6,6,Stable
 Shiny Fubuki,5,4,Stable
 Shiny Emilia,5,4,Stable
 Shiny Kareem,5,4,Stable
 Shiny Rem and Ram,5,4,Stable
-Shiny Judar,5,4,Stable
-Shiny Hibana,4,4,Stable
-Shiny Arcueid,4,4,Stable
-Shiny Reimu,4,4,Stable
-Shiny Goblin Slayer,4,4,Stable
-Shiny Priestess,4,4,Stable
-Bad Stat Familiars (Uncorrupted),3,5,Stable
-Aladdin,3,4,Stable
-Sakuya,3,4,Stable
-Shiny Vergil,2,3,Stable
-Shiny Dante,2,3,Stable
-Shiny Merlin,2,3,Stable
-Shiny Rudeus,2,3,Stable
-Shiny David,2,3,Stable
-Judar,2,3,Stable
-Reimu,2,3,Stable
-Emilia,2,3,Stable
-Fubuki,2,3,Stable
-Hibana,2,3,Stable
-Toji,2,3,Stable
+Shiny Judar,5,2,Stable
+Shiny Hibana,4,2,Stable
+Shiny Arcueid,4,2,Stable
+Shiny Reimu,4,3,Stable
+Shiny Goblin Slayer,4,5,Stable
+Shiny Priestess,4,3,Stable
+Bad Stat Familiars (Uncorrupted),4,3,Stable
+Aladdin,3,2,Stable
+Sakuya,3,1,Stable
+Shiny Vergil,2,2,Stable
+Shiny Dante,2,2,Stable
+Shiny Merlin,2,1,Stable
+Shiny Rudeus,2,1,Stable
+Shiny David,2,1,Stable
+Judar,2,1,Stable
+Reimu,2,2,Stable
+Emilia,2,1,Stable
+Fubuki,2,1,Stable
+Hibana,2,1,Stable
+Toji,2,3,Rising
 Okarun,2,2,Stable
 Momo,2,2,Stable
 Peeny-Weeny,2,2,Stable
@@ -142,19 +143,19 @@ Merlin,2,2,Stable
 Rudeus,2,2,Stable
 Arcueid,2,2,Stable
 Ishtar,1,1,Stable
-Shiny Deidara,1,1,Stable
-Shiny Sasori,1,1,Stable
-Shiny Julius,1,1,Stable
-Shiny Sion,1,1,Stable
-Goblin Slayer,1,3,Stable
-Priestess,1,3,Stable
-Lucy,1,1,Stable
+Shiny Deidara,1,2,Stable
+Shiny Sasori,1,2,Stable
+Shiny Julius,1,3,Stable
+Shiny Sion,1,3,Stable
+Goblin Slayer,1,2,Stable
+Priestess,1,2,Stable
+Lucy,1,2,Stable
 David,1,1,Stable
 Dante,1,1,Stable
 Vergil,1,1,Stable
 Deidara,1,1,Stable
 Sasori,1,1,Stable
-Event Banner Skins,0.5,1,Stable
-Z+ or Lower Stat,0.3,1,Stable
-Julius,0.2,1,Stable
-Sion,0.1,1,Stable
+Event Banner Skins,1,1,Stable
+Z+ or Lower Stat,1,1,Stable
+Julius,1,1,Stable
+Sion,1,1,Stable
