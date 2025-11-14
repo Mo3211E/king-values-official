@@ -148,7 +148,13 @@ export default function MobileUnits() {
       };
       list = [...list].sort((a, b) => num(b.Demand) - num(a.Demand));
     } else {
-      list = [...list].sort((a, b) => b._value - a._value);
+      list = [...list].sort((a, b) => {
+  if (b._value !== a._value) return b._value - a._value;
+  const da = Number(a.Demand) || 0;
+  const db = Number(b.Demand) || 0;
+  return db - da;
+});
+
     }
 
     return list;

@@ -5,18 +5,35 @@ import UnitPickerModal from "./UnitPickerModal";
 import CompactUnitCard from "./CompactUnitCard";
 
 function toNumber(v) {
-  const n = Number(v);
-  return Number.isFinite(n) ? n : 0;
+  const s = String(v ?? "").toLowerCase();
+
+  // text Owner's Choice → Infinity
+  if (s.includes("owner")) return Infinity;
+
+  // remove commas and parse number
+  const n = Number(s.replace(/,/g, ""));
+  if (!Number.isFinite(n)) return 0;
+
+  // old sentinel "highest number" → also treat as Infinity
+  if (n >= 1_000_000_000_000) return Infinity;
+
+  return n;
 }
+
+
 
 export default function TradeBox({ title, units, setUnits }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter(); // 🆕 router for navigation
 
-  const totalValue = useMemo(
-    () => units.reduce((sum, u) => sum + toNumber(u.Value), 0),
-    [units]
-  );
+const totalValue = useMemo(() => {
+  const numericValues = units.map((u) => toNumber(u.Value));
+
+  if (numericValues.includes(Infinity)) return Infinity;
+
+  return numericValues.reduce((sum, v) => sum + v, 0);
+}, [units]);
+
 
   const removeAt = (idx) => {
     const next = [...units];
@@ -39,7 +56,7 @@ export default function TradeBox({ title, units, setUnits }) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg sm:text-xl font-bold tracking-wide">{title}</h2>
         <p className="text-white/90 text-sm sm:text-base">
-          Value: {totalValue.toLocaleString()}
+          Value: {totalValue === Infinity ? "∞" : totalValue.toLocaleString()}
         </p>
       </div>
 

@@ -4,9 +4,21 @@ import TradeBox from "../components/TradeBox";
 import GalaxyBackground from "../components/GalaxyBackground";
 
 function toNumber(v) {
-  const n = Number(v);
-  return Number.isFinite(n) ? n : 0;
+  const s = String(v ?? "").toLowerCase();
+
+  // text Owner's Choice → Infinity
+  if (s.includes("owner")) return Infinity;
+
+  // remove commas and parse number
+  const n = Number(s.replace(/,/g, ""));
+  if (!Number.isFinite(n)) return 0;
+
+  // old sentinel "highest number" → also treat as Infinity
+  if (n >= 1_000_000_000_000) return Infinity;
+
+  return n;
 }
+
 
 export default function TradeCalculator() {
   const [you, setYou] = useState([]);
@@ -27,16 +39,40 @@ export default function TradeCalculator() {
   const youTotal = useMemo(() => you.reduce((s, u) => s + toNumber(u.Value), 0), [you]);
   const otherTotal = useMemo(() => other.reduce((s, u) => s + toNumber(u.Value), 0), [other]);
 
-  const diff = otherTotal - youTotal;
-  const verdictText =
+// Declare verdictText and diff FIRST
+let verdictText = "";
+let diff = otherTotal - youTotal;
+
+// Owner’s Choice rules
+if (youTotal === Infinity && otherTotal === Infinity) {
+  verdictText = "Fair (N/A)";
+} else if (youTotal === Infinity) {
+  verdictText = "Loss (N/A)";
+} else if (otherTotal === Infinity) {
+  verdictText = "Win (N/A)";
+} else {
+  // Normal numeric calculation
+  verdictText =
     diff === 0
-      ? `Fair (0)`
+      ? "Fair (0)"
       : diff > 0
       ? `Win (${diff.toLocaleString()})`
       : `Loss (${Math.abs(diff).toLocaleString()})`;
+}
 
-  const verdictColor =
-    diff === 0 ? "text-gray-300" : diff > 0 ? "text-emerald-400" : "text-red-500";
+
+const verdictColor =
+  youTotal === Infinity && otherTotal === Infinity
+    ? "text-gray-300"
+    : otherTotal === Infinity
+    ? "text-emerald-400"
+    : youTotal === Infinity
+    ? "text-red-500"
+    : diff === 0
+    ? "text-gray-300"
+    : diff > 0
+    ? "text-emerald-400"
+    : "text-red-500";
 
   return (
    <main className="min-h-screen text-white relative overflow-visible flex flex-col justify-center items-center">

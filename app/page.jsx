@@ -254,11 +254,11 @@ export default function Home() {
           <p className="mt-3 font-medium">
             <span className="text-[#f9cb9c]">Co-Owners:</span> Me (King Mo3211), Zog, Partyware, Pop{" "}
             <br />
-            <span className="text-[#f9cb9c]">Value Team:</span> Connos, Gohary, Knull, Void, Kegs, Celestial, Fadi,
+            <span className="text-[#f9cb9c]">Value Team:</span> Connos, Gohary, Zen, Void, Kegs, Fadi,
             Exs, Feh, Nathan, Simple, Awesometicklenip,
             Nat, Manjiro, Aync, Paper
             <br />
-            <span className="text-[#f9cb9c]">Value Researchers:</span> Fugo, atsuo, prizza, jesko, fivestarasap, elykiye, spork, squiddy, anaxendel, mozilla{" "}
+            <span className="text-[#f9cb9c]">Value Researchers:</span> Celestial, Fugo, atsuo, prizza, jesko, fivestarasap, elykiye, spork, squiddy, anaxendel, mozilla{" "}
             <br />
             <span className="text-[#f9cb9c]">Partners:</span> Peryfc, Illusion (Discord Server){" "}
           </p>

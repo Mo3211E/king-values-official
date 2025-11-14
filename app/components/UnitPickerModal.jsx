@@ -98,12 +98,24 @@ useEffect(() => {
     if (category !== "All") list = list.filter((u) => u._category === category);
 
     switch (sort) {
+     case "value-desc":
+  list = [...list].sort((a, b) => {
+    if (b._value !== a._value) return b._value - a._value;
+    const da = Number(a.Demand) || 0;
+    const db = Number(b.Demand) || 0;
+    return db - da;
+  });
+  break;
+
       case "value-desc":
-        list = [...list].sort((a, b) => b._value - a._value);
-        break;
-      case "value-asc":
-        list = [...list].sort((a, b) => a._value - b._value);
-        break;
+  list = [...list].sort((a, b) => {
+    if (b._value !== a._value) return a._value - b._value;
+    const da = Number(a.Demand) || 0;
+    const db = Number(b.Demand) || 0;
+    return db - da;
+  });
+  break;
+
       case "demand-desc":
         list = [...list].sort((a, b) => toNumber(b.Demand) - toNumber(a.Demand));
         break;

@@ -5,9 +5,21 @@ import GalaxyBackground from "../components/GalaxyBackground";
 import CompactUnitCard from "../components/CompactUnitCard";
 
 function toNumber(v) {
-  const n = parseFloat(v);
-  return Number.isFinite(n) && n >= 0 ? n : 0;
+  const s = String(v ?? "").toLowerCase();
+
+  // text Owner's Choice → Infinity
+  if (s.includes("owner")) return Infinity;
+
+  // remove commas and parse number
+  const n = Number(s.replace(/,/g, ""));
+  if (!Number.isFinite(n)) return 0;
+
+  // old sentinel "highest number" → also treat as Infinity
+  if (n >= 1_000_000_000_000) return Infinity;
+
+  return n;
 }
+
 
 export default function TradeHub() {
   const [ads, setAds] = useState([]);
@@ -36,9 +48,16 @@ export default function TradeHub() {
   );
 
   const verdict = useMemo(() => {
-    if (p1Total === p2Total) return "Fair Trade";
-    if (p1Total < p2Total) return "Win for Advertiser";
-    return "Loss for Advertiser";
+  // Owner's Choice logic
+if (p1Total === Infinity && p2Total === Infinity) return "Fair Trade";
+if (p1Total === Infinity) return "Loss (N/A)";
+if (p2Total === Infinity) return "Win (N/A)";
+
+// Normal numeric comparison
+if (p1Total === p2Total) return "Fair Trade";
+if (p1Total < p2Total) return `Win for Advertiser (${(p2Total - p1Total).toLocaleString()})`;
+return `Loss for Advertiser(${(p1Total - p2Total).toLocaleString()})`;
+
   }, [p1Total, p2Total]);
 
   // Auto-generate trade title
@@ -465,7 +484,7 @@ export default function TradeHub() {
                     ))}
                   </div>
                   <p className="mt-1 text-white/80">
-                    Total: {(Number(ad.p1Total) || 0).toLocaleString()}
+                    Total: {ad.p1Total === Infinity ? "∞" : Number(ad.p1Total).toLocaleString()}
                   </p>
                 </div>
 
@@ -479,7 +498,7 @@ export default function TradeHub() {
                     ))}
                   </div>
                   <p className="mt-1 text-white/80">
-                    Total: {(Number(ad.p2Total) || 0).toLocaleString()}
+                    Total: {ad.p2Total === Infinity ? "∞" : Number(ad.p2Total).toLocaleString()}
                   </p>
                 </div>
               </div>
