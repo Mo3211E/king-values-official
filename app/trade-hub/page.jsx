@@ -79,20 +79,32 @@ export default function TradeHub() {
     return `${you || "?"} FOR ${them || "?"}`;
   }, [player1, player2]);
 
-  // Check if user is logged in (via manage route)
+  // Check if user is logged in (Discord OAuth) and autofill username
   useEffect(() => {
     (async () => {
       try {
         const res = await fetch("/api/auth/session", { cache: "no-store" });
+        if (!res.ok) return;
+
         const data = await res.json();
 
-        if (data?.user?.id) {
+        if (data?.user) {
+          // keep the session around for posting trades / start-thread
           window.session = data;
           setLoggedIn(true);
 
-          // Autofill and lock Discord username
-          if (data.user.username) {
-            setDiscord(data.user.username);
+          // Try multiple possible fields for the Discord name
+          const rawName =
+            data.user.username ||      // custom discord username (what you used before)
+            data.user.global_name ||   // some Discord setups use this
+            data.user.name ||          // NextAuth default "name"
+            "";
+
+          if (rawName) {
+            // Reuse your lowercase / no-space rules so it passes validation
+            const cleaned = rawName.toLowerCase().replace(/\s+/g, "").slice(0, 32);
+            setDiscord(cleaned);
+            setDiscordValid(true);
           }
         }
       } catch (err) {
@@ -100,6 +112,7 @@ export default function TradeHub() {
       }
     })();
   }, []);
+
 
   async function startThreadForTrade(ad) {
     try {

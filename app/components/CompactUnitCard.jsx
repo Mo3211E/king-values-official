@@ -160,8 +160,8 @@ export function TradeBoardUnitCard({ u }) {
     <div
       className="relative rounded-lg overflow-hidden"
       style={{
-        width: "96px",
-        height: "96px",
+        width: "84px",
+        height: "84px",
         background: CARD_BG,
         borderRadius: "0.8rem",
       }}
