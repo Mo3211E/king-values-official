@@ -1,6 +1,6 @@
 // app/api/auth/session/route.js
 import { NextResponse } from "next/server";
-import { readSessionFromRequest } from "../../_lib/session";
+import { readSessionFromRequest } from "../_lib/session";
 
 export async function GET(req) {
   const session = readSessionFromRequest(req);

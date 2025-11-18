@@ -1,6 +1,6 @@
 // app/api/auth/discord/callback/route.js
 import { NextResponse } from "next/server";
-import { readSessionFromRequest, signSessionCookie, SESSION_COOKIE_NAME } from '../../_lib/session';
+import { readSessionFromRequest, signSessionCookie, SESSION_COOKIE_NAME } from '../_lib/session';
 
 const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID;
 const DISCORD_CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
