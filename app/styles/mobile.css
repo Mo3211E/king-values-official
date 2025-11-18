@@ -1,0 +1,134 @@
+/* app/styles/mobile.css */
+
+/* Reset heavy shadows/animations for speed */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --m-font-sm: 0.9rem;
+  --m-font: 1rem;
+  --m-font-lg: 1.1rem;
+  --m-gap: 10px;
+  --m-radius: 14px;
+
+  --m-card-bg: rgba(10, 7, 18, 0.82);
+  --m-card-border: rgba(180, 140, 255, 0.22);
+  --m-glow: 0 0 14px rgba(190, 150, 255, 0.28);
+}
+
+/* Static galaxy background (fast) */
+.mobile-bg {
+  min-height: 100dvh;
+  background:
+    radial-gradient(60% 45% at 50% 15%, rgba(75,0,130,0.35), transparent 60%),
+    radial-gradient(60% 45% at 20% 80%, rgba(138,43,226,0.25), transparent 55%),
+    radial-gradient(50% 40% at 80% 65%, rgba(25,0,50,0.45), transparent 60%),
+    #070515;
+  background-attachment: fixed;
+  backdrop-filter: saturate(115%) contrast(105%);
+}
+
+/* Compact typography & spacing */
+.mobile-wrap {
+  padding: 14px;
+}
+
+.m-card {
+  background: var(--m-card-bg);
+  border: 1px solid var(--m-card-border);
+  border-radius: var(--m-radius);
+  box-shadow: var(--m-glow);
+}
+
+.m-title {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.2px;
+}
+
+.m-sub {
+  color: rgba(255,255,255,0.75);
+  font-size: var(--m-font);
+}
+
+.m-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(200,170,255,0.28);
+  background: linear-gradient(90deg, rgba(110, 70, 200, 0.65), rgba(190, 120, 255, 0.55));
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Two-column compact grid for cards */
+.m-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--m-gap);
+}
+
+.m-kv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--m-font);
+  padding: 6px 0;
+}
+
+/* Bottom navbar (touch-friendly) */
+.m-bottom-nav {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(640px, 92%);
+  background: rgba(15, 10, 25, 0.9);
+  border: 1px solid rgba(190,160,255,0.28);
+  border-radius: 18px;
+  box-shadow: 0 8px 26px rgba(0,0,0,0.45), 0 0 24px rgba(180,140,255,0.3);
+  backdrop-filter: blur(6px);
+  z-index: 40;
+}
+
+.m-bottom-nav ul {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+}
+
+.m-bottom-nav a {
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  padding: 8px 0;
+  border-radius: 12px;
+}
+
+.m-bottom-nav a.active {
+  background: rgba(170,130,255,0.18);
+  border: 1px solid rgba(190,160,255,0.35);
+}
+
+/* Compact unit image */
+.m-unit-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(190,160,255,0.22);
+}
+
+/* Hide heavy desktop-only visuals when inside mobile layout */
+.mobile-only-hide {
+  display: none !important;
+}

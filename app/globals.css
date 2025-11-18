@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-black text-white;
+}
+
+/* ============================================================
+   Global Custom Scrollbar — Stable Width + True Fade + Glow
+   ============================================================ */
+
+html {
+  overflow-y: scroll;                 /* always reserve space */
+  scrollbar-gutter: stable both-edges;/* no layout shift */
+  scrollbar-width: thin;
+  scrollbar-color: #b891ff rgba(40, 0, 80, 0.4);
+}
+
+/* WebKit base (Chrome/Edge/Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  position: absolute;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* Track (hidden until scrolling) */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, background 0.4s ease-in-out;
+}
+
+/* Thumb (hidden until scrolling) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #b891ff, #7a55ff);
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(190, 150, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.4s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Show everything when scrolling */
+html.scrolling ::-webkit-scrollbar-thumb,
+html.scrolling ::-webkit-scrollbar-track {
+  opacity: 1;
+}
+
+/* Dynamic page colors */
+html.page-home ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffb7ef, #ffc9ff);
+}
+html.page-units ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c0b3ff, #9f8bff);
+}
+html.page-calculator ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #9fe0ff, #82bfff);
+}
+html.page-tradehub ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d3a6ff, #b678ff);
+}
+
+/* Glow pulse while scrolling */
+@keyframes scrollPulse {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(200, 150, 255, 0.4);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(230, 180, 255, 0.9);
+    filter: brightness(1.2);
+  }
+}
+html.scrolling ::-webkit-scrollbar-thumb {
+  animation: scrollPulse 1.3s ease-in-out infinite;
+}
+
+/* Hover state */
+::-webkit-scrollbar-thumb:hover {
+  opacity: 1 !important;
+  filter: brightness(1.25);
+}
+
+/* Firefox support (simple fade effect) */
+html {
+  scrollbar-color: transparent transparent;
+}
+html.scrolling {
+  scrollbar-color: #b891ff rgba(40, 0, 80, 0.4);
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-track {
+    transition: none;
+    animation: none;
+    opacity: 1;
+  }
+}
+
+.card {
+  cursor: pointer;
+}
