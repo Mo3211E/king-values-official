@@ -7,7 +7,7 @@ export default function JoinDiscord() {
         manage trades, and stay updated.
       </p>
       <a
-        href="YOUR_INVITE_LINK_HERE"
+        href="https://discord.gg/cUGkAtsFNT"
         className="px-6 py-3 text-xl rounded-xl font-bold text-white"
         style={{
           background: "linear-gradient(90deg, #c77dff, #8d4eff)"

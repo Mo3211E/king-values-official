@@ -272,7 +272,7 @@ useEffect(() => {
     }
   };
 
-const TRADES_PER_PAGE = 48;
+const TRADES_PER_PAGE = 33;
 
 const totalPages = Math.ceil(filteredAds.length / TRADES_PER_PAGE);
 
